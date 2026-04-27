@@ -1,0 +1,42 @@
+Package: StashSpectra
+Title: Serialize and restore Spectra objects in interoperable file formats
+Version: 0.97.0
+Authors@R:
+    c(person(given = "Johannes", family = "Rainer",
+             email = "Johannes.Rainer@eurac.edu",
+             role = c("aut", "cre"),
+             comment = c(ORCID = "0000-0002-6977-7147")),
+      person(given = "Philippine", family = "Louail",
+             email = "philippine.louail@eurac.edu",
+	     role = "aut",
+	     comment = c(ORCID = "0009-0007-5429-6846")),
+      person(given = "Laurent", family = "Gatto",
+             email = "laurent.gatto@uclouvain.be",
+	     role = "ctb",
+	     comment = c(ORCID = "0000-0002-1520-2268")))
+Description: The serialization mechanism of R allows to save and load R data
+             objects in a binary format, that can however not be read by other
+	     programming languages or software. The StashSpectra package
+	     implements the serialization methods from the MsStash package for
+	     Spectra objects and its MsBackend classes. A variety of different
+	     file formats and types, including HDF5 and JSON-based formats
+	     defined by the Bioconductor *alabaster* package are supported.
+	     The file type can be defined and configured through a second
+	     argument `param` of the save/read methods.
+Depends:
+    R (>= 4.6.0)
+Imports:
+    methods,
+    MsStash
+Suggests:
+    BiocStyle,
+    alabaster.base,
+    testthat
+License: Artistic-2.0
+Encoding: UTF-8
+VignetteBuilder: knitr
+BugReports: https://github.com/RforMassSpectrometry/StashSpectra/issues
+URL: https://github.com/RforMassSpectrometry/StashSpectra
+biocViews: Infrastructure, MassSpectrometry, Metabolomics, DataImport, Proteomics
+Roxygen: list(markdown=TRUE)
+RoxygenNote: 7.3.3
