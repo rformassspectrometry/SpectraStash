@@ -24,17 +24,21 @@ Description: The serialization mechanism of R allows to save and load R data
 	     The file type can be defined and configured through a second
 	     argument `param` of the save/read methods.
 Depends:
-    R (>= 4.6.0)
+    R (>= 4.6.0),
+    MsStash
 Imports:
     methods,
-    MsStash
+    Spectra,
+    utils,
+    S4Vectors
 Suggests:
     BiocStyle,
     alabaster.base,
-    testthat
+    MsDataHub,
+    testthat,
+    mzR
 License: Artistic-2.0
 Encoding: UTF-8
-VignetteBuilder: knitr
 BugReports: https://github.com/RforMassSpectrometry/StashSpectra/issues
 URL: https://github.com/RforMassSpectrometry/StashSpectra
 biocViews: Infrastructure, MassSpectrometry, Metabolomics, DataImport, Proteomics
