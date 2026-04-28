@@ -8,6 +8,13 @@ test_that(".check_class_comment works", {
     expect_no_error(.check_class_comment("a", "b", "a"))
 })
 
+test_that(".check_directory_content works", {
+    expect_error(.check_directory_content(tempdir(), "my_file"), "not found")
+    file.create(file.path(tempdir(), "my_file"))
+    expect_no_error(.check_directory_content(tempdir(), "my_file"))
+    unlink(file.path(tempdir(), "my_file"))
+})
+
 test_that(".write_spectra_data works", {
     a <- data.frame(a = 1:3, b = "b")
     fl <- file.path(tempdir(), "test.txt")

@@ -20,6 +20,15 @@
              "\", but it should be \"", expected, "\".", call. = FALSE)
 }
 
+#' Check for presence of files `expected` in `path`
+#'
+#' @noRd
+.check_directory_content <- function(path, expected = character()) {
+    if (any(miss <- !file.exists(file.path(path, expected))))
+        stop("file(s) ", paste0("\"", expected[miss], "\"", collapse = ", "),
+             " not found in ", path, call. = FALSE)
+}
+
 #' Helper function to write a `spectraData` `data.frame` to a tab-delimited
 #' text file.
 #'

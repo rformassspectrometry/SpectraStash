@@ -30,10 +30,10 @@ Imports:
     methods,
     Spectra,
     utils,
-    S4Vectors
+    S4Vectors,
+    alabaster.base
 Suggests:
     BiocStyle,
-    alabaster.base,
     MsDataHub,
     testthat,
     mzR

@@ -4,11 +4,14 @@
 \alias{MsBackendMzR-stash}
 \alias{saveMsObject,MsBackendMzR,PlainTextParam-method}
 \alias{readMsObject,MsBackendMzR,PlainTextParam-method}
+\alias{saveObject,MsBackendMzR-method}
 \title{MsBackendMzR Stash}
 \usage{
 \S4method{saveMsObject}{MsBackendMzR,PlainTextParam}(object, param)
 
 \S4method{readMsObject}{MsBackendMzR,PlainTextParam}(object, param, spectraPath = character())
+
+\S4method{saveObject}{MsBackendMzR}(x, path, ...)
 }
 \arguments{
 \item{object}{An \code{MsBackendMzR} object.}
@@ -19,9 +22,14 @@
 path to the MS data files (mzML, mzXML or CDF) in case they are on longer
 available in the folder referred to by the original stashed
 \code{MsBackendMzR} object.}
+
+\item{x}{An \code{MsBackendMzR} object.}
+
+\item{path}{For \code{saveObject()}: \code{character(1)} with the path where the
+object should be stored in.}
 }
 \value{
-\code{readMsObject()} returns an \code{MsBackendMzR()} object.
+\code{readMsObject()} returns an \link[Spectra:MsBackend]{Spectra::MsBackendMzR}` object.
 }
 \description{
 \code{MsBackendMzR} classes can be stashed to (or read from) plain text

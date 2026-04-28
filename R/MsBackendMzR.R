@@ -38,7 +38,12 @@
 #'     available in the folder referred to by the original stashed
 #'     `MsBackendMzR` object.
 #'
-#' @return `readMsObject()` returns an `MsBackendMzR()` object.
+#' @param x An `MsBackendMzR` object.
+#'
+#' @param path For `saveObject()`: `character(1)` with the path where the
+#'     object should be stored in.
+#'
+#' @return `readMsObject()` returns an [Spectra::MsBackendMzR]` object.
 #'
 #' @author Philippine Louail, Johannes Rainer
 NULL
@@ -59,7 +64,7 @@ setMethod("saveMsObject", signature(object = "MsBackendMzR",
           function(object, param) {
               object <- dropNaSpectraVariables(object)
               dir.create(param@path, showWarnings = FALSE, recursive = TRUE)
-              fl <- file.path(param@path, "ms_backend_spectra_data.txt")
+              fl <- file.path(param@path, .MS_BACKEND_MZR_DATA_FILE)
               .check_overwriting(fl)
               writeLines(paste0("# ", class(object)[1L]), con = fl)
               if (nrow(object@spectraData))
@@ -78,12 +83,10 @@ setMethod("saveMsObject", signature(object = "MsBackendMzR",
 setMethod("readMsObject", signature(object = "MsBackendMzR",
                                     param = "PlainTextParam"),
           function(object, param, spectraPath = character()) {
-              fl <- file.path(param@path, "ms_backend_spectra_data.txt")
-              if (!file.exists(fl))
-                  stop("\"ms_backend_spectra_data.txt\" not found in ",
-                       param@path, call. = FALSE)
+              fl <- file.path(param@path, .MS_BACKEND_MZR_DATA_FILE)
+              .check_directory_content(param@path, .MS_BACKEND_MZR_DATA_FILE)
               l2 <- readLines(fl, n = 2)
-              .check_class_comment(l2, "ms_backend_spectra_data.txt",
+              .check_class_comment(l2, .MS_BACKEND_MZR_DATA_FILE,
                                    "# MsBackendMzR")
               if (length(l2) > 1L) {
                   object@spectraData <- DataFrame(.read_spectra_data(fl))
@@ -93,3 +96,55 @@ setMethod("readMsObject", signature(object = "MsBackendMzR",
               validObject(object)
               object
           })
+
+.MS_BACKEND_MZR_DATA_FILE <- "ms_backend_spectra_data.txt"
+
+################################################################################
+##    AlabasterParam
+################################################################################
+
+#' @importMethodsFrom alabaster.base saveObject
+#'
+#' @importFrom alabaster.base saveObjectFile
+#'
+#' @importFrom alabaster.base altSaveObject
+#'
+#' @rdname MsBackendMzR-stash
+setMethod("saveObject", "MsBackendMzR", function(x, path, ...) {
+    x <- dropNaSpectraVariables(x)
+    dir.create(path, showWarnings = FALSE, recursive = TRUE)
+    .check_overwriting(file.path(path, "OBJECT"))
+    saveObjectFile(path, "ms_backend_mz_r")
+    altSaveObject(x@spectraData, path = file.path(path, "spectra_data"))
+})
+
+#' @importFrom alabaster.base registerValidateObjectFunction
+#'
+#' @importFrom alabaster.base readObjectFile
+#'
+#' @noRd
+validateMsBackendMzR <- function(path = character(), metadata = list()) {
+    .check_directory_content(path, c("OBJECT", "spectra_data"))
+    ob <- readObjectFile(path)
+    if (ob$type != "ms_backend_mz_r")
+        stop("Invalid OBJECT format. Expected \"ms_backend_mz_r\"",
+             call. = FALSE)
+}
+
+#' @importFrom alabaster.base altReadObject
+#'
+#' @importFrom alabaster.base registerReadObjectFunction
+#'
+#' @importFrom Spectra MsBackendMzR
+#'
+#' @noRd
+readMsBackendMzR <- function(path = character(), metadata = list(),
+                             spectraPath = character()) {
+    validateMsBackendMzR(path, metadata)
+    be <- MsBackendMzR()
+    be@spectraData <- altReadObject(file.path(path, "spectra_data"))
+    if (length(spectraPath))
+        dataStorageBasePath(be) <- spectraPath
+    validObject(be)
+    be
+}
