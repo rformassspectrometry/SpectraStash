@@ -12,6 +12,17 @@
 #' [AlabasterParam] parameter objects, respectively. The properties for both
 #' formats are described in detail in the sections below.
 #'
+#' @details
+#'
+#' `MsBackendMzR` objects don't contain any peaks data (i.e., *m/z* and
+#' intensity values) but retrieve these from the original MS data files (in
+#' mzML, mzXML or CDF format). A `MsBackendMzR` stash will therefore only
+#' contain the spectra metadata (i.e., the spectra variables) but no peaks
+#' data. The reference to the original MS data files is stored as spectra
+#' variable *dataStorage* and if the files are no longer available in the
+#' directory specified by *dataStorage* the restored object will not be valid,
+#' unless the new location is provided with parameter `spectraPath`.
+#'
 #' @section Text-file format, `PlainTextParam`:
 #'
 #' The `saveMsObject()` function with the `PlainTextParam` stores the spectra
@@ -29,6 +40,17 @@
 #'
 #' @section *alabaster*-based format, `AlabasterParam`:
 #'
+#' The `saveMsObject()` with an `AlabasterParam` parameter object stashes the
+#' provided `MsBackendMzR` object in an *alabster*-based format into the
+#' directory defined with argument `param` of the `AlabasterParam`.
+#' `readMsObject()` with `AlabasterParam` restores a previously stashed
+#' `MsBackend` object. Optional parameter `spectraPath` allows to specify the
+#' storage path of the MS data files referenced by the `MsBackendMzR` (in case
+#' they are no longer in the same directory when saving the object).
+#'
+#' In addition, the *alabaster* methods `saveObject()` and `readObject()` can
+#' be used to save and read `MsBackendMzR` objects.
+#'
 #' @param object An `MsBackendMzR` object.
 #'
 #' @param param Either a `PlainTextParam` or `AlabasterParam`.
@@ -43,9 +65,44 @@
 #' @param path For `saveObject()`: `character(1)` with the path where the
 #'     object should be stored in.
 #'
+#' @param ... Currently ignored.
+#'
 #' @return `readMsObject()` returns an [Spectra::MsBackendMzR]` object.
 #'
 #' @author Philippine Louail, Johannes Rainer
+#'
+#' @examples
+#'
+#' library(StashSpectra)
+#' library(Spectra)
+#' library(MsDataHub)
+#'
+#' ## Create a MsBackendMzR from test data
+#' be <- backendInitialize(MsBackendMzR(), PestMix1_DDA.mzML())
+#' be
+#'
+#' ## Define a folder where to stash the object
+#' pth <- file.path(tempdir(), "mzr_stash")
+#'
+#' ## Stash the object to this folder in a plain text-based format
+#' saveMsObject(be, PlainTextParam(pth))
+#'
+#' ## Restore the stashed object
+#' res <- readMsObject(MsBackendMzR(), PlainTextParam(pth))
+#' res
+#'
+#' ## Clean-up and store the data in alabaster-based format
+#' unlink(pth, recursive = TRUE)
+#'
+#' saveMsObject(be, AlabasterParam(pth))
+#'
+#' ## Restore the object
+#' res <- readMsObject(MsBackendMzR(), AlabasterParam(pth))
+#' res
+#'
+#' ## The new location of MS data files could be provided with parameter
+#' ## `spectraPath` of the `readMsObject()` function in case they are no
+#' ## longer in the path referenced by the stashed object.
 NULL
 
 ################################################################################
@@ -148,3 +205,17 @@ readMsBackendMzR <- function(path = character(), metadata = list(),
     validObject(be)
     be
 }
+
+#' @rdname MsBackendMzR-stash
+setMethod("saveMsObject", signature(object = "MsBackendMzR",
+                                    param = "AlabasterParam"),
+          function(object, param) {
+              saveObject(object, path = param@path)
+          })
+
+#' @rdname MsBackendMzR-stash
+setMethod("readMsObject", signature(object = "MsBackendMzR",
+                                    param = "AlabasterParam"),
+          function(object, param, spectraPath = character()) {
+              readMsBackendMzR(path = param@path, spectraPath = spectraPath)
+          })
