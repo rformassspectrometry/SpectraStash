@@ -5,6 +5,8 @@
 \alias{saveMsObject,MsBackendMzR,PlainTextParam-method}
 \alias{readMsObject,MsBackendMzR,PlainTextParam-method}
 \alias{saveObject,MsBackendMzR-method}
+\alias{saveMsObject,MsBackendMzR,AlabasterParam-method}
+\alias{readMsObject,MsBackendMzR,AlabasterParam-method}
 \title{MsBackendMzR Stash}
 \usage{
 \S4method{saveMsObject}{MsBackendMzR,PlainTextParam}(object, param)
@@ -12,6 +14,10 @@
 \S4method{readMsObject}{MsBackendMzR,PlainTextParam}(object, param, spectraPath = character())
 
 \S4method{saveObject}{MsBackendMzR}(x, path, ...)
+
+\S4method{saveMsObject}{MsBackendMzR,AlabasterParam}(object, param)
+
+\S4method{readMsObject}{MsBackendMzR,AlabasterParam}(object, param, spectraPath = character())
 }
 \arguments{
 \item{object}{An \code{MsBackendMzR} object.}
@@ -27,16 +33,28 @@ available in the folder referred to by the original stashed
 
 \item{path}{For \code{saveObject()}: \code{character(1)} with the path where the
 object should be stored in.}
+
+\item{...}{Currently ignored.}
 }
 \value{
-\code{readMsObject()} returns an \link[Spectra:MsBackend]{Spectra::MsBackendMzR}` object.
+\code{readMsObject()} returns an \link[Spectra:MsBackendMzR]{Spectra::MsBackendMzR}` object.
 }
 \description{
 \code{MsBackendMzR} classes can be stashed to (or read from) plain text
-file-based or \emph{alabaster}-based formats using the \code{\link[MsStash:saveMsObject]{MsStash::saveMsObject()}} and
-\code{\link[MsStash:saveMsObject]{MsStash::readMsObject()}} functions combined with the \link[MsStash:PlainTextParam]{MsStash::PlainTextParam} and
-\link[MsStash:AlabasterParam]{MsStash::AlabasterParam} parameter objects, respectively. The properties for both
+file-based or \emph{alabaster}-based formats using the \code{\link[MsStash:saveMsObject]{saveMsObject()}} and
+\code{\link[MsStash:readMsObject]{readMsObject()}} functions combined with the \link[MsStash:PlainTextParam]{PlainTextParam} and
+\link[MsStash:AlabasterParam]{AlabasterParam} parameter objects, respectively. The properties for both
 formats are described in detail in the sections below.
+}
+\details{
+\code{MsBackendMzR} objects don't contain any peaks data (i.e., \emph{m/z} and
+intensity values) but retrieve these from the original MS data files (in
+mzML, mzXML or CDF format). A \code{MsBackendMzR} stash will therefore only
+contain the spectra metadata (i.e., the spectra variables) but no peaks
+data. The reference to the original MS data files is stored as spectra
+variable \emph{dataStorage} and if the files are no longer available in the
+directory specified by \emph{dataStorage} the restored object will not be valid,
+unless the new location is provided with parameter \code{spectraPath}.
 }
 \section{Text-file format, \code{PlainTextParam}}{
 
@@ -57,8 +75,52 @@ mzXML or CDF files referred to by the \code{MsBackendMzR}).
 
 \section{\emph{alabaster}-based format, \code{AlabasterParam}}{
 
+
+The \code{saveMsObject()} with an \code{AlabasterParam} parameter object stashes the
+provided \code{MsBackendMzR} object in an \emph{alabster}-based format into the
+directory defined with argument \code{param} of the \code{AlabasterParam}.
+\code{readMsObject()} with \code{AlabasterParam} restores a previously stashed
+\code{MsBackend} object. Optional parameter \code{spectraPath} allows to specify the
+storage path of the MS data files referenced by the \code{MsBackendMzR} (in case
+they are no longer in the same directory when saving the object).
+
+In addition, the \emph{alabaster} methods \code{saveObject()} and \code{readObject()} can
+be used to save and read \code{MsBackendMzR} objects.
 }
 
+\examples{
+
+library(StashSpectra)
+library(Spectra)
+library(MsDataHub)
+
+## Create a MsBackendMzR from test data
+be <- backendInitialize(MsBackendMzR(), PestMix1_DDA.mzML())
+be
+
+## Define a folder where to stash the object
+pth <- file.path(tempdir(), "mzr_stash")
+
+## Stash the object to this folder in a plain text-based format
+saveMsObject(be, PlainTextParam(pth))
+
+## Restore the stashed object
+res <- readMsObject(MsBackendMzR(), PlainTextParam(pth))
+res
+
+## Clean-up and store the data in alabaster-based format
+unlink(pth, recursive = TRUE)
+
+saveMsObject(be, AlabasterParam(pth))
+
+## Restore the object
+res <- readMsObject(MsBackendMzR(), AlabasterParam(pth))
+res
+
+## The new location of MS data files could be provided with parameter
+## `spectraPath` of the `readMsObject()` function in case they are no
+## longer in the path referenced by the stashed object.
+}
 \author{
 Philippine Louail, Johannes Rainer
 }

@@ -68,7 +68,15 @@ test_that("alabaster functionality works for MsBackendMzR", {
     expect_s4_class(res, "MsBackendMzR")
     expect_equal(res$rtime, be_mzr$rtime)
 
+    unlink(d, recursive = TRUE)
+
     ## AlabasterParam
     p <- AlabasterParam(d)
+    expect_no_error(saveMsObject(be_mzr, p))
+    res <- readMsObject(MsBackendMzR(), p)
+    expect_equal(res, dropNaSpectraVariables(be_mzr))
 
+    expect_error(saveMsObject(be_mzr, p),
+                 "cannot save MsBackendMzR at existing")
+    unlink(d, recursive = TRUE)
 })
