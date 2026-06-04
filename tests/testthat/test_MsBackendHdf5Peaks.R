@@ -20,7 +20,8 @@ test_that("saveMsObject/readMsObject,MsBackendHdf5Peaks,PlainTextParam works", {
     expect_s4_class(res, "MsBackendHdf5Peaks")
     expect_equal(rtime(be_hdf5), rtime(res))
     expect_equal(mz(be_hdf5), mz(res))
-    expect_true(dataStorageBasePath(be_hdf5) != dataStorageBasePath(res))
+    expect_true(normalizePath(dataStorageBasePath(be_hdf5)) !=
+                normalizePath(dataStorageBasePath(res)))
 
     unlink(d, recursive = TRUE)
 })
@@ -46,7 +47,8 @@ test_that("alabaster functionality works for MsBackenHdf5Peaks", {
                       basename(unique(dataStorage(be_hdf5)))) %in% dir(d)))
     res <- readMsBackendHdf5Peaks(d)
     expect_s4_class(res, "MsBackendHdf5Peaks")
-    expect_true(dataStorageBasePath(res) != dataStorageBasePath(be_hdf5))
+    expect_true(normalizePath(dataStorageBasePath(res)) !=
+                normalizePath(dataStorageBasePath(be_hdf5)))
     ## unlink(d, recursive = TRUE)
 
     ## Removing the h5 files in `d`
@@ -79,6 +81,6 @@ test_that("alabaster functionality works for MsBackenHdf5Peaks", {
                       basename(unique(dataStorage(be_hdf5)))) %in% dir(d)))
 
     res <- readMsObject(MsBackendHdf5Peaks(), p)
-    expect_equal(dataStorageBasePath(res), d)
+    expect_equal(normalizePath(dataStorageBasePath(res)), normalizePath(d))
     unlink(d, recursive = TRUE)
 })
