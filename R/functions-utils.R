@@ -2,6 +2,10 @@
 
 #' Check if the file `x` already exists and throw an error if that's TRUE
 #'
+#' Used in:
+#' - *R/MsBackendHdf5Peaks.R*: `saveMsObject()`, `saveObject()`
+#' - *R/MsBackendMzR.R*: `saveMsObject()`, `saveObject()`
+#'
 #' @noRd
 .check_overwriting <- function(x) {
     if (file.exists(x))
@@ -13,6 +17,10 @@
 
 #' Check the type of class (`expected`) written e.g. to a text file as a comment
 #'
+#' Used in:
+#' - *R/MsBackendHdf5Peaks.R*: `readMsObject()`
+#' - *R/MsBackendMzR*: `readMsObject()`
+#'
 #' @noRd
 .check_class_comment <- function(x, file, expected) {
     if (x[1L] != expected)
@@ -21,6 +29,10 @@
 }
 
 #' Check for presence of files `expected` in `path`
+#'
+#' Used in:
+#' - *R/MsBackendHdf5Peaks.R*: `readMsObject()`, `validateMsBackendHdf5Peaks()`
+#' - *R/MsBackendMzR.R*: `readMsObject()`, `validateMsBackendMzR()`
 #'
 #' @noRd
 .check_directory_content <- function(path, expected = character()) {
@@ -31,6 +43,10 @@
 
 #' Helper function to write a `spectraData` `data.frame` to a tab-delimited
 #' text file.
+#'
+#' Used in:
+#' - *R/MsBackendHdf5Peaks.R*: `saveMsObject()`
+#' - *R/MsBackendMzR*: `saveMsObject()`
 #'
 #' @noRd
 #'
@@ -44,6 +60,10 @@
 
 #' Helper function to read a `spectraData` `data.frame` from a tab-delimited
 #' text file.
+#'
+#' Used in:
+#' - *R/MsBackendHdf5Peaks.R*: `readMsObject()`
+#' - *R/MsBackendMzR.R*: `readMsObject()`
 #'
 #' @noRd
 #'
