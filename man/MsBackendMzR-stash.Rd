@@ -9,13 +9,13 @@
 \alias{readMsObject,MsBackendMzR,AlabasterParam-method}
 \title{MsBackendMzR Stash}
 \usage{
-\S4method{saveMsObject}{MsBackendMzR,PlainTextParam}(object, param)
+\S4method{saveMsObject}{MsBackendMzR,PlainTextParam}(object, param, consolidate = FALSE)
 
 \S4method{readMsObject}{MsBackendMzR,PlainTextParam}(object, param, spectraPath = character())
 
-\S4method{saveObject}{MsBackendMzR}(x, path, ...)
+\S4method{saveObject}{MsBackendMzR}(x, path, consolidate = FALSE, ...)
 
-\S4method{saveMsObject}{MsBackendMzR,AlabasterParam}(object, param)
+\S4method{saveMsObject}{MsBackendMzR,AlabasterParam}(object, param, consolidate = FALSE)
 
 \S4method{readMsObject}{MsBackendMzR,AlabasterParam}(object, param, spectraPath = character())
 }
@@ -23,6 +23,10 @@
 \item{object}{An \code{MsBackendMzR} object.}
 
 \item{param}{Either a \code{PlainTextParam} or \code{AlabasterParam}.}
+
+\item{consolidate}{\code{logical(1)} whether in addition to the spectra metadata
+also the original MS data files should be stored in the stash
+folder. Default is \code{consolidate = FALSE}.}
 
 \item{spectraPath}{For \code{readMsObject()}: optional \code{character(1)} with the
 path to the MS data files (mzML, mzXML or CDF) in case they are on longer
@@ -43,18 +47,24 @@ object should be stored in.}
 \code{MsBackendMzR} classes can be stashed to (or read from) plain text
 file-based or \emph{alabaster}-based formats using the \code{\link[MsStash:saveMsObject]{saveMsObject()}} and
 \code{\link[MsStash:readMsObject]{readMsObject()}} functions combined with the \link[MsStash:PlainTextParam]{PlainTextParam} and
-\link[MsStash:AlabasterParam]{AlabasterParam} parameter objects, respectively. The properties for both
-formats are described in detail in the sections below.
+\link[MsStash:AlabasterParam]{AlabasterParam} parameter objects, respectively. Setting parameter
+\code{consolidate = TRUE} in the \code{saveMsObject()} or \code{saveObject()} function
+will copy also the original MS data files into the folder generating a
+self-consistent stash.
+
+Additional properties of the stash formats are described in detail in the
+sections below.
 }
 \details{
 \code{MsBackendMzR} objects don't contain any peaks data (i.e., \emph{m/z} and
 intensity values) but retrieve these from the original MS data files (in
-mzML, mzXML or CDF format). A \code{MsBackendMzR} stash will therefore only
-contain the spectra metadata (i.e., the spectra variables) but no peaks
-data. The reference to the original MS data files is stored as spectra
-variable \emph{dataStorage} and if the files are no longer available in the
-directory specified by \emph{dataStorage} the restored object will not be valid,
-unless the new location is provided with parameter \code{spectraPath}.
+mzML, mzXML or CDF format). Unless \code{consolidate = TRUE} is used, a
+\code{MsBackendMzR} stash will therefore only contain the spectra metadata
+(i.e., the spectra variables) but no peaks data. The reference to the
+original MS data files is stored as spectra variable \emph{dataStorage} and if
+the files are no longer available in the directory specified by
+\emph{dataStorage} the restored object will not be valid, unless the new location
+is provided with parameter \code{spectraPath}.
 }
 \section{Text-file format, \code{PlainTextParam}}{
 
@@ -64,9 +74,10 @@ metadata (spectra variables) of an \code{MsBackendMzR} to a plain tabulator
 delimited text file with the name \emph{ms_backend_spectra_data.txt} in the
 directory specified with parameter \code{path} of the \code{PlainTextParam} object.
 Importantly, the peaks data (the \emph{m/z} and intensity values) are \strong{not}
-exported with \code{saveMsObject()}. \code{readMsObject()} restores a previously
-stashed \code{MsBackendMzR} object from the directory specified with parameter
-\code{path} of the \code{PlainTextParam}.
+exported with \code{saveMsObject()}.
+
+\code{readMsObject()} restores a previously stashed \code{MsBackendMzR} object from
+the directory specified with parameter \code{path} of the \code{PlainTextParam}.
 
 The additional parameter \code{spectraPath} of \code{readMsObject()} allows to define
 the path to the MS data files containing the full MS data (i.e., the mzML,
@@ -108,18 +119,27 @@ saveMsObject(be, PlainTextParam(pth))
 res <- readMsObject(MsBackendMzR(), PlainTextParam(pth))
 res
 
-## Clean-up and store the data in alabaster-based format
+## Clean-up
 unlink(pth, recursive = TRUE)
 
-saveMsObject(be, AlabasterParam(pth))
+## Store the data in *alabaster* format including also the original MS
+## data files (`consolidate = TRUE`)
+saveMsObject(be, AlabasterParam(pth), consolidate = TRUE)
+
+## Get the directory content of the stash folder:
+dir(pth)
 
 ## Restore the object
 res <- readMsObject(MsBackendMzR(), AlabasterParam(pth))
 res
 
-## The new location of MS data files could be provided with parameter
+## If the data is exported with `consolidate = FALSE` (the default), the
+## new location of MS data files could be provided with parameter
 ## `spectraPath` of the `readMsObject()` function in case they are no
 ## longer in the path referenced by the stashed object.
+
+## Clean-up
+unlink(pth, recursive = TRUE)
 }
 \author{
 Philippine Louail, Johannes Rainer

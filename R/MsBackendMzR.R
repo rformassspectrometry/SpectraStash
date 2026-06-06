@@ -9,19 +9,25 @@
 #' `MsBackendMzR` classes can be stashed to (or read from) plain text
 #' file-based or *alabaster*-based formats using the [saveMsObject()] and
 #' [readMsObject()] functions combined with the [PlainTextParam] and
-#' [AlabasterParam] parameter objects, respectively. The properties for both
-#' formats are described in detail in the sections below.
+#' [AlabasterParam] parameter objects, respectively. Setting parameter
+#' `consolidate = TRUE` in the `saveMsObject()` or `saveObject()` function
+#' will copy also the original MS data files into the folder generating a
+#' self-consistent stash.
+#'
+#' Additional properties of the stash formats are described in detail in the
+#' sections below.
 #'
 #' @details
 #'
 #' `MsBackendMzR` objects don't contain any peaks data (i.e., *m/z* and
 #' intensity values) but retrieve these from the original MS data files (in
-#' mzML, mzXML or CDF format). A `MsBackendMzR` stash will therefore only
-#' contain the spectra metadata (i.e., the spectra variables) but no peaks
-#' data. The reference to the original MS data files is stored as spectra
-#' variable *dataStorage* and if the files are no longer available in the
-#' directory specified by *dataStorage* the restored object will not be valid,
-#' unless the new location is provided with parameter `spectraPath`.
+#' mzML, mzXML or CDF format). Unless `consolidate = TRUE` is used, a
+#' `MsBackendMzR` stash will therefore only contain the spectra metadata
+#' (i.e., the spectra variables) but no peaks data. The reference to the
+#' original MS data files is stored as spectra variable *dataStorage* and if
+#' the files are no longer available in the directory specified by
+#' *dataStorage* the restored object will not be valid, unless the new location
+#' is provided with parameter `spectraPath`.
 #'
 #' @section Text-file format, `PlainTextParam`:
 #'
@@ -30,9 +36,10 @@
 #' delimited text file with the name *ms_backend_spectra_data.txt* in the
 #' directory specified with parameter `path` of the `PlainTextParam` object.
 #' Importantly, the peaks data (the *m/z* and intensity values) are **not**
-#' exported with `saveMsObject()`. `readMsObject()` restores a previously
-#' stashed `MsBackendMzR` object from the directory specified with parameter
-#' `path` of the `PlainTextParam`.
+#' exported with `saveMsObject()`.
+#'
+#' `readMsObject()` restores a previously stashed `MsBackendMzR` object from
+#' the directory specified with parameter `path` of the `PlainTextParam`.
 #'
 #' The additional parameter `spectraPath` of `readMsObject()` allows to define
 #' the path to the MS data files containing the full MS data (i.e., the mzML,
@@ -50,6 +57,10 @@
 #'
 #' In addition, the *alabaster* methods `saveObject()` and `readObject()` can
 #' be used to save and read `MsBackendMzR` objects.
+#'
+#' @param consolidate `logical(1)` whether in addition to the spectra metadata
+#'     also the original MS data files should be stored in the stash
+#'     folder. Default is `consolidate = FALSE`.
 #'
 #' @param object An `MsBackendMzR` object.
 #'
@@ -91,18 +102,27 @@
 #' res <- readMsObject(MsBackendMzR(), PlainTextParam(pth))
 #' res
 #'
-#' ## Clean-up and store the data in alabaster-based format
+#' ## Clean-up
 #' unlink(pth, recursive = TRUE)
 #'
-#' saveMsObject(be, AlabasterParam(pth))
+#' ## Store the data in *alabaster* format including also the original MS
+#' ## data files (`consolidate = TRUE`)
+#' saveMsObject(be, AlabasterParam(pth), consolidate = TRUE)
+#'
+#' ## Get the directory content of the stash folder:
+#' dir(pth)
 #'
 #' ## Restore the object
 #' res <- readMsObject(MsBackendMzR(), AlabasterParam(pth))
 #' res
 #'
-#' ## The new location of MS data files could be provided with parameter
+#' ## If the data is exported with `consolidate = FALSE` (the default), the
+#' ## new location of MS data files could be provided with parameter
 #' ## `spectraPath` of the `readMsObject()` function in case they are no
 #' ## longer in the path referenced by the stashed object.
+#'
+#' ## Clean-up
+#' unlink(pth, recursive = TRUE)
 NULL
 
 ################################################################################
@@ -118,11 +138,16 @@ NULL
 #' @rdname MsBackendMzR-stash
 setMethod("saveMsObject", signature(object = "MsBackendMzR",
                                     param = "PlainTextParam"),
-          function(object, param) {
+          function(object, param, consolidate = FALSE) {
               object <- dropNaSpectraVariables(object)
               dir.create(param@path, showWarnings = FALSE, recursive = TRUE)
               fl <- file.path(param@path, .MS_BACKEND_MZR_DATA_FILE)
               .check_overwriting(fl)
+              if (consolidate) {
+                  fls <- unique(dataStorage(object))
+                  file.copy(fls, file.path(param@path, basename(fls)))
+                  dataStorageBasePath(object) <- param@path
+              }
               writeLines(paste0("# ", class(object)[1L]), con = fl)
               if (nrow(object@spectraData))
                   .write_spectra_data(object@spectraData, fl, append = TRUE)
@@ -167,11 +192,17 @@ setMethod("readMsObject", signature(object = "MsBackendMzR",
 #' @importFrom alabaster.base altSaveObject
 #'
 #' @rdname MsBackendMzR-stash
-setMethod("saveObject", "MsBackendMzR", function(x, path, ...) {
+setMethod("saveObject", "MsBackendMzR", function(x, path, consolidate = FALSE,
+                                                 ...) {
     x <- dropNaSpectraVariables(x)
     dir.create(path, showWarnings = FALSE, recursive = TRUE)
     .check_overwriting(file.path(path, "OBJECT"))
     saveObjectFile(path, "ms_backend_mz_r")
+    if (consolidate) {
+        fls <- unique(dataStorage(x))
+        file.copy(fls, file.path(path, basename(fls)))
+        dataStorageBasePath(x) <- path
+    }
     altSaveObject(x@spectraData, path = file.path(path, "spectra_data"))
 })
 
@@ -209,8 +240,8 @@ readMsBackendMzR <- function(path = character(), metadata = list(),
 #' @rdname MsBackendMzR-stash
 setMethod("saveMsObject", signature(object = "MsBackendMzR",
                                     param = "AlabasterParam"),
-          function(object, param) {
-              saveObject(object, path = param@path)
+          function(object, param, consolidate = FALSE) {
+              saveObject(object, path = param@path, consolidate = consolidate)
           })
 
 #' @rdname MsBackendMzR-stash
