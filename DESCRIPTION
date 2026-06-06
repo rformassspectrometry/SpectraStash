@@ -1,6 +1,6 @@
 Package: StashSpectra
 Title: Serialize and restore Spectra objects in interoperable file formats
-Version: 0.97.0
+Version: 0.97.1
 Authors@R:
     c(person(given = "Johannes", family = "Rainer",
              email = "Johannes.Rainer@eurac.edu",
@@ -24,19 +24,23 @@ Description: The serialization mechanism of R allows to save and load R data
 	     The file type can be defined and configured through a second
 	     argument `param` of the save/read methods.
 Depends:
-    R (>= 4.6.0)
+    R (>= 4.6.0),
+    MsStash
 Imports:
     methods,
-    MsStash
+    Spectra (>= 1.23.2),
+    utils,
+    S4Vectors,
+    alabaster.base
 Suggests:
     BiocStyle,
-    alabaster.base,
-    testthat
+    MsDataHub,
+    testthat,
+    mzR
 License: Artistic-2.0
 Encoding: UTF-8
-VignetteBuilder: knitr
 BugReports: https://github.com/RforMassSpectrometry/StashSpectra/issues
 URL: https://github.com/RforMassSpectrometry/StashSpectra
 biocViews: Infrastructure, MassSpectrometry, Metabolomics, DataImport, Proteomics
 Roxygen: list(markdown=TRUE)
-RoxygenNote: 7.3.3
+Config/roxygen2/version: 8.0.0
