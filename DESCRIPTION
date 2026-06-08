@@ -1,6 +1,6 @@
 Package: StashSpectra
 Title: Serialize and restore Spectra objects in interoperable file formats
-Version: 0.97.1
+Version: 0.97.2
 Authors@R:
     c(person(given = "Johannes", family = "Rainer",
              email = "Johannes.Rainer@eurac.edu",

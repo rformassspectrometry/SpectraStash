@@ -15,7 +15,6 @@ test_that("saveMsObject/readMsObject,MsBackendMzR,PlainTextParam works", {
     unlink(d, recursive = TRUE)
 
     ## Move the data files
-    d <- file.path(tempdir(), "test_mzr")
     dir.create(d, recursive = TRUE)
     new_fls <- file.path(d, basename(pest_files))
     file.copy(pest_files, new_fls)
@@ -31,6 +30,17 @@ test_that("saveMsObject/readMsObject,MsBackendMzR,PlainTextParam works", {
                           spectraPath = dataStorageBasePath(be_mzr)))
     expect_true(validObject(b))
     expect_equal(b$rtime, be_mzr$rtime)
+
+    unlink(d, recursive = TRUE)
+
+    ## consolidate
+    expect_no_error(saveMsObject(be_mzr, p, consolidate = TRUE))
+    expect_true(all(c("ms_backend_spectra_data.txt",
+                      basename(unique(dataStorage(be_mzr)))) %in% dir(d)))
+    res <- readMsObject(MsBackendMzR(), p)
+    expect_s4_class(res, "MsBackendMzR")
+    expect_equal(normalizePath(dataStorageBasePath(res)), normalizePath(d))
+    unlink(d, recursive = TRUE)
 })
 
 test_that("alabaster functionality works for MsBackendMzR", {
@@ -70,6 +80,14 @@ test_that("alabaster functionality works for MsBackendMzR", {
 
     unlink(d, recursive = TRUE)
 
+    ## consolidate
+    expect_no_error(saveObject(be_mzr, d, consolidate = TRUE))
+    expect_true(all(basename(unique(dataStorage(be_mzr))) %in% dir(d)))
+    res <- readObject(d)
+    expect_equal(normalizePath(dataStorageBasePath(res)), normalizePath(d))
+
+    unlink(d, recursive = TRUE)
+
     ## AlabasterParam
     p <- AlabasterParam(d)
     expect_no_error(saveMsObject(be_mzr, p))
@@ -78,5 +96,13 @@ test_that("alabaster functionality works for MsBackendMzR", {
 
     expect_error(saveMsObject(be_mzr, p),
                  "cannot save MsBackendMzR at existing")
+    unlink(d, recursive = TRUE)
+
+    ## consolidate
+    expect_no_error(saveMsObject(be_mzr, p, consolidate = TRUE))
+    expect_true(all(basename(unique(dataStorage(be_mzr))) %in% dir(d)))
+    res <- readMsObject(MsBackendMzR(), p)
+    expect_equal(normalizePath(dataStorageBasePath(res)), normalizePath(d))
+
     unlink(d, recursive = TRUE)
 })
