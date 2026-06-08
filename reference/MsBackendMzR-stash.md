@@ -9,23 +9,29 @@ functions combined with the
 [PlainTextParam](https://rdrr.io/pkg/MsStash/man/PlainTextParam.html)
 and
 [AlabasterParam](https://rdrr.io/pkg/MsStash/man/AlabasterParam.html)
-parameter objects, respectively. The properties for both formats are
-described in detail in the sections below.
+parameter objects, respectively. Setting parameter `consolidate = TRUE`
+in the
+[`saveMsObject()`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html) or
+`saveObject()` function will copy also the original MS data files into
+the folder generating a self-consistent stash.
+
+Additional properties of the stash formats are described in detail in
+the sections below.
 
 ## Usage
 
 ``` r
 # S4 method for class 'MsBackendMzR,PlainTextParam'
-saveMsObject(object, param)
+saveMsObject(object, param, consolidate = FALSE)
 
 # S4 method for class 'MsBackendMzR,PlainTextParam'
 readMsObject(object, param, spectraPath = character())
 
 # S4 method for class 'MsBackendMzR'
-saveObject(x, path, ...)
+saveObject(x, path, consolidate = FALSE, ...)
 
 # S4 method for class 'MsBackendMzR,AlabasterParam'
-saveMsObject(object, param)
+saveMsObject(object, param, consolidate = FALSE)
 
 # S4 method for class 'MsBackendMzR,AlabasterParam'
 readMsObject(object, param, spectraPath = character())
@@ -40,6 +46,12 @@ readMsObject(object, param, spectraPath = character())
 - param:
 
   Either a `PlainTextParam` or `AlabasterParam`.
+
+- consolidate:
+
+  `logical(1)` whether in addition to the spectra metadata also the
+  original MS data files should be stored in the stash folder. Default
+  is `consolidate = FALSE`.
 
 - spectraPath:
 
@@ -73,12 +85,13 @@ object.
 
 `MsBackendMzR` objects don't contain any peaks data (i.e., *m/z* and
 intensity values) but retrieve these from the original MS data files (in
-mzML, mzXML or CDF format). A `MsBackendMzR` stash will therefore only
-contain the spectra metadata (i.e., the spectra variables) but no peaks
-data. The reference to the original MS data files is stored as spectra
-variable *dataStorage* and if the files are no longer available in the
-directory specified by *dataStorage* the restored object will not be
-valid, unless the new location is provided with parameter `spectraPath`.
+mzML, mzXML or CDF format). Unless `consolidate = TRUE` is used, a
+`MsBackendMzR` stash will therefore only contain the spectra metadata
+(i.e., the spectra variables) but no peaks data. The reference to the
+original MS data files is stored as spectra variable *dataStorage* and
+if the files are no longer available in the directory specified by
+*dataStorage* the restored object will not be valid, unless the new
+location is provided with parameter `spectraPath`.
 
 ## Text-file format, `PlainTextParam`
 
@@ -90,6 +103,7 @@ with the name *ms_backend_spectra_data.txt* in the directory specified
 with parameter `path` of the `PlainTextParam` object. Importantly, the
 peaks data (the *m/z* and intensity values) are **not** exported with
 [`saveMsObject()`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html).
+
 [`readMsObject()`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html)
 restores a previously stashed `MsBackendMzR` object from the directory
 specified with parameter `path` of the `PlainTextParam`.
@@ -150,7 +164,7 @@ be
 #>  ... 34 more variables/columns.
 #> 
 #> file(s):
-#> ed140661e40_7861
+#> 54a775c0fa5_7861
 
 ## Define a folder where to stash the object
 pth <- file.path(tempdir(), "mzr_stash")
@@ -178,12 +192,19 @@ res
 #>  ... 27 more variables/columns.
 #> 
 #> file(s):
-#> ed140661e40_7861
+#> 54a775c0fa5_7861
 
-## Clean-up and store the data in alabaster-based format
+## Clean-up
 unlink(pth, recursive = TRUE)
 
-saveMsObject(be, AlabasterParam(pth))
+## Store the data in *alabaster* format including also the original MS
+## data files (`consolidate = TRUE`)
+saveMsObject(be, AlabasterParam(pth), consolidate = TRUE)
+
+## Get the directory content of the stash folder:
+dir(pth)
+#> [1] "54a775c0fa5_7861"  "OBJECT"            "_environment.json"
+#> [4] "spectra_data"     
 
 ## Restore the object
 res <- readMsObject(MsBackendMzR(), AlabasterParam(pth))
@@ -205,9 +226,13 @@ res
 #>  ... 27 more variables/columns.
 #> 
 #> file(s):
-#> ed140661e40_7861
+#> 54a775c0fa5_7861
 
-## The new location of MS data files could be provided with parameter
+## If the data is exported with `consolidate = FALSE` (the default), the
+## new location of MS data files could be provided with parameter
 ## `spectraPath` of the `readMsObject()` function in case they are no
 ## longer in the path referenced by the stashed object.
+
+## Clean-up
+unlink(pth, recursive = TRUE)
 ```

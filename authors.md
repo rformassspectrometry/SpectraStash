@@ -17,13 +17,13 @@ Source:
 [`DESCRIPTION`](https://github.com/RforMassSpectrometry/StashSpectra/blob/main/DESCRIPTION)
 
 Rainer J, Louail P (2026). *StashSpectra: Serialize and restore Spectra
-objects in interoperable file formats*. R package version 0.97.1,
+objects in interoperable file formats*. R package version 0.97.2,
 <https://github.com/RforMassSpectrometry/StashSpectra>.
 
     @Manual{,
       title = {StashSpectra: Serialize and restore Spectra objects in interoperable file formats},
       author = {Johannes Rainer and Philippine Louail},
       year = {2026},
-      note = {R package version 0.97.1},
+      note = {R package version 0.97.2},
       url = {https://github.com/RforMassSpectrometry/StashSpectra},
     }
