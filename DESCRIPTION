@@ -38,7 +38,7 @@ Suggests:
     MsDataHub,
     testthat,
     mzR
-License: Artistic-2.0
+License: GPL-3
 Encoding: UTF-8
 BugReports: https://github.com/RforMassSpectrometry/SpectraStash/issues
 URL: https://github.com/RforMassSpectrometry/SpectraStash
