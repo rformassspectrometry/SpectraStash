@@ -84,7 +84,7 @@
 #'
 #' @examples
 #'
-#' library(StashSpectra)
+#' library(SpectraStash)
 #' library(Spectra)
 #' library(MsDataHub)
 #'

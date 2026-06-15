@@ -1,4 +1,4 @@
-library(StashSpectra)
+library(SpectraStash)
 library(Spectra)
 library(testthat)
 library(MsDataHub)
@@ -10,4 +10,4 @@ be_mzr <- backendInitialize(MsBackendMzR(), pest_files)
 be_hdf5 <- backendInitialize(MsBackendHdf5Peaks(), data = spectraData(be_mzr),
                              hdf5path = tempdir())
 
-test_check("StashSpectra")
+test_check("SpectraStash")

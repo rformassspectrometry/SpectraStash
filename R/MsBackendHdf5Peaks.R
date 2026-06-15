@@ -74,7 +74,7 @@
 #' @examples
 #'
 #' library(Spectra)
-#' library(StashSpectra)
+#' library(SpectraStash)
 #' ## Create an example MsBackendHdf5Peaks backend from a single mzML file
 #' library(MsDataHub)
 #' tmp <- backendInitialize(MsBackendMzR(), X20171016_POOL_POS_1_105.134.mzML())

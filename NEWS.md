@@ -1,4 +1,4 @@
-# *StashSpectra* 0.97
+# *SpectraStash* 0.97
 
 ## Changes in version 0.97.2
 
