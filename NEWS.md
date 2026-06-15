@@ -1,5 +1,9 @@
 # *SpectraStash* 0.97
 
+## Changes in version 0.97.3
+
+- Add `readMsObject()` and `saveMsObject()` for `Spectra` objects.
+
 ## Changes in version 0.97.2
 
 - Add parameter `consolidate` also to the save methods for `MsBackendMzR`.
