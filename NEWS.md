@@ -1,5 +1,9 @@
 # *SpectraStash* 0.97
 
+## Changes in version 0.97.4
+
+- Add functionality for a `MsBackendCached` stash.
+
 ## Changes in version 0.97.3
 
 - Add `readMsObject()` and `saveMsObject()` for `Spectra` objects.
