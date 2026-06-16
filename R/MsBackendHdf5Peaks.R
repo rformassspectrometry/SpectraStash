@@ -2,7 +2,7 @@
 
 #' @title MsBackendHdf5Peaks Stash
 #'
-#' @name MsBackendHdf5Peaks-stash
+#' @name MsBackendHdf5PeaksStash
 #'
 #' @description
 #'
@@ -124,7 +124,7 @@ NULL
 #'
 #' @importFrom Spectra MsBackendHdf5Peaks
 #'
-#' @rdname MsBackendHdf5Peaks-stash
+#' @rdname MsBackendHdf5PeaksStash
 setMethod("saveMsObject", signature(object = "MsBackendHdf5Peaks",
                                     param = "PlainTextParam"),
           function(object, param, consolidate = FALSE) {
@@ -145,7 +145,7 @@ setMethod("saveMsObject", signature(object = "MsBackendHdf5Peaks",
                   .write_spectra_data(object@spectraData, fl, append = TRUE)
           })
 
-#' @rdname MsBackendHdf5Peaks-stash
+#' @rdname MsBackendHdf5PeaksStash
 setMethod("readMsObject", signature(object = "MsBackendHdf5Peaks",
                                     param = "PlainTextParam"),
           function(object, param, spectraPath = character()) {
@@ -169,7 +169,7 @@ setMethod("readMsObject", signature(object = "MsBackendHdf5Peaks",
 ##    AlabasterParam
 ################################################################################
 
-#' @rdname MsBackendHdf5Peaks-stash
+#' @rdname MsBackendHdf5PeaksStash
 setMethod("saveObject", "MsBackendHdf5Peaks", function(x,
                                                        path,
                                                        consolidate = FALSE,
@@ -207,14 +207,14 @@ readMsBackendHdf5Peaks <- function(path = character(), metadata = list(),
     be
 }
 
-#' @rdname MsBackendHdf5Peaks-stash
+#' @rdname MsBackendHdf5PeaksStash
 setMethod("saveMsObject", signature(object = "MsBackendHdf5Peaks",
                                     param = "AlabasterParam"),
           function(object, param, consolidate = FALSE) {
               saveObject(object, path = param@path, consolidate = consolidate)
           })
 
-#' @rdname MsBackendHdf5Peaks-stash
+#' @rdname MsBackendHdf5PeaksStash
 setMethod("readMsObject", signature(object = "MsBackendHdf5Peaks",
                                     param = "AlabasterParam"),
           function(object, param, spectraPath = character()) {
