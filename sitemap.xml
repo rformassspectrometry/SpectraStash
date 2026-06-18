@@ -1,10 +1,12 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
-<url><loc>https://rformassspectrometry.github.io/StashSpectra/404.html</loc></url>
-<url><loc>https://rformassspectrometry.github.io/StashSpectra/authors.html</loc></url>
-<url><loc>https://rformassspectrometry.github.io/StashSpectra/index.html</loc></url>
-<url><loc>https://rformassspectrometry.github.io/StashSpectra/news/index.html</loc></url>
-<url><loc>https://rformassspectrometry.github.io/StashSpectra/reference/MsBackendHdf5Peaks-stash.html</loc></url>
-<url><loc>https://rformassspectrometry.github.io/StashSpectra/reference/MsBackendMzR-stash.html</loc></url>
-<url><loc>https://rformassspectrometry.github.io/StashSpectra/reference/index.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/SpectraStash/404.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/SpectraStash/authors.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/SpectraStash/index.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/SpectraStash/news/index.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendCachedStash.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendHdf5PeaksStash.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendMzRStash.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/SpectraStash/reference/SpectraStash.html</loc></url>
+<url><loc>https://rformassspectrometry.github.io/SpectraStash/reference/index.html</loc></url>
 </urlset>
 

@@ -138,7 +138,7 @@ Philippine Louail, Johannes Rainer
 
 ``` r
 
-library(StashSpectra)
+library(SpectraStash)
 library(Spectra)
 library(MsDataHub)
 
@@ -164,7 +164,7 @@ be
 #>  ... 34 more variables/columns.
 #> 
 #> file(s):
-#> 54a775c0fa5_7861
+#> 72d6de16066_7861
 
 ## Define a folder where to stash the object
 pth <- file.path(tempdir(), "mzr_stash")
@@ -192,7 +192,7 @@ res
 #>  ... 27 more variables/columns.
 #> 
 #> file(s):
-#> 54a775c0fa5_7861
+#> 72d6de16066_7861
 
 ## Clean-up
 unlink(pth, recursive = TRUE)
@@ -203,7 +203,7 @@ saveMsObject(be, AlabasterParam(pth), consolidate = TRUE)
 
 ## Get the directory content of the stash folder:
 dir(pth)
-#> [1] "54a775c0fa5_7861"  "OBJECT"            "_environment.json"
+#> [1] "72d6de16066_7861"  "OBJECT"            "_environment.json"
 #> [4] "spectra_data"     
 
 ## Restore the object
@@ -226,7 +226,7 @@ res
 #>  ... 27 more variables/columns.
 #> 
 #> file(s):
-#> 54a775c0fa5_7861
+#> 72d6de16066_7861
 
 ## If the data is exported with `consolidate = FALSE` (the default), the
 ## new location of MS data files could be provided with parameter

@@ -1,15 +1,15 @@
-# StashSpectra
+# SpectraStash
 
 *A safe way to store your `Spectra` objects in interoperable formats.*
 
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![R-CMD-check-bioc](https://github.com/RforMassSpectrometry/StashSpectra/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/RforMassSpectrometry/StashSpectra/actions?query=workflow%3AR-CMD-check-bioc)
-[![codecov](https://codecov.io/gh/rformassspectrometry/StashSpectra/graph/badge.svg?token=dOEe7No0HB)](https://codecov.io/gh/rformassspectrometry/StashSpectra)
+[![R-CMD-check-bioc](https://github.com/RforMassSpectrometry/SpectraStash/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/RforMassSpectrometry/SpectraStash/actions?query=workflow%3AR-CMD-check-bioc)
+[![codecov](https://codecov.io/gh/rformassspectrometry/SpectraStash/graph/badge.svg?token=dOEe7No0HB)](https://codecov.io/gh/rformassspectrometry/SpectraStash)
 [![:name status
 badge](https://rformassspectrometry.r-universe.dev/badges/:name)](https://rformassspectrometry.r-universe.dev/)
-[![license](https://img.shields.io/badge/license-Artistic--2.0-brightgreen.svg)](https://opensource.org/licenses/Artistic-2.0)
+[![license](https://img.shields.io/badge/license-GPL--3.0-brightgreen.svg)](https://opensource.org/license/gpl-3.0)
 
 ------------------------------------------------------------------------
 
@@ -17,7 +17,7 @@ badge](https://rformassspectrometry.r-universe.dev/badges/:name)](https://rforma
 
 [**MsStash**](https://github.com/RforMassSpectrometry/MsStash) defines a
 framework for flexible, language-agnostic import and export formats for
-mass spectrometry (MS) data objects in R. The **StashSpectra** package
+mass spectrometry (MS) data objects in R. The **SpectraStash** package
 implements this framework for `Spectra` objects and its data backends.
 
 ------------------------------------------------------------------------
@@ -67,11 +67,11 @@ If you’re planning to contribute:
 
 ## License
 
-This package is licensed under the **Artistic 2.0 License**: 📄
-<https://opensource.org/licenses/Artistic-2.0>
+This package is licensed under the **GPL 3.0 License**: 📄
+<https://opensource.org/license/gpl-3.0>
 
-Documentation (manuals, vignettes) is licensed under **CC BY-SA 4.0**:
-📄 <https://creativecommons.org/licenses/by-sa/4.0/>
+Documentation (manuals, vignettes) is licensed under **CC BY-NC-SA
+4.0**: 📄 <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 
 ------------------------------------------------------------------------
 
@@ -98,16 +98,33 @@ funding
 
 ## All functions
 
-- [`saveMsObject(`*`<MsBackendHdf5Peaks>`*`,`*`<PlainTextParam>`*`)`](https://rformassspectrometry.github.io/StashSpectra/reference/MsBackendHdf5Peaks-stash.md)
-  [`readMsObject(`*`<MsBackendHdf5Peaks>`*`,`*`<PlainTextParam>`*`)`](https://rformassspectrometry.github.io/StashSpectra/reference/MsBackendHdf5Peaks-stash.md)
-  [`saveObject(`*`<MsBackendHdf5Peaks>`*`)`](https://rformassspectrometry.github.io/StashSpectra/reference/MsBackendHdf5Peaks-stash.md)
-  [`saveMsObject(`*`<MsBackendHdf5Peaks>`*`,`*`<AlabasterParam>`*`)`](https://rformassspectrometry.github.io/StashSpectra/reference/MsBackendHdf5Peaks-stash.md)
-  [`readMsObject(`*`<MsBackendHdf5Peaks>`*`,`*`<AlabasterParam>`*`)`](https://rformassspectrometry.github.io/StashSpectra/reference/MsBackendHdf5Peaks-stash.md)
+- [`saveMsObject(`*`<MsBackendCached>`*`,`*`<PlainTextParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendCachedStash.md)
+  [`readMsObject(`*`<MsBackendCached>`*`,`*`<PlainTextParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendCachedStash.md)
+  [`saveObject(`*`<MsBackendCached>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendCachedStash.md)
+  [`saveMsObject(`*`<MsBackendCached>`*`,`*`<AlabasterParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendCachedStash.md)
+  [`readMsObject(`*`<MsBackendCached>`*`,`*`<AlabasterParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendCachedStash.md)
+  :
+
+  Stash for `MsBackendCached`
+
+- [`saveMsObject(`*`<MsBackendHdf5Peaks>`*`,`*`<PlainTextParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendHdf5PeaksStash.md)
+  [`readMsObject(`*`<MsBackendHdf5Peaks>`*`,`*`<PlainTextParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendHdf5PeaksStash.md)
+  [`saveObject(`*`<MsBackendHdf5Peaks>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendHdf5PeaksStash.md)
+  [`saveMsObject(`*`<MsBackendHdf5Peaks>`*`,`*`<AlabasterParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendHdf5PeaksStash.md)
+  [`readMsObject(`*`<MsBackendHdf5Peaks>`*`,`*`<AlabasterParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendHdf5PeaksStash.md)
   : MsBackendHdf5Peaks Stash
-- [`saveMsObject(`*`<MsBackendMzR>`*`,`*`<PlainTextParam>`*`)`](https://rformassspectrometry.github.io/StashSpectra/reference/MsBackendMzR-stash.md)
-  [`readMsObject(`*`<MsBackendMzR>`*`,`*`<PlainTextParam>`*`)`](https://rformassspectrometry.github.io/StashSpectra/reference/MsBackendMzR-stash.md)
-  [`saveObject(`*`<MsBackendMzR>`*`)`](https://rformassspectrometry.github.io/StashSpectra/reference/MsBackendMzR-stash.md)
-  [`saveMsObject(`*`<MsBackendMzR>`*`,`*`<AlabasterParam>`*`)`](https://rformassspectrometry.github.io/StashSpectra/reference/MsBackendMzR-stash.md)
-  [`readMsObject(`*`<MsBackendMzR>`*`,`*`<AlabasterParam>`*`)`](https://rformassspectrometry.github.io/StashSpectra/reference/MsBackendMzR-stash.md)
+
+- [`saveMsObject(`*`<MsBackendMzR>`*`,`*`<PlainTextParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendMzRStash.md)
+  [`readMsObject(`*`<MsBackendMzR>`*`,`*`<PlainTextParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendMzRStash.md)
+  [`saveObject(`*`<MsBackendMzR>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendMzRStash.md)
+  [`saveMsObject(`*`<MsBackendMzR>`*`,`*`<AlabasterParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendMzRStash.md)
+  [`readMsObject(`*`<MsBackendMzR>`*`,`*`<AlabasterParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendMzRStash.md)
   : MsBackendMzR Stash
+
+- [`saveMsObject(`*`<Spectra>`*`,`*`<PlainTextParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/SpectraStash.md)
+  [`readMsObject(`*`<Spectra>`*`,`*`<PlainTextParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/SpectraStash.md)
+  [`saveObject(`*`<Spectra>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/SpectraStash.md)
+  [`saveMsObject(`*`<Spectra>`*`,`*`<AlabasterParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/SpectraStash.md)
+  [`readMsObject(`*`<Spectra>`*`,`*`<AlabasterParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/SpectraStash.md)
+  : Spectra Stash
 

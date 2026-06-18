@@ -123,42 +123,7 @@ Johannes Rainer
 ``` r
 
 library(Spectra)
-#> Loading required package: S4Vectors
-#> Loading required package: stats4
-#> Loading required package: BiocGenerics
-#> Loading required package: generics
-#> 
-#> Attaching package: ‘generics’
-#> The following objects are masked from ‘package:base’:
-#> 
-#>     as.difftime, as.factor, as.ordered, intersect, is.element, setdiff,
-#>     setequal, union
-#> 
-#> Attaching package: ‘BiocGenerics’
-#> The following objects are masked from ‘package:stats’:
-#> 
-#>     IQR, mad, sd, var, xtabs
-#> The following object is masked from ‘package:utils’:
-#> 
-#>     data
-#> The following objects are masked from ‘package:base’:
-#> 
-#>     Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
-#>     as.data.frame, basename, cbind, colnames, dirname, do.call,
-#>     duplicated, eval, evalq, get, grep, grepl, is.unsorted, lapply,
-#>     mapply, match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
-#>     rank, rbind, rownames, sapply, saveRDS, scale, sequence, table,
-#>     tapply, transform, unique, unsplit, which.max, which.min
-#> 
-#> Attaching package: ‘S4Vectors’
-#> The following object is masked from ‘package:utils’:
-#> 
-#>     findMatches
-#> The following objects are masked from ‘package:base’:
-#> 
-#>     I, expand.grid, unname
-#> Loading required package: BiocParallel
-library(StashSpectra)
+library(SpectraStash)
 ## Create an example MsBackendHdf5Peaks backend from a single mzML file
 library(MsDataHub)
 tmp <- backendInitialize(MsBackendMzR(), X20171016_POOL_POS_1_105.134.mzML())
@@ -184,7 +149,7 @@ be_h5
 #>  ... 34 more variables/columns.
 #> 
 #> file(s):
-#>  54a78d9963c_7859.h5
+#>  72d786d570c_7859.h5
 
 d <- file.path(tempdir(), "example_hdf5")
 ptp <- PlainTextParam(path = d)
@@ -195,7 +160,7 @@ saveMsObject(be_h5, ptp, consolidate = TRUE)
 ## List the content of the folder: ms_backend_spectra_data.txt file
 ## with the spectra metadata and an HDF5 file with the peaks data:
 dir(d)
-#> [1] "54a78d9963c_7859.h5"         "ms_backend_spectra_data.txt"
+#> [1] "72d786d570c_7859.h5"         "ms_backend_spectra_data.txt"
 
 ## Restore the stashed object
 res <- readMsObject(MsBackendHdf5Peaks(), ptp)
@@ -232,5 +197,5 @@ res
 #>  ... 25 more variables/columns.
 #> 
 #> file(s):
-#>  54a78d9963c_7859.h5
+#>  72d786d570c_7859.h5
 ```

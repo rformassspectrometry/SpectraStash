@@ -1,15 +1,15 @@
-# StashSpectra
+# SpectraStash
 
 *A safe way to store your `Spectra` objects in interoperable formats.*
 
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![R-CMD-check-bioc](https://github.com/RforMassSpectrometry/StashSpectra/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/RforMassSpectrometry/StashSpectra/actions?query=workflow%3AR-CMD-check-bioc)
-[![codecov](https://codecov.io/gh/rformassspectrometry/StashSpectra/graph/badge.svg?token=dOEe7No0HB)](https://codecov.io/gh/rformassspectrometry/StashSpectra)
+[![R-CMD-check-bioc](https://github.com/RforMassSpectrometry/SpectraStash/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/RforMassSpectrometry/SpectraStash/actions?query=workflow%3AR-CMD-check-bioc)
+[![codecov](https://codecov.io/gh/rformassspectrometry/SpectraStash/graph/badge.svg?token=dOEe7No0HB)](https://codecov.io/gh/rformassspectrometry/SpectraStash)
 [![:name status
 badge](https://rformassspectrometry.r-universe.dev/badges/:name)](https://rformassspectrometry.r-universe.dev/)
-[![license](https://img.shields.io/badge/license-Artistic--2.0-brightgreen.svg)](https://opensource.org/licenses/Artistic-2.0)
+[![license](https://img.shields.io/badge/license-GPL--3.0-brightgreen.svg)](https://opensource.org/license/gpl-3.0)
 
 ------------------------------------------------------------------------
 
@@ -17,7 +17,7 @@ badge](https://rformassspectrometry.r-universe.dev/badges/:name)](https://rforma
 
 [**MsStash**](https://github.com/RforMassSpectrometry/MsStash) defines a
 framework for flexible, language-agnostic import and export formats for
-mass spectrometry (MS) data objects in R. The **StashSpectra** package
+mass spectrometry (MS) data objects in R. The **SpectraStash** package
 implements this framework for `Spectra` objects and its data backends.
 
 ------------------------------------------------------------------------
@@ -67,11 +67,11 @@ If you’re planning to contribute:
 
 ## License
 
-This package is licensed under the **Artistic 2.0 License**: 📄
-<https://opensource.org/licenses/Artistic-2.0>
+This package is licensed under the **GPL 3.0 License**: 📄
+<https://opensource.org/license/gpl-3.0>
 
-Documentation (manuals, vignettes) is licensed under **CC BY-SA 4.0**:
-📄 <https://creativecommons.org/licenses/by-sa/4.0/>
+Documentation (manuals, vignettes) is licensed under **CC BY-NC-SA
+4.0**: 📄 <https://creativecommons.org/licenses/by-nc-sa/4.0/>
 
 ------------------------------------------------------------------------
 
