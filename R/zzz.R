@@ -6,6 +6,9 @@
     registerValidateObjectFunction("ms_backend_hdf5_peaks",
                                    validateMsBackendHdf5Peaks)
     registerReadObjectFunction("ms_backend_hdf5_peaks", readMsBackendHdf5Peaks)
+    ## MsBackendCached
+    registerValidateObjectFunction("ms_backend_cached", validateMsBackendCached)
+    registerReadObjectFunction("ms_backend_cached", readMsBackendCached)
     ## Spectra
     registerValidateObjectFunction("spectra", validateAlabasterSpectra)
     registerReadObjectFunction("spectra", readAlabasterSpectra)

@@ -62,10 +62,10 @@
 #'
 #' @param param Either a `PlainTextParam` or `AlabasterParam`.
 #'
-#' @param x A `Spectra` object.
-#'
 #' @param path For `saveObject()`: `character(1)` with the path where the
 #'     object should be stored in.
+#'
+#' @param x A `Spectra` object.
 #'
 #' @param ... additional arguments passed to the `saveMsObject` or
 #'     `readMsObject` method of the `Spectra`'s `MsBackend`, such as

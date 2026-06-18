@@ -1,0 +1,92 @@
+test_that("saveMsObject/readMsObject,MsBackendCached,PlainTextParam works", {
+    d <- file.path(tempdir(), "test_cached")
+
+    ## Empty object
+    a <- MsBackendCached()
+    dir.create(d, showWarnings = FALSE)
+    ptp <- PlainTextParam(d)
+    saveMsObject(a, ptp)
+    expect_true(all(c("ms_backend_data.txt", "ms_backend_spectra_variables.txt",
+                      "ms_backend_nspectra.txt") %in% dir(d)))
+    expect_equal(readLines(file.path(d, "ms_backend_nspectra.txt")), "0")
+    expect_equal(readLines(file.path(d, "ms_backend_data.txt"), n = 1),
+                 "# MsBackendCached")
+    expect_equal(readLines(file.path(d, "ms_backend_spectra_variables.txt")),"")
+    ## read
+    b <- readMsObject(MsBackendCached(), ptp)
+    expect_s4_class(b, "MsBackendCached")
+    expect_true(validObject(b))
+    expect_equal(a, b)
+    unlink(d, recursive = TRUE)
+
+    ############################################################################
+    ##    Real object
+    a <- backendInitialize(a, data = data.frame(opt = 1:10, b = "a"),
+                           spectraVariables = c("msLevel", "rtime", "opt", "a"),
+                           nspectra = 10)
+    saveMsObject(a, ptp)
+    expect_true(all(c("ms_backend_data.txt", "ms_backend_spectra_variables.txt",
+                      "ms_backend_nspectra.txt") %in% dir(d)))
+    expect_equal(readLines(file.path(d, "ms_backend_nspectra.txt")), "10")
+    expect_equal(readLines(file.path(d, "ms_backend_data.txt"), n = 1),
+                 "# MsBackendCached")
+    res <- read.table(file.path(d, "ms_backend_data.txt"), sep = "\t",
+                      header = TRUE)
+    rownames(res) <- NULL
+    expect_equal(res, a@localData)
+    res <- readLines(file.path(d, "ms_backend_spectra_variables.txt"))
+    expect_equal(strsplit(res, "\t")[[1L]], a@spectraVariables)
+    ## read
+    b <- readMsObject(MsBackendCached(), ptp)
+    expect_s4_class(b, "MsBackendCached")
+    expect_true(validObject(b))
+    expect_equal(a, b)
+
+    ############################################################################
+    ##    Errors
+    expect_error(saveMsObject(a, ptp), "contains already an MS object stash")
+    l <- readLines(file.path(d, "ms_backend_data.txt"))
+    l[1] <- "# MsBackendOther"
+    writeLines(l, con = file.path(d, "ms_backend_data.txt"))
+    expect_error(readMsObject(MsBackendCached(), ptp), "MsBackendOther")
+    unlink(file.path(d, "ms_backend_data.txt"))
+    expect_error(readMsObject(MsBackendCached(), ptp), "in the path")
+    unlink(d, recursive = TRUE)
+})
+
+test_that("saveMsObject/readMsObject,MsBackendCached,AlabasterParam works", {
+    d <- file.path(tempdir(), "test_cached")
+
+    ## Empty object
+    a <- MsBackendCached()
+    expect_no_error(saveObject(a, d))
+    expect_true(all(c("local_data", "nspectra", "OBJECT", "spectra_variables")
+                    %in% dir(d)))
+    ## read
+    b <- readObject(d)
+    expect_s4_class(b, "MsBackendCached")
+    expect_true(validObject(b))
+    expect_equal(a, b)
+    unlink(d, recursive = TRUE)
+
+    ############################################################################
+    ##    Real object
+    a <- backendInitialize(a, data = data.frame(opt = 1:10, b = "a"),
+                           spectraVariables = c("msLevel", "rtime", "opt", "a"),
+                           nspectra = 10)
+    ap <- AlabasterParam(d)
+    expect_no_error(saveMsObject(a, ap))
+    expect_true(all(c("local_data", "nspectra", "OBJECT", "spectra_variables")
+                    %in% dir(d)))
+    expect_equal(readObjectFile(d)$type, "ms_backend_cached")
+    ## read
+    b <- readMsObject(MsBackendCached(), ap)
+    expect_s4_class(b, "MsBackendCached")
+    expect_true(validObject(b))
+    expect_equal(a, b)
+
+    ############################################################################
+    ##    Errors
+    expect_error(saveObject(a, d), "cannot save MsBackendCached")
+    unlink(d, recursive = TRUE)
+})

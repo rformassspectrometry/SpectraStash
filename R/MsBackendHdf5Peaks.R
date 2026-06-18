@@ -55,15 +55,15 @@
 #'
 #' @param param Either a `PlainTextParam` or `AlabasterParam`.
 #'
+#' @param path For `saveObject()`: `character(1)` with the path where the
+#'     object should be stored in.
+#'
 #' @param spectraPath For `readMsObject()`: optional `character(1)` with the
 #'     path to the peaks data in HDF5-format (in case they are on longer
 #'     available in the folder referred to by the original stashed
 #'     `MsBackendHdf5Peaks` object).
 #'
 #' @param x An `MsBackendHdf5Peaks` object.
-#'
-#' @param path For `saveObject()`: `character(1)` with the path where the
-#'     object should be stored in.
 #'
 #' @param ... Currently ignored.
 #'

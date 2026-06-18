@@ -66,15 +66,15 @@
 #'
 #' @param param Either a `PlainTextParam` or `AlabasterParam`.
 #'
+#' @param path For `saveObject()`: `character(1)` with the path where the
+#'     object should be stored in.
+#'
 #' @param spectraPath For `readMsObject()`: optional `character(1)` with the
 #'     path to the MS data files (mzML, mzXML or CDF) in case they are on longer
 #'     available in the folder referred to by the original stashed
 #'     `MsBackendMzR` object.
 #'
 #' @param x An `MsBackendMzR` object.
-#'
-#' @param path For `saveObject()`: `character(1)` with the path where the
-#'     object should be stored in.
 #'
 #' @param ... Currently ignored.
 #'
