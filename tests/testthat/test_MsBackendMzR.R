@@ -117,14 +117,15 @@ test_that("saveObject,MsBackendMzR works with different spectra base path", {
     file.copy(qc_files[1], f1)
     file.copy(qc_files[2], f2)
     a <- backendInitialize(MsBackendMzR(), c(f1, f2))
-    expect_equal(dataStorageBasePath(a), normalizePath(tempdir()))
+    expect_equal(normalizePath(dataStorageBasePath(a)),
+                 normalizePath(tempdir()))
 
     d <- file.path(tempdir(), "test_mzr")
     saveObject(a, d, consolidate = TRUE)
     expect_true(all(c("a", "b") %in% dir(d)))
     res <- readObject(d)
     expect_true(validObject(res))
-    expect_equal(dataStorageBasePath(res), normalizePath(d))
+    expect_equal(normalizePath(dataStorageBasePath(res)), normalizePath(d))
     expect_equal(res$mz, a$mz)
 
     ## Move the stash folder.

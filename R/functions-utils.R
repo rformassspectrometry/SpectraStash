@@ -87,14 +87,16 @@
 #'
 #' @noRd
 .consolidate_data_storage <- function(x, path) {
-    bp <- dataStorageBasePath(x)
+    bp <- normalizePath(dataStorageBasePath(x))
     ufiles <- unique(dataStorage(x))
     nfiles <- sub(bp, file.path(path, ""), ufiles, fixed = TRUE)
     lapply(unique(dirname(nfiles)), dir.create, recursive = TRUE,
            showWarnings = FALSE)
     file.copy(ufiles, nfiles)
     afiles <- factor(dataStorage(x), levels = ufiles)
-    levels(afiles) <- sub(bp, "./", levels(afiles), fixed = TRUE)
+    fn <- sub(bp, "", levels(afiles), fixed = TRUE)
+    fn <- sub("\\", "", fn, fixed = TRUE)
+    levels(afiles) <- file.path(".", fn)
     x@spectraData$dataStorage <- as.character(afiles)
     x
 }
