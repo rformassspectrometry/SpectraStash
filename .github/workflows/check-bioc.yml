@@ -152,9 +152,11 @@ jobs:
           ## https://github.com/r-lib/remotes/issues/296
           ## Ideally, all dependencies should get installed in the first pass.
           install.packages(c("pak", "remotes"))
+          BiocManager::install("MsDataHub")
+          BiocManager::install("Spectra")
+          BiocManager::install("alabaster.base")
           BiocManager::install("RforMassSpectrometry/MsStash")
           pak::local_install_dev_deps(ask = FALSE)
-          BiocManager::install("MsDataHub")
 
           ## Pass #1 at installing dependencies
           pak::local_install(dependencies = TRUE)
