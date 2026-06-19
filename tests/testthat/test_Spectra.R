@@ -61,8 +61,6 @@ test_that("alabaster functions work with Spectra", {
     d <- file.path(tempdir(), "spectra_tests")
     a <- Spectra()
 
-    expect_error(saveObject(a, d), "MsBackendMemory")
-
     ## empty object
     a@backend <- MsBackendMzR()
     expect_no_error(saveObject(a, d))

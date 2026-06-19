@@ -56,7 +56,7 @@ test_that("alabaster functionality works for MsBackenHdf5Peaks", {
     unlink(fls)
 
     expect_error(res <- readMsBackendHdf5Peaks(d),
-                 "invalid class")
+                 "does not contain all data files")
     res <- readMsBackendHdf5Peaks(
         d, spectraPath = dataStorageBasePath(be_hdf5))
     expect_s4_class(res, "MsBackendHdf5Peaks")
@@ -83,4 +83,28 @@ test_that("alabaster functionality works for MsBackenHdf5Peaks", {
     res <- readMsObject(MsBackendHdf5Peaks(), p)
     expect_equal(normalizePath(dataStorageBasePath(res)), normalizePath(d))
     unlink(d, recursive = TRUE)
+})
+
+test_that("readMsObject,MsBackendHdf5Peaks with consolidate after moving", {
+    df <- DataFrame(msLevel = c(1L, 2L, 3L, 1L), rtime = c(1.2, 1.45, 2.5, 2.3))
+    df$mz <- list(c(12.2, 124.4, 134.23),
+                  sort(abs(rnorm(n = 15))),
+                  sort(abs(rnorm(n = 5))),
+                  sort(abs(rnorm(n = 143))))
+    df$intensity <- list(1:3, 1:15, 1:5, 1:143)
+    df$scanIndex <- 1:4
+    a <- backendInitialize(MsBackendHdf5Peaks(), data = df,
+                           hdf5path = tempdir(), file = "peaks.h5")
+
+    d <- file.path(tempdir(), "test_h5")
+    d2 <- file.path(tempdir(), "test_h52")
+    saveMsObject(a, AlabasterParam(d), consolidate = TRUE)
+    fs::dir_copy(d, d2)
+    unlink(d, recursive = TRUE)
+    res <- readMsObject(MsBackendHdf5Peaks(), AlabasterParam(d2))
+    expect_true(validObject(res))
+    expect_equal(res$mz, a$mz)
+
+    unlink(d2, recursive = TRUE)
+    unlink(file.path(tempdir(), "peaks.h5"))
 })

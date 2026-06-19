@@ -14,7 +14,10 @@
 #' spectra metadata is stored in that folder. Setting parameter
 #' `consolidate = TRUE` will also copy the HDF5-format peaks data files
 #' (containing the *m/z* and intensity values) of the backend into the folder
-#' generating a self-consistent stash.
+#' generating a self-consistent stash. The paths to the data storage files are
+#' also updated to relative paths enabling to directly restore the object from
+#' the stash when the stash folder was copied to another computer or location
+#' on the file system (i.e., without the use of parameter `spectraPath`).
 #'
 #' Details on the stored files are provided in the sections below.
 #'
@@ -135,11 +138,8 @@ setMethod("saveMsObject", signature(object = "MsBackendHdf5Peaks",
               l <- c(paste0("# ", class(object)[1L]),
                      paste0("# modCount=", paste0(object@modCount,
                                                   collapse = ",")))
-              if (consolidate) {
-                  h5_files <- unique(dataStorage(object))
-                  file.copy(h5_files, file.path(param@path, basename(h5_files)))
-                  dataStorageBasePath(object) <- param@path
-              }
+              if (consolidate)
+                  object <- .consolidate_data_storage(object, param@path)
               writeLines(l, con = fl)
               if (nrow(object@spectraData))
                   .write_spectra_data(object@spectraData, fl, append = TRUE)
@@ -160,6 +160,10 @@ setMethod("readMsObject", signature(object = "MsBackendHdf5Peaks",
                   object@spectraData <- DataFrame(.read_spectra_data(fl))
                   if (length(spectraPath))
                       dataStorageBasePath(object) <- spectraPath
+                  ## consolidated; update relative path to absolute stash path
+                  if (all(grepl("^\\.(/|\\\\)",
+                                unique(object@spectraData$dataStorage))))
+                      dataStorageBasePath(object) <- param@path
               }
               validObject(object)
               object
@@ -178,11 +182,8 @@ setMethod("saveObject", "MsBackendHdf5Peaks", function(x,
     dir.create(path, showWarnings = FALSE, recursive = TRUE)
     .check_overwriting(file.path(path, "OBJECT"))
     saveObjectFile(path, "ms_backend_hdf5_peaks")
-    if (consolidate) {
-        h5_files <- unique(dataStorage(x))
-        file.copy(h5_files, file.path(path, basename(h5_files)))
-        dataStorageBasePath(x) <- path
-    }
+    if (consolidate)
+        x <- .consolidate_data_storage(x, path)
     altSaveObject(x@spectraData, path = file.path(path, "spectra_data"))
     altSaveObject(x@modCount, path = file.path(path, "mod_count"))
 })
@@ -201,8 +202,12 @@ readMsBackendHdf5Peaks <- function(path = character(), metadata = list(),
     be <- MsBackendHdf5Peaks()
     be@spectraData <- altReadObject(file.path(path, "spectra_data"))
     be@modCount <- altReadObject(file.path(path, "mod_count"))
-    if (length(spectraPath))
-        dataStorageBasePath(be) <- spectraPath
+    if (nrow(be@spectraData)) {
+        if (length(spectraPath))
+            dataStorageBasePath(be) <- spectraPath
+        if (all(grepl("^\\.(/|\\\\)", unique(be@spectraData$dataStorage))))
+            dataStorageBasePath(be) <- path
+    }
     validObject(be)
     be
 }

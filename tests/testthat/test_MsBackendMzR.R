@@ -106,3 +106,35 @@ test_that("alabaster functionality works for MsBackendMzR", {
 
     unlink(d, recursive = TRUE)
 })
+
+test_that("saveObject,MsBackendMzR works with different spectra base path", {
+    d1 <- file.path(tempdir(), "a")
+    d2 <- file.path(tempdir(), "b")
+    dir.create(d1)
+    dir.create(d2)
+    f1 <- file.path(d1, "a.mzML")
+    f2 <- file.path(d2, "b.mzML")
+    file.copy(qc_files[1], f1)
+    file.copy(qc_files[2], f2)
+    a <- backendInitialize(MsBackendMzR(), c(f1, f2))
+    expect_equal(dataStorageBasePath(a), normalizePath(tempdir()))
+
+    d <- file.path(tempdir(), "test_mzr")
+    saveObject(a, d, consolidate = TRUE)
+    expect_true(all(c("a", "b") %in% dir(d)))
+    res <- readObject(d)
+    expect_true(validObject(res))
+    expect_equal(dataStorageBasePath(res), normalizePath(d))
+    expect_equal(res$mz, a$mz)
+
+    ## Move the stash folder.
+    fs::dir_copy(d, file.path(tempdir(), "test_mzr2"))
+    unlink(d, recursive = TRUE)
+
+    res <- readObject(file.path(tempdir(), "test_mzr2"))
+    expect_true(validObject(res))
+
+    unlink(d1, recursive = TRUE)
+    unlink(d2, recursive = TRUE)
+    unlink(file.path(tempdir(), "test_mzr2"))
+})

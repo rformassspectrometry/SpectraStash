@@ -33,3 +33,15 @@ test_that(".read_spectra_data works", {
     expect_equal(a, b)
     unlink(fl)
 })
+
+test_that(".consolidate_data_storage works", {
+    a <- backendInitialize(MsBackendMzR(), qc_files)
+    d <- file.path(tempdir(), "test_consolidate")
+    res <- .consolidate_data_storage(a, d)
+    expect_true(dir.exists(d))
+    expect_true(length(dir(d)) == 2)
+    expect_error(validObject(res), "not found")
+    expect_equal(basename(dataStorage(a)), basename(dataStorage(res)))
+    expect_true(grepl("^\\.", dataStorageBasePath(res)))
+    unlink(d, recursive = TRUE)
+})

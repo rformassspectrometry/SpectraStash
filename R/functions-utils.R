@@ -73,3 +73,28 @@
     rownames(d) <- NULL
     d
 }
+
+#' Copy files from their original location into the stash folder `path` and
+#' replace the absolute path with a relative path in column `"dataStorage"` of
+#' the `@spectraData`.
+#'
+#' @param x `MsBackend` with a `@spectraData` slot and `"dataStorage"` column
+#'
+#' @param path `character(1)` with the path of the stash
+#'
+#' @return input object but with relative data storage names (relative
+#' **within** the stash folder)
+#'
+#' @noRd
+.consolidate_data_storage <- function(x, path) {
+    bp <- dataStorageBasePath(x)
+    ufiles <- unique(dataStorage(x))
+    nfiles <- sub(bp, file.path(path, ""), ufiles, fixed = TRUE)
+    lapply(unique(dirname(nfiles)), dir.create, recursive = TRUE,
+           showWarnings = FALSE)
+    file.copy(ufiles, nfiles)
+    afiles <- factor(dataStorage(x), levels = ufiles)
+    levels(afiles) <- sub(bp, "./", levels(afiles), fixed = TRUE)
+    x@spectraData$dataStorage <- as.character(afiles)
+    x
+}

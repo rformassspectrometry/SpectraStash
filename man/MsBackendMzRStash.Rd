@@ -50,7 +50,9 @@ file-based or \emph{alabaster}-based formats using the \code{\link[MsStash:saveM
 \link[MsStash:AlabasterParam]{AlabasterParam} parameter objects, respectively. Setting parameter
 \code{consolidate = TRUE} in the \code{saveMsObject()} or \code{saveObject()} function
 will copy also the original MS data files into the folder generating a
-self-consistent stash.
+self-consistent stash. This stash folder can also be copied to another
+computer or location in the file system without the need to use parameter
+\code{spectraPath} when restoring the data.
 
 Additional properties of the stash formats are described in detail in the
 sections below.
