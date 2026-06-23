@@ -12,7 +12,9 @@
 #' [AlabasterParam] parameter objects, respectively. Setting parameter
 #' `consolidate = TRUE` in the `saveMsObject()` or `saveObject()` function
 #' will copy also the original MS data files into the folder generating a
-#' self-consistent stash.
+#' self-consistent stash. This stash folder can also be copied to another
+#' computer or location in the file system without the need to use parameter
+#' `spectraPath` when restoring the data.
 #'
 #' Additional properties of the stash formats are described in detail in the
 #' sections below.
@@ -143,11 +145,8 @@ setMethod("saveMsObject", signature(object = "MsBackendMzR",
               dir.create(param@path, showWarnings = FALSE, recursive = TRUE)
               fl <- file.path(param@path, .MS_BACKEND_MZR_DATA_FILE)
               .check_overwriting(fl)
-              if (consolidate) {
-                  fls <- unique(dataStorage(object))
-                  file.copy(fls, file.path(param@path, basename(fls)))
-                  dataStorageBasePath(object) <- param@path
-              }
+              if (consolidate)
+                  object <- .consolidate_data_storage(object, param@path)
               writeLines(paste0("# ", class(object)[1L]), con = fl)
               if (nrow(object@spectraData))
                   .write_spectra_data(object@spectraData, fl, append = TRUE)
@@ -174,6 +173,9 @@ setMethod("readMsObject", signature(object = "MsBackendMzR",
                   object@spectraData <- DataFrame(.read_spectra_data(fl))
                   if (length(spectraPath))
                       dataStorageBasePath(object) <- spectraPath
+                  if (all(grepl("^\\.(/|\\\\)",
+                                unique(object@spectraData$dataStorage))))
+                      dataStorageBasePath(object) <- param@path
               }
               validObject(object)
               object
@@ -198,11 +200,8 @@ setMethod("saveObject", "MsBackendMzR", function(x, path, consolidate = FALSE,
     dir.create(path, showWarnings = FALSE, recursive = TRUE)
     .check_overwriting(file.path(path, "OBJECT"))
     saveObjectFile(path, "ms_backend_mz_r")
-    if (consolidate) {
-        fls <- unique(dataStorage(x))
-        file.copy(fls, file.path(path, basename(fls)))
-        dataStorageBasePath(x) <- path
-    }
+    if (consolidate)
+        x <- .consolidate_data_storage(x, path)
     altSaveObject(x@spectraData, path = file.path(path, "spectra_data"))
 })
 
@@ -231,8 +230,12 @@ readMsBackendMzR <- function(path = character(), metadata = list(),
     validateMsBackendMzR(path, metadata)
     be <- MsBackendMzR()
     be@spectraData <- altReadObject(file.path(path, "spectra_data"))
-    if (length(spectraPath))
-        dataStorageBasePath(be) <- spectraPath
+    if(nrow(be@spectraData)) {
+        if (length(spectraPath))
+            dataStorageBasePath(be) <- spectraPath
+        if (all(grepl("^\\.(/|\\\\)", unique(be@spectraData$dataStorage))))
+            dataStorageBasePath(be) <- path
+    }
     validObject(be)
     be
 }

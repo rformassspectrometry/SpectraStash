@@ -52,7 +52,10 @@ are stored into the specified directory. By default, only the backend's
 spectra metadata is stored in that folder. Setting parameter
 \code{consolidate = TRUE} will also copy the HDF5-format peaks data files
 (containing the \emph{m/z} and intensity values) of the backend into the folder
-generating a self-consistent stash.
+generating a self-consistent stash. The paths to the data storage files are
+also updated to relative paths enabling to directly restore the object from
+the stash when the stash folder was copied to another computer or location
+on the file system (i.e., without the use of parameter \code{spectraPath}).
 
 Details on the stored files are provided in the sections below.
 }
