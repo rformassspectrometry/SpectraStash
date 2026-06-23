@@ -166,7 +166,7 @@ be
 #>  ... 34 more variables/columns.
 #> 
 #> file(s):
-#> 74c5e563c2_7861
+#> 5eb3672b43a_7861
 
 ## Define a folder where to stash the object
 pth <- file.path(tempdir(), "mzr_stash")
@@ -194,7 +194,7 @@ res
 #>  ... 27 more variables/columns.
 #> 
 #> file(s):
-#> 74c5e563c2_7861
+#> 5eb3672b43a_7861
 
 ## Clean-up
 unlink(pth, recursive = TRUE)
@@ -205,7 +205,7 @@ saveMsObject(be, AlabasterParam(pth), consolidate = TRUE)
 
 ## Get the directory content of the stash folder:
 dir(pth)
-#> [1] "74c5e563c2_7861"   "OBJECT"            "_environment.json"
+#> [1] "5eb3672b43a_7861"  "OBJECT"            "_environment.json"
 #> [4] "spectra_data"     
 
 ## Restore the object
@@ -228,7 +228,7 @@ res
 #>  ... 27 more variables/columns.
 #> 
 #> file(s):
-#> 74c5e563c2_7861
+#> 5eb3672b43a_7861
 
 ## If the data is exported with `consolidate = FALSE` (the default), the
 ## new location of MS data files could be provided with parameter
