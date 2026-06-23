@@ -125,6 +125,7 @@ jobs:
         if: matrix.config.os == 'macOS-latest'
         run: |
           brew install openssl
+          xcode-select --install
 
       - name: Install Windows system dependencies
         if: runner.os == 'Windows'
