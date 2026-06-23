@@ -2,6 +2,14 @@
 
 ## *SpectraStash* 0.97
 
+### Changes in version 0.97.5
+
+- Refactor code to create self-contained stashes for `MsBackendMzR` and
+  `MsBackendHdf5Peaks`: with `consolidate = TRUE` the data storage files
+  are copied into the stash folder and the `dataStorage` path is adapted
+  to a relative path enabling to directly load the stash also on another
+  computer or location in the file system.
+
 ### Changes in version 0.97.4
 
 - Add functionality for a `MsBackendCached` stash.

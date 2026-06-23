@@ -5,7 +5,9 @@ readMsObject() functions combined with the PlainTextParam and
 AlabasterParam parameter objects, respectively. Setting parameter
 consolidate = TRUE in the saveMsObject() or saveObject() function
 will copy also the original MS data files into the folder generating a
-self-consistent stash.
+self-consistent stash. This stash folder can also be copied to another
+computer or location in the file system without the need to use parameter
+spectraPath when restoring the data.
 Additional properties of the stash formats are described in detail in the
 sections below."><meta property="og:description" content="MsBackendMzR classes can be stashed to (or read from) plain text
 file-based or alabaster-based formats using the saveMsObject() and
@@ -13,7 +15,9 @@ readMsObject() functions combined with the PlainTextParam and
 AlabasterParam parameter objects, respectively. Setting parameter
 consolidate = TRUE in the saveMsObject() or saveObject() function
 will copy also the original MS data files into the folder generating a
-self-consistent stash.
+self-consistent stash. This stash folder can also be copied to another
+computer or location in the file system without the need to use parameter
+spectraPath when restoring the data.
 Additional properties of the stash formats are described in detail in the
 sections below."></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -23,7 +27,7 @@ sections below."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">SpectraStash</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.97.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.97.5</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,7 +60,9 @@ file-based or <em>alabaster</em>-based formats using the <code><a href="https://
 <a href="https://rdrr.io/pkg/MsStash/man/AlabasterParam.html" class="external-link">AlabasterParam</a> parameter objects, respectively. Setting parameter
 <code>consolidate = TRUE</code> in the <code><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">saveMsObject()</a></code> or <code>saveObject()</code> function
 will copy also the original MS data files into the folder generating a
-self-consistent stash.</p>
+self-consistent stash. This stash folder can also be copied to another
+computer or location in the file system without the need to use parameter
+<code>spectraPath</code> when restoring the data.</p>
 <p>Additional properties of the stash formats are described in detail in the
 sections below.</p>
     </div>
@@ -199,7 +205,7 @@ be used to save and read <code>MsBackendMzR</code> objects.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ... 34 more variables/columns.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> file(s):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 72d6de16066_7861</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 87376588929_7861</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Define a folder where to stash the object</span></span></span>
 <span class="r-in"><span><span class="va">pth</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"mzr_stash"</span><span class="op">)</span></span></span>
@@ -227,7 +233,7 @@ be used to save and read <code>MsBackendMzR</code> objects.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ... 27 more variables/columns.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> file(s):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 72d6de16066_7861</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 87376588929_7861</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Clean-up</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="va">pth</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
@@ -238,7 +244,7 @@ be used to save and read <code>MsBackendMzR</code> objects.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Get the directory content of the stash folder:</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">dir</a></span><span class="op">(</span><span class="va">pth</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "72d6de16066_7861"  "OBJECT"            "_environment.json"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "87376588929_7861"  "OBJECT"            "_environment.json"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [4] "spectra_data"     </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Restore the object</span></span></span>
@@ -261,7 +267,7 @@ be used to save and read <code>MsBackendMzR</code> objects.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ... 27 more variables/columns.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> file(s):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 72d6de16066_7861</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 87376588929_7861</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## If the data is exported with `consolidate = FALSE` (the default), the</span></span></span>
 <span class="r-in"><span><span class="co">## new location of MS data files could be provided with parameter</span></span></span>

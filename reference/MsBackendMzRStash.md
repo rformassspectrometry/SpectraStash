@@ -13,7 +13,9 @@ parameter objects, respectively. Setting parameter `consolidate = TRUE`
 in the
 [`saveMsObject()`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html) or
 `saveObject()` function will copy also the original MS data files into
-the folder generating a self-consistent stash.
+the folder generating a self-consistent stash. This stash folder can
+also be copied to another computer or location in the file system
+without the need to use parameter `spectraPath` when restoring the data.
 
 Additional properties of the stash formats are described in detail in
 the sections below.
@@ -164,7 +166,7 @@ be
 #>  ... 34 more variables/columns.
 #> 
 #> file(s):
-#> 72d6de16066_7861
+#> 87376588929_7861
 
 ## Define a folder where to stash the object
 pth <- file.path(tempdir(), "mzr_stash")
@@ -192,7 +194,7 @@ res
 #>  ... 27 more variables/columns.
 #> 
 #> file(s):
-#> 72d6de16066_7861
+#> 87376588929_7861
 
 ## Clean-up
 unlink(pth, recursive = TRUE)
@@ -203,7 +205,7 @@ saveMsObject(be, AlabasterParam(pth), consolidate = TRUE)
 
 ## Get the directory content of the stash folder:
 dir(pth)
-#> [1] "72d6de16066_7861"  "OBJECT"            "_environment.json"
+#> [1] "87376588929_7861"  "OBJECT"            "_environment.json"
 #> [4] "spectra_data"     
 
 ## Restore the object
@@ -226,7 +228,7 @@ res
 #>  ... 27 more variables/columns.
 #> 
 #> file(s):
-#> 72d6de16066_7861
+#> 87376588929_7861
 
 ## If the data is exported with `consolidate = FALSE` (the default), the
 ## new location of MS data files could be provided with parameter

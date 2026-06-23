@@ -14,7 +14,11 @@ into the specified directory. By default, only the backend's spectra
 metadata is stored in that folder. Setting parameter
 `consolidate = TRUE` will also copy the HDF5-format peaks data files
 (containing the *m/z* and intensity values) of the backend into the
-folder generating a self-consistent stash.
+folder generating a self-consistent stash. The paths to the data storage
+files are also updated to relative paths enabling to directly restore
+the object from the stash when the stash folder was copied to another
+computer or location on the file system (i.e., without the use of
+parameter `spectraPath`).
 
 Details on the stored files are provided in the sections below.
 
@@ -149,7 +153,7 @@ be_h5
 #>  ... 34 more variables/columns.
 #> 
 #> file(s):
-#>  72d786d570c_7859.h5
+#>  87352312247_7859.h5
 
 d <- file.path(tempdir(), "example_hdf5")
 ptp <- PlainTextParam(path = d)
@@ -160,7 +164,7 @@ saveMsObject(be_h5, ptp, consolidate = TRUE)
 ## List the content of the folder: ms_backend_spectra_data.txt file
 ## with the spectra metadata and an HDF5 file with the peaks data:
 dir(d)
-#> [1] "72d786d570c_7859.h5"         "ms_backend_spectra_data.txt"
+#> [1] "87352312247_7859.h5"         "ms_backend_spectra_data.txt"
 
 ## Restore the stashed object
 res <- readMsObject(MsBackendHdf5Peaks(), ptp)
@@ -197,5 +201,5 @@ res
 #>  ... 25 more variables/columns.
 #> 
 #> file(s):
-#>  72d786d570c_7859.h5
+#>  87352312247_7859.h5
 ```

@@ -23,13 +23,13 @@ Source:
 [`DESCRIPTION`](https://github.com/RforMassSpectrometry/SpectraStash/blob/main/DESCRIPTION)
 
 Rainer J, Louail P (2026). *SpectraStash: Serialize and restore Spectra
-objects in interoperable file formats*. R package version 0.97.4,
+objects in interoperable file formats*. R package version 0.97.5,
 <https://github.com/RforMassSpectrometry/SpectraStash>.
 
     @Manual{,
       title = {SpectraStash: Serialize and restore Spectra objects in interoperable file formats},
       author = {Johannes Rainer and Philippine Louail},
       year = {2026},
-      note = {R package version 0.97.4},
+      note = {R package version 0.97.5},
       url = {https://github.com/RforMassSpectrometry/SpectraStash},
     }
