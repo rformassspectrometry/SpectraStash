@@ -8,12 +8,12 @@ Authors@R:
              comment = c(ORCID = "0000-0002-6977-7147")),
       person(given = "Philippine", family = "Louail",
              email = "philippine.louail@eurac.edu",
-	     role = "aut",
-	     comment = c(ORCID = "0009-0007-5429-6846")),
+             role = "aut",
+             comment = c(ORCID = "0009-0007-5429-6846")),
       person(given = "Laurent", family = "Gatto",
              email = "laurent.gatto@uclouvain.be",
-	     role = "ctb",
-	     comment = c(ORCID = "0000-0002-1520-2268")),
+             role = "ctb",
+             comment = c(ORCID = "0000-0002-1520-2268")),
       person(given = "Gabriele", family = "Tomè",
              email = "gabriele.tome@eurac.edu",
              role = c("ctb"),
@@ -21,13 +21,13 @@ Authors@R:
              fnd = "MetaRbolomics4Galaxy project (CUP: D53C25001030003) co-funded by the Autonomous Province of Bolzano under the Joint Projects South Tyrol–Germany 2025 program.")))
 Description: The serialization mechanism of R allows to save and load R data
              objects in a binary format, that can however not be read by other
-	     programming languages or software. The SpectraStash package
-	     implements the serialization methods from the MsStash package for
-	     Spectra objects and its MsBackend classes. A variety of different
-	     file formats and types, including HDF5 and JSON-based formats
-	     defined by the Bioconductor *alabaster* package are supported.
-	     The file type can be defined and configured through a second
-	     argument `param` of the save/read methods.
+             programming languages or software. The SpectraStash package
+             implements the serialization methods from the MsStash package for
+             Spectra objects and its MsBackend classes. A variety of different
+             file formats and types, including HDF5 and JSON-based formats
+             defined by the Bioconductor *alabaster* package are supported.
+             The file type can be defined and configured through a second
+             argument `param` of the save/read methods.
 Depends:
     R (>= 4.6.0),
     MsStash
@@ -44,6 +44,8 @@ Suggests:
     testthat,
     mzR,
     fs
+Remotes:
+    RforMassSpectrometry/MsStash
 License: GPL-3
 Encoding: UTF-8
 BugReports: https://github.com/RforMassSpectrometry/SpectraStash/issues
