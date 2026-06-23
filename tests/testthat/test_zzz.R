@@ -6,7 +6,7 @@ test_that("test .onLoad", {
             callr::r(function() {
                 preOpts <- options()
                 library(SpectraStash)
-                expect_no_error(SpectraStash:::.onLoad())
+                testthat::expect_no_error(SpectraStash:::.onLoad())
                 postOpts <- options()
                 list(preOpts = preOpts, postOpts = postOpts)
             })
@@ -14,7 +14,7 @@ test_that("test .onLoad", {
             callr::r(function() {
                 preOpts <- options()
                 pkgload::load_all()
-                expect_no_error(SpectraStash:::.onLoad())
+                testthat::expect_no_error(SpectraStash:::.onLoad())
                 postOpts <- options()
                 list(preOpts = preOpts, postOpts = postOpts)
             })
