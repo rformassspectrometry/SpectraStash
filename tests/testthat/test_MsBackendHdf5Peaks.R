@@ -2,6 +2,16 @@ test_that("saveMsObject/readMsObject,MsBackendHdf5Peaks,PlainTextParam works", {
     d <- file.path(tempdir(), "text_h5")
 
     p <- PlainTextParam(d)
+
+    ## Empty object
+    a <- MsBackendHdf5Peaks()
+    saveMsObject(a, p)
+    res <- readMsObject(MsBackendHdf5Peaks(), p)
+    expect_s4_class(res, "MsBackendHdf5Peaks")
+    expect_equal(length(res), length(a))
+    unlink(d, recursive = TRUE)
+
+    ## Real object
     expect_no_error(saveMsObject(be_hdf5, p))
     expect_equal(dir(d), "ms_backend_spectra_data.txt")
     res <- readMsObject(MsBackendHdf5Peaks(), p)

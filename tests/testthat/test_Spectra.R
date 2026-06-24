@@ -3,7 +3,18 @@ test_that("saveMsObject/readMsObject,PlainTextParam works", {
     ptp <- PlainTextParam(d)
     a <- Spectra()
 
+    setClass("DummyBackend", contains = "MsBackend")
+    a@backend <- new("DummyBackend")
     expect_error(saveMsObject(a, ptp), "with backend")
+
+    ## Empty MsBackendMemory
+    a <- Spectra()
+    saveMsObject(a, ptp)
+    b <- readMsObject(Spectra(), ptp)
+    expect_s4_class(b, "Spectra")
+    expect_s4_class(b@backend, "MsBackendMemory")
+
+    unlink(d, recursive = TRUE)
 
     a <- Spectra(be_mzr)
     expect_no_error(saveMsObject(a, ptp))
@@ -111,8 +122,16 @@ test_that("saveMsObject,readMsObject,AlabasterParam works", {
     a <- Spectra()
 
     ap <- AlabasterParam(d)
-    expect_error(saveMsObject(a, ap), "MsBackendMemory")
+    expect_no_error(saveMsObject(a, ap))
+    res <- readMsObject(a, ap)
+    expect_s4_class(res, "Spectra")
+    expect_s4_class(res@backend, "MsBackendMemory")
+    expect_equal(length(res), length(a))
     unlink(d, recursive = TRUE)
+
+    setClass("DummyBackend", contains = "MsBackend")
+    a@backend <- new("DummyBackend")
+    expect_error(saveMsObject(a, ap), "save a backend")
 
     ## MsBackendMzR
     a <- filterRt(Spectra(be_mzr), c(210, 280))
