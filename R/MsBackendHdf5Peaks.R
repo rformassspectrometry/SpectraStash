@@ -138,11 +138,12 @@ setMethod("saveMsObject", signature(object = "MsBackendHdf5Peaks",
               l <- c(paste0("# ", class(object)[1L]),
                      paste0("# modCount=", paste0(object@modCount,
                                                   collapse = ",")))
-              if (consolidate)
-                  object <- .consolidate_data_storage(object, param@path)
               writeLines(l, con = fl)
-              if (nrow(object@spectraData))
+              if (nrow(object@spectraData)) {
+                  if (consolidate)
+                      object <- .consolidate_data_storage(object, param@path)
                   .write_spectra_data(object@spectraData, fl, append = TRUE)
+              }
           })
 
 #' @rdname MsBackendHdf5PeaksStash
@@ -182,7 +183,7 @@ setMethod("saveObject", "MsBackendHdf5Peaks", function(x,
     dir.create(path, showWarnings = FALSE, recursive = TRUE)
     .check_overwriting(file.path(path, "OBJECT"))
     saveObjectFile(path, "ms_backend_hdf5_peaks")
-    if (consolidate)
+    if (consolidate && nrow(x@spectraData))
         x <- .consolidate_data_storage(x, path)
     altSaveObject(x@spectraData, path = file.path(path, "spectra_data"))
     altSaveObject(x@modCount, path = file.path(path, "mod_count"))

@@ -1,0 +1,225 @@
+---
+title: "Savely Store MS Data Objects in a Portable Stash"
+output:
+    BiocStyle::html_document:
+        toc_float: true
+vignette: >
+    %\VignetteIndexEntry{Savely Store MS Data Object in a Portable Stash}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteEncoding{UTF-8}
+    %\VignettePackage{SpectraStash}
+    %\VignetteDepends{Spectra,SpectraStash,BiocStyle,alabaster.base,fs}
+---
+
+```{r, echo = FALSE, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+library(BiocStyle)
+```
+
+# Introduction
+
+Data objects in R can be serialized to disk in R's *rds* or *RData* format using
+the base R `save()` function and re-imported using the `load()` function. This
+R-specific binary data format can however not be used easily by other
+programming languages preventing the exchange of R data objects between software
+or programming languages. The *MsStash* package defines basic classes and
+generic methods to export and import mass spectrometry (MS) data objects in
+various storage formats aiming to facilitate data exchange between software. The
+*SpectraStash* package implements portable data storage formats (stashes) for
+data classes from the `r Biocpkg("Spectra")` package, including the `Spectra`
+object and it's various data backends.
+
+# Installation
+
+The package can be installed with the *BiocManager* package. To install
+*BiocManager* use `install.packages("BiocManager")` and, after that,
+`BiocManager::install("RforMassSpectrometry/SpectraStash")` to install this
+package.
+
+# A stash for `Spectra` objects
+
+MS data objects can be saved and restored through the `saveMsObject()` and
+`readMsObject()` functions into (or from) MS data stashes. Supported stash
+formats and their respective parameter objects are:
+
+- `PlainTextParam`: storage of data in (a custom) plain text file format.
+- `AlabasterParam`: storage of MS data using Bioconductor's `r
+  Biocpkg("alabaster.base")` framework using files in HDF5 and JSON format. MS
+  stashes in this format fully support the functions `saveObject()` and
+  `readObject()` from *alabaster.base*.
+
+See also the vignette from the `r Biocpkg("MsStash")` for details on the formats
+and implementation notes.
+
+As an example we create below a `Spectra` object from two example MS data files
+from the *MsDataHub* package.
+
+```{r, message = FALSE}
+library(Spectra)
+library(SpectraStash)
+library(MsDataHub)
+fls <- c(X20171016_POOL_POS_1_105.134.mzML(),
+         X20171016_POOL_POS_3_105.134.mzML())
+sps <- Spectra(fls)
+sps
+```
+
+We next filter the data restricting to spectra and mass peaks with a retention
+time between 20 and 200 seconds and an *m/z* between 110 and 120.
+
+```{r}
+sps <- filterRt(sps, c(20, 200))
+sps <- filterMzRange(sps, c(110, 120))
+sps
+```
+
+We next store this `Spectra` object to a *SpectraStash* using the
+`saveMsObject()` function. We use an alabaster format and define the location of
+the stash with the `path` parameter of `AlabasterParam`. For the present example
+we save it to a temporary folder.
+
+```{r}
+#' Define the location of the stash
+d <- file.path(tempfile(), "spectra_stash")
+
+#' Configure the format and location
+ap <- AlabasterParam(d)
+
+#' Save the `Spectra` object to the stash
+saveMsObject(sps, ap)
+```
+
+The content of the stash folder is:
+
+```{r}
+library(fs)
+dir_tree(d)
+```
+
+In alabaster format, each slot of the `Spectra` object is stored into its own
+sub directory. `Spectra` objects don't handle the MS data itself, but rely on a
+`MsBackend` to provide this data. The `MsBackend` used by the `Spectra` object
+is stored into it's own stash located in the *backend* directory of the
+SpectraStash. The `Spectra` object can be restored again with `readMsObject()`:
+
+```{r}
+res <- readMsObject(Spectra(), ap)
+res
+```
+
+We need to specify the type of the object to restore with the first parameter of
+the function - in our case `Spectra()`. The full `Spectra` object was restored,
+including the processing queue and history.
+
+We can also read (restore) only the `MsBackend` from the SpectraStash. Since the
+present stash is in alabaster format we can either use `readMsObject()` or also
+the `readObject()` from *alabaster.base*:
+
+```{r}
+library(alabaster.base)
+be <- readObject(file.path(d, "backend"))
+be
+```
+
+Or using `readMsObject()`:
+
+```{r}
+be <- readMsObject(MsBackendMzR(), AlabasterParam(file.path(d, "backend")))
+be
+```
+
+## Creating self-contained stashes
+
+Our example `Spectra` object uses an `MsBackendMzR` backend which keeps only
+limited information in memory and retrieves the peaks data (i.e., the *m/z* and
+intensity values) from the original MS data files upon demand. The stash for
+`MsBackendMzR` objects contains therefore also only the spectra metadata and a
+reference to the original MS data files - but no peaks data.
+
+If the original MS data files were moved to a different location or if the
+SpectraStash folder was moved to another computer, the updated path to the raw
+MS data files would need to be provided with the `spectraPath` parameter of the
+`readMsObject()` function. As an alternative, it is also possible to create a
+*self-contained* stash setting `consolidate = TRUE` in `saveMsObject()`. We
+below save our `Spectra` object again, this time into a self-contained
+stash.
+
+```{r}
+d2 <- file.path(tempdir(), "spectra_stash2")
+saveMsObject(sps, AlabasterParam(d2), consolidate = TRUE)
+```
+
+The `consolidate = TRUE` parameter is passed to the `saveMsObject()` call of the
+`MsBackend`, which, for `MsBackendMzR` copies the original MS data files
+**into** the stash folder:
+
+```{r}
+dir_tree(d2)
+```
+
+Note the two additional files in the *backend* folder - these are the original
+MS data files in mzML format. Such a self-contained stash folder allows to
+restore the full data even if the stash is moved to another file system. Of
+course, depending on the size of the data set and the respective raw MS data
+files, the stash folder can become very large.
+
+## Stashes for `Spectra` with in-memory backends
+
+In addition to the *on-disk* backends `MsBackendMzR` and `MsBackendHdf5Peaks`,
+*Spectra* defines also *in-memory* backends `MsBackendMemory` and
+`MsBackendDataFrame`, which keep the full MS data in memory. Below we change the
+backend of our `sps` object to `MsBackendMemory`:
+
+```{r}
+sps <- setBackend(sps, MsBackendMemory())
+sps
+```
+
+We next stash this updated `Spectra` object removing first the stash directory
+of the previous SpectraStash (because overwriting stash directories is not
+allowed).
+
+```{r, warning = FALSE}
+#' Remove the existing SepctraStash
+unlink(d2, recursive = TRUE)
+
+#' Store the `Spectra` object in alabaster format
+saveMsObject(sps, AlabasterParam(d2))
+```
+
+Inspecting the content of the stash folder we can see a different structure:
+
+```{r}
+dir_tree(d2)
+```
+
+The MS peaks data is now stored within a file *peaks.h5*, a file in a HDF5
+format used by the `MsBackendHdf5Peaks` backend: saving in-memory backends
+changes the data first to a `MsBackendHdf5Peaks` backend which is then stored
+into an additional *backend* sub-folder of the stash. We can restore the
+`Spectra` object with:
+
+```{r}
+readMsObject(Spectra(), AlabasterParam(d2))
+```
+
+In addition, we can restore the `MsBackendMemory` with:
+
+```{r}
+readMsObject(MsBackendMemory(), AlabasterParam(file.path(d2, "backend")))
+```
+
+and also the `MsBackendHdf5Peaks` which is used as the actual data storage
+format for the in-memory `MsBackendMemory` (note the double *backend*
+sub-folder):
+
+```{r}
+readMsObject(MsBackendHdf5Peaks(),
+             AlabasterParam(file.path(d2, "backend", "backend")))
+```
+
+# Session information
+
+```{r}
+sessionInfo()
+```

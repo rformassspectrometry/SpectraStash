@@ -145,11 +145,12 @@ setMethod("saveMsObject", signature(object = "MsBackendMzR",
               dir.create(param@path, showWarnings = FALSE, recursive = TRUE)
               fl <- file.path(param@path, .MS_BACKEND_MZR_DATA_FILE)
               .check_overwriting(fl)
-              if (consolidate)
-                  object <- .consolidate_data_storage(object, param@path)
               writeLines(paste0("# ", class(object)[1L]), con = fl)
-              if (nrow(object@spectraData))
+              if (nrow(object@spectraData)) {
+                  if (consolidate)
+                      object <- .consolidate_data_storage(object, param@path)
                   .write_spectra_data(object@spectraData, fl, append = TRUE)
+              }
           })
 
 #' @importMethodsFrom MsStash readMsObject
@@ -200,7 +201,7 @@ setMethod("saveObject", "MsBackendMzR", function(x, path, consolidate = FALSE,
     dir.create(path, showWarnings = FALSE, recursive = TRUE)
     .check_overwriting(file.path(path, "OBJECT"))
     saveObjectFile(path, "ms_backend_mz_r")
-    if (consolidate)
+    if (consolidate && nrow(x@spectraData))
         x <- .consolidate_data_storage(x, path)
     altSaveObject(x@spectraData, path = file.path(path, "spectra_data"))
 })

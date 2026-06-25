@@ -10,8 +10,12 @@
     registerValidateObjectFunction("ms_backend_cached", validateMsBackendCached)
     registerReadObjectFunction("ms_backend_cached", readMsBackendCached)
     ## MsBackendMemory
-    ## registerValidateObjectFunction("ms_backend_memory", validateMsBackendMemory)
-    ## registerReadObjectFunction("ms_backend_memory", readMsBackendMemory)
+    registerValidateObjectFunction("ms_backend_memory", validateMsBackendMemory)
+    registerReadObjectFunction("ms_backend_memory", readMsBackendInMemory)
+    ## MsBackendDataFrame
+    registerValidateObjectFunction("ms_backend_data_frame",
+                                   validateMsBackendMemory)
+    registerReadObjectFunction("ms_backend_data_frame", readMsBackendInMemory)
     ## Spectra
     registerValidateObjectFunction("spectra", validateAlabasterSpectra)
     registerReadObjectFunction("spectra", readAlabasterSpectra)

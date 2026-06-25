@@ -63,6 +63,8 @@
 #'
 #' @param ... Currently ignored.
 #'
+#' @return `readMsObject()` returns a [Spectra::MsBackendCached] object.
+#'
 #' @author Johannes Rainer
 #'
 #' @examples
