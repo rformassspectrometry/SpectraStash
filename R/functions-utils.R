@@ -78,6 +78,12 @@
 #' replace the absolute path with a relative path in column `"dataStorage"` of
 #' the `@spectraData`.
 #'
+#' Used in:
+#' - *R/MsBackendHdf5Peaks.R*: `saveMsObject()` for `PlainTextParam`
+#'   `saveObject()`
+#' - *R/MsBackendMzR.R*: `saveMsObject()` for `PlainTextParam` and
+#'   `saveObject()`
+#'
 #' @param x `MsBackend` with a `@spectraData` slot and `"dataStorage"` column
 #'
 #' @param path `character(1)` with the path of the stash
