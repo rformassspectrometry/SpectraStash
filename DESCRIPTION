@@ -45,7 +45,9 @@ Suggests:
     testthat,
     mzR,
     fs,
-    knitr
+    knitr,
+    pkgload,
+    callr
 Remotes:
     RforMassSpectrometry/MsStash
 License: GPL-3
