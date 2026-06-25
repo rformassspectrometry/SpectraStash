@@ -3,6 +3,7 @@
 ## Changes in version 0.97.6
 
 - Add functionality for a `MsBackendMemory` stash.
+- Add a package vignette.
 
 ## Changes in version 0.97.5
 

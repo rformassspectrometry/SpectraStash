@@ -2,35 +2,42 @@
 % Please edit documentation in R/MsBackendMemory.R
 \name{MsBackendMemoryStash}
 \alias{MsBackendMemoryStash}
-\alias{saveMsObject,MsBackendMemory,PlainTextParam-method}
-\alias{readMsObject,MsBackendMemory,PlainTextParam-method}
-\alias{saveObject,MsBackendMemory-method}
-\alias{saveMsObject,MsBackendMemory,AlabasterParam-method}
-\title{Stash for \code{MsBackendMemory}}
+\alias{saveMsObject,MsBackendInMemory,PlainTextParam-method}
+\alias{readMsObject,MsBackendInMemory,PlainTextParam-method}
+\alias{saveObject,MsBackendInMemory-method}
+\alias{saveMsObject,MsBackendInMemory,AlabasterParam-method}
+\title{Stash for \code{MsBackendMemory} and \code{MsBackendDataFrame}}
 \usage{
-\S4method{saveMsObject}{MsBackendMemory,PlainTextParam}(object, param, ...)
+\S4method{saveMsObject}{MsBackendInMemory,PlainTextParam}(object, param, ...)
 
-\S4method{readMsObject}{MsBackendMemory,PlainTextParam}(object, param, ...)
+\S4method{readMsObject}{MsBackendInMemory,PlainTextParam}(object, param, ...)
 
-\S4method{saveObject}{MsBackendMemory}(x, path, ...)
+\S4method{saveObject}{MsBackendInMemory}(x, path, ...)
 
-\S4method{saveMsObject}{MsBackendMemory,AlabasterParam}(object, param, ...)
+\S4method{saveMsObject}{MsBackendInMemory,AlabasterParam}(object, param, ...)
 }
 \arguments{
-\item{object}{An \code{MsBackendMemory} object.}
+\item{object}{An \code{MsBackendMemory} or \code{MsBackendDataFrame} object.}
 
 \item{param}{Either a \code{PlainTextParam} or \code{AlabasterParam}.}
 
 \item{...}{Currently ignored.}
 
-\item{x}{An \code{MsBackendMemory} object.}
+\item{x}{An \code{MsBackendMemory} or \code{MsBackendDataFrame} object.}
 
 \item{path}{For \code{saveObject()}: \code{character(1)} with the path where the
 object should be stored into.}
 }
+\value{
+\code{readMsObject()} returns a restored backend.
+}
 \description{
-The stash for \link[Spectra:MsBackendMemory]{Spectra::MsBackendMemory} contains both the spectra variables
+The stash for the in-memory MS backends \link[Spectra:MsBackendMemory]{Spectra::MsBackendMemory} and
+\link[Spectra:MsBackendDataFrame]{Spectra::MsBackendDataFrame} contains both the spectra variables
 (spectra metadata) as well as the peaks data (\emph{m/z} and intensity values).
+Backend objects can be stashed and restored with the \code{saveMsObject()} and
+\code{readMsObject()}, respectively. In addition, the \code{saveObject()} and
+\code{readObject()} functions from \emph{alabaster.base} are supported.
 }
 \details{
 To support storing spectra \strong{and} peaks variables, the \code{MsBackendMemory} is
@@ -64,6 +71,53 @@ possible to load the data either as \code{MsBackendMemory} or
 
 library(Spectra)
 
+## Create an example `MsBackendMemory` object.
+d <- data.frame(msLevel = c(1L, 2L, 1L, 1L),
+    rtime = c(12.1, 12.2, 13.1, 13.4))
+d$mz <- list(
+    c(14.4, 155.2, 186.4),
+    c(144.3, 231.3, 345.3, 453.1),
+    c(111.2, 142.4, 143.1),
+    c(143.3, 144.3, 153.3, 532.3, 641.5)
+)
+d$intensity <- list(
+    c(323.2, 53.2, 35.5),
+    c(43.3, 54.1, 33.1, 53.1),
+    c(435.3, 35312.3, 5432.5),
+    c(433.5, 55434.2, 43.4, 54362.1, 24435.3)
+)
+be <- backendInitialize(MsBackendMemory(), data = d)
+be
+
+## Stash the object in alabaster-format to a temporary folder
+p <- AlabasterParam(file.path(tempdir(), "mem_stash"))
+saveMsObject(be, p)
+
+## Show directory content of the stash
+dir(file.path(tempdir(), "mem_stash"))
+
+## Restore the object from the stash
+res <- readMsObject(MsBackendMemory(), p)
+res
+
+## The in-memory backends store their full MS data through an
+## [Spectra::MsBackendHdf5Peaks] backend: their peaks data is stored as a
+## (single) HDF5 file within the stash. A `MsBackendMemory` stash contains
+## therefore a complete stash of a `MsBackendHdf5Peaks`, which allows to
+## read the data also as a `MsBackendHdf5Peaks` backend:
+res <- readMsObject(MsBackendHdf5Peaks(),
+    AlabasterParam(file.path(tempdir(), "mem_stash", "backend")))
+res
+
+## In addition to the `saveMsObject()` and `readMsObject()` functions, also
+## the `saveObject()` and `readObject()` functions from *alabater.base* are
+## supported (for stashes in alabaster format).
+library(alabaster.base)
+res <- readObject(file.path(tempdir(), "mem_stash"))
+res
+
+## Storing and restoring a `MsBackendDataFrame` backend or using a stash in
+## plain text file-based format works analogously.
 }
 \author{
 Johannes Rainer

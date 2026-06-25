@@ -127,7 +127,7 @@ NULL
 
 #' @rdname SpectraStash
 #'
-#' @importFrom methods existsMethod
+#' @importFrom methods hasMethod
 #'
 #' @exportMethod saveMsObject
 setMethod("saveMsObject", signature(object = "Spectra",
@@ -136,8 +136,8 @@ setMethod("saveMsObject", signature(object = "Spectra",
               dir.create(path = param@path,
                          recursive = TRUE,
                          showWarnings = FALSE)
-              if (!existsMethod("saveMsObject", c(class(object@backend)[1L],
-                                                  "PlainTextParam")))
+              if (!hasMethod("saveMsObject", c(class(object@backend)[1L],
+                                               "PlainTextParam")))
                   stop("Can not store a 'Spectra' object with backend '",
                        class(object@backend)[1L], "'", call. = FALSE)
               saveMsObject(object@backend, param = param, ...)
@@ -158,8 +158,8 @@ setMethod("readMsObject", signature(object = "Spectra",
               var_names <- sub(" =.*", "", fls)
               var_values <- sub(".* = ", "", fls)
               variables <- setNames(var_values, var_names)
-              if (!existsMethod("readMsObject", c(variables[["backend"]],
-                                                 "PlainTextParam")))
+              if (!hasMethod("readMsObject", c(variables[["backend"]],
+                                               "PlainTextParam")))
                   stop("Can not read a 'Spectra' object with backend '",
                        variables["backend"], "'", call. = FALSE)
               tryCatch({
@@ -194,7 +194,7 @@ setMethod("readMsObject", signature(object = "Spectra",
 #'
 #' @exportMethod saveObject
 setMethod("saveObject", "Spectra", function(x, path, ...) {
-    if (!existsMethod("saveObject", class(x@backend)[1L]))
+    if (!hasMethod("saveObject", class(x@backend)[1L]))
         stop("No method to save a backend of type \"", class(x@backend)[1L],
              "\" available yet. Consider changing to one of the supported ",
              "MS backends using the 'setBackend()' method.")

@@ -44,11 +44,13 @@ Suggests:
     MsDataHub,
     testthat,
     mzR,
-    fs
+    fs,
+    knitr
 Remotes:
     RforMassSpectrometry/MsStash
 License: GPL-3
 Encoding: UTF-8
+VignetteBuilder: knitr
 BugReports: https://github.com/RforMassSpectrometry/SpectraStash/issues
 URL: https://github.com/RforMassSpectrometry/SpectraStash
 biocViews: Infrastructure, MassSpectrometry, Metabolomics, DataImport, Proteomics

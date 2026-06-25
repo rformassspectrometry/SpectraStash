@@ -7,7 +7,7 @@
 \alias{saveObject,MsBackendCached-method}
 \alias{saveMsObject,MsBackendCached,AlabasterParam-method}
 \alias{readMsObject,MsBackendCached,AlabasterParam-method}
-\alias{readMsObject,MsBackendMemory,AlabasterParam-method}
+\alias{readMsObject,MsBackendInMemory,AlabasterParam-method}
 \title{Stash for \code{MsBackendCached}}
 \usage{
 \S4method{saveMsObject}{MsBackendCached,PlainTextParam}(object, param, ...)
@@ -20,7 +20,7 @@
 
 \S4method{readMsObject}{MsBackendCached,AlabasterParam}(object, param, ...)
 
-\S4method{readMsObject}{MsBackendMemory,AlabasterParam}(object, param, ...)
+\S4method{readMsObject}{MsBackendInMemory,AlabasterParam}(object, param, ...)
 }
 \arguments{
 \item{object}{An \code{MsBackendCached} object.}
@@ -33,6 +33,9 @@
 
 \item{path}{For \code{saveObject()}: \code{character(1)} with the path where the
 object should be stored into.}
+}
+\value{
+\code{readMsObject()} returns a \link[Spectra:MsBackendCached]{Spectra::MsBackendCached} object.
 }
 \description{
 The \link[Spectra:MsBackendCached]{Spectra::MsBackendCached} backend keeps a cache of spectra metadata

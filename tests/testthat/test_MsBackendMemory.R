@@ -119,3 +119,41 @@ test_that("Text file based format works with MsBackendMemory", {
 
     unlink(d, recursive = TRUE)
 })
+
+test_that("All works with MsBackendDataFrame too", {
+    d <- data.frame(msLevel = c(1L, 2L, 1L, 1L),
+                    rtime = c(12.1, 12.2, 13.1, 13.4))
+    d$mz <- list(
+        c(14.4, 155.2, 186.4),
+        c(144.3, 231.3, 345.3, 453.1),
+        c(111.2, 142.4, 143.1),
+        c(143.3, 144.3, 153.3, 532.3, 641.5)
+    )
+    d$intensity <- list(
+        c(323.2, 53.2, 35.5),
+        c(43.3, 54.1, 33.1, 53.1),
+        c(435.3, 35312.3, 5432.5),
+        c(433.5, 55434.2, 43.4, 54362.1, 24435.3)
+    )
+    a <- backendInitialize(MsBackendDataFrame(), data = d)
+
+    d <- file.path(tempdir(), "test_df")
+
+    expect_no_error(saveMsObject(a, PlainTextParam(d)))
+    res <- readMsObject(MsBackendDataFrame(), PlainTextParam(d))
+    expect_s4_class(res, "MsBackendDataFrame")
+    expect_equal(res$mz, a$mz)
+    expect_equal(res$rtime, a$rtime)
+    unlink(d, recursive = TRUE)
+
+    expect_no_error(saveMsObject(a, AlabasterParam(d)))
+    res <- readMsObject(MsBackendDataFrame(), AlabasterParam(d))
+    expect_s4_class(res, "MsBackendDataFrame")
+    expect_equal(res$mz, a$mz)
+    expect_equal(res$rtime, a$rtime)
+    res <- readObject(d)
+    expect_s4_class(res, "MsBackendDataFrame")
+    expect_equal(res$mz, a$mz)
+    expect_equal(res$rtime, a$rtime)
+    unlink(d, recursive = TRUE)
+})
