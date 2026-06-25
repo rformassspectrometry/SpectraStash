@@ -31,6 +31,9 @@ saveMsObject(object, param, ...)
 
 # S4 method for class 'MsBackendCached,AlabasterParam'
 readMsObject(object, param, ...)
+
+# S4 method for class 'MsBackendInMemory,AlabasterParam'
+readMsObject(object, param, ...)
 ```
 
 ## Arguments
@@ -55,6 +58,12 @@ readMsObject(object, param, ...)
 
   For `saveObject()`: `character(1)` with the path where the object
   should be stored into.
+
+## Value
+
+`readMsObject()` returns a
+[Spectra::MsBackendCached](https://rdrr.io/pkg/Spectra/man/MsBackendCached.html)
+object.
 
 ## Details
 

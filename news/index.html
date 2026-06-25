@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">SpectraStash</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.97.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.97.6</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,7 +15,8 @@
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+      <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../articles/SpectraStash.html">Get started</a></li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="active nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
@@ -36,27 +37,32 @@
 <h2 class="pkg-version" data-toc-text="0.97" id="spectrastash-097">
 <em>SpectraStash</em> 0.97<a class="anchor" aria-label="anchor" href="#spectrastash-097"></a></h2>
 <div class="section level3">
-<h3 id="changes-in-version-0-97">Changes in version 0.97.5<a class="anchor" aria-label="anchor" href="#changes-in-version-0-97"></a></h3>
+<h3 id="changes-in-version-0-97">Changes in version 0.97.6<a class="anchor" aria-label="anchor" href="#changes-in-version-0-97"></a></h3>
+<ul><li>Add functionality for a <code>MsBackendMemory</code> stash.</li>
+<li>Add a package vignette.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-97-1">Changes in version 0.97.5<a class="anchor" aria-label="anchor" href="#changes-in-version-0-97-1"></a></h3>
 <ul><li>Refactor code to create self-contained stashes for <code>MsBackendMzR</code> and <code>MsBackendHdf5Peaks</code>: with <code>consolidate = TRUE</code> the data storage files are copied into the stash folder and the <code>dataStorage</code> path is adapted to a relative path enabling to directly load the stash also on another computer or location in the file system.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="changes-in-version-0-97-1">Changes in version 0.97.4<a class="anchor" aria-label="anchor" href="#changes-in-version-0-97-1"></a></h3>
+<h3 id="changes-in-version-0-97-2">Changes in version 0.97.4<a class="anchor" aria-label="anchor" href="#changes-in-version-0-97-2"></a></h3>
 <ul><li>Add functionality for a <code>MsBackendCached</code> stash.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="changes-in-version-0-97-2">Changes in version 0.97.3<a class="anchor" aria-label="anchor" href="#changes-in-version-0-97-2"></a></h3>
+<h3 id="changes-in-version-0-97-3">Changes in version 0.97.3<a class="anchor" aria-label="anchor" href="#changes-in-version-0-97-3"></a></h3>
 <ul><li>Add <code><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">readMsObject()</a></code> and <code><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">saveMsObject()</a></code> for <code>Spectra</code> objects.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="changes-in-version-0-97-3">Changes in version 0.97.2<a class="anchor" aria-label="anchor" href="#changes-in-version-0-97-3"></a></h3>
+<h3 id="changes-in-version-0-97-4">Changes in version 0.97.2<a class="anchor" aria-label="anchor" href="#changes-in-version-0-97-4"></a></h3>
 <ul><li>Add parameter <code>consolidate</code> also to the save methods for <code>MsBackendMzR</code>.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="changes-in-version-0-97-4">Changes in version 0.97.1<a class="anchor" aria-label="anchor" href="#changes-in-version-0-97-4"></a></h3>
+<h3 id="changes-in-version-0-97-5">Changes in version 0.97.1<a class="anchor" aria-label="anchor" href="#changes-in-version-0-97-5"></a></h3>
 <ul><li>Implement <code>PlainTextParam</code>- and <code>AlabasterParam</code>-based stashes for <code>MsBackendHdf5Peaks</code>.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="changes-in-version-0-97-5">Changes in version 0.97.0<a class="anchor" aria-label="anchor" href="#changes-in-version-0-97-5"></a></h3>
+<h3 id="changes-in-version-0-97-6">Changes in version 0.97.0<a class="anchor" aria-label="anchor" href="#changes-in-version-0-97-6"></a></h3>
 <ul><li>Implement <code><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">saveMsObject()</a></code> and <code><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">readMsObject()</a></code> for <code>MsBackendMzR</code>.</li>
 </ul></div>
 </div>

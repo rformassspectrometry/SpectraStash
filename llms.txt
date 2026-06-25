@@ -103,6 +103,7 @@ funding
   [`saveObject(`*`<MsBackendCached>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendCachedStash.md)
   [`saveMsObject(`*`<MsBackendCached>`*`,`*`<AlabasterParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendCachedStash.md)
   [`readMsObject(`*`<MsBackendCached>`*`,`*`<AlabasterParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendCachedStash.md)
+  [`readMsObject(`*`<MsBackendInMemory>`*`,`*`<AlabasterParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendCachedStash.md)
   :
 
   Stash for `MsBackendCached`
@@ -113,6 +114,14 @@ funding
   [`saveMsObject(`*`<MsBackendHdf5Peaks>`*`,`*`<AlabasterParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendHdf5PeaksStash.md)
   [`readMsObject(`*`<MsBackendHdf5Peaks>`*`,`*`<AlabasterParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendHdf5PeaksStash.md)
   : MsBackendHdf5Peaks Stash
+
+- [`saveMsObject(`*`<MsBackendInMemory>`*`,`*`<PlainTextParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendMemoryStash.md)
+  [`readMsObject(`*`<MsBackendInMemory>`*`,`*`<PlainTextParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendMemoryStash.md)
+  [`saveObject(`*`<MsBackendInMemory>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendMemoryStash.md)
+  [`saveMsObject(`*`<MsBackendInMemory>`*`,`*`<AlabasterParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendMemoryStash.md)
+  :
+
+  Stash for `MsBackendMemory` and `MsBackendDataFrame`
 
 - [`saveMsObject(`*`<MsBackendMzR>`*`,`*`<PlainTextParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendMzRStash.md)
   [`readMsObject(`*`<MsBackendMzR>`*`,`*`<PlainTextParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendMzRStash.md)
@@ -128,3 +137,9 @@ funding
   [`readMsObject(`*`<Spectra>`*`,`*`<AlabasterParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/SpectraStash.md)
   : Spectra Stash
 
+# Articles
+
+### All vignettes
+
+- [Savely Store MS Data Objects in a Portable
+  Stash](https://rformassspectrometry.github.io/SpectraStash/articles/SpectraStash.md):

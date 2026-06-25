@@ -12,10 +12,11 @@ and
 parameter objects, respectively. Setting parameter `consolidate = TRUE`
 in the
 [`saveMsObject()`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html) or
-`saveObject()` function will copy also the original MS data files into
-the folder generating a self-consistent stash. This stash folder can
-also be copied to another computer or location in the file system
-without the need to use parameter `spectraPath` when restoring the data.
+[`saveObject()`](https://rdrr.io/pkg/alabaster.base/man/saveObject.html)
+function will copy also the original MS data files into the folder
+generating a self-consistent stash. This stash folder can also be copied
+to another computer or location in the file system without the need to
+use parameter `spectraPath` when restoring the data.
 
 Additional properties of the stash formats are described in detail in
 the sections below.
@@ -69,8 +70,9 @@ readMsObject(object, param, spectraPath = character())
 
 - path:
 
-  For `saveObject()`: `character(1)` with the path where the object
-  should be stored in.
+  For
+  [`saveObject()`](https://rdrr.io/pkg/alabaster.base/man/saveObject.html):
+  `character(1)` with the path where the object should be stored in.
 
 - ...:
 
@@ -129,7 +131,10 @@ Optional parameter `spectraPath` allows to specify the storage path of
 the MS data files referenced by the `MsBackendMzR` (in case they are no
 longer in the same directory when saving the object).
 
-In addition, the *alabaster* methods `saveObject()` and `readObject()`
+In addition, the *alabaster* methods
+[`saveObject()`](https://rdrr.io/pkg/alabaster.base/man/saveObject.html)
+and
+[`readObject()`](https://rdrr.io/pkg/alabaster.base/man/readObject.html)
 can be used to save and read `MsBackendMzR` objects.
 
 ## Author
@@ -166,7 +171,7 @@ be
 #>  ... 34 more variables/columns.
 #> 
 #> file(s):
-#> 5eb3672b43a_7861
+#> 5e12888a090_7861
 
 ## Define a folder where to stash the object
 pth <- file.path(tempdir(), "mzr_stash")
@@ -194,7 +199,7 @@ res
 #>  ... 27 more variables/columns.
 #> 
 #> file(s):
-#> 5eb3672b43a_7861
+#> 5e12888a090_7861
 
 ## Clean-up
 unlink(pth, recursive = TRUE)
@@ -205,7 +210,7 @@ saveMsObject(be, AlabasterParam(pth), consolidate = TRUE)
 
 ## Get the directory content of the stash folder:
 dir(pth)
-#> [1] "5eb3672b43a_7861"  "OBJECT"            "_environment.json"
+#> [1] "5e12888a090_7861"  "OBJECT"            "_environment.json"
 #> [4] "spectra_data"     
 
 ## Restore the object
@@ -228,7 +233,7 @@ res
 #>  ... 27 more variables/columns.
 #> 
 #> file(s):
-#> 5eb3672b43a_7861
+#> 5e12888a090_7861
 
 ## If the data is exported with `consolidate = FALSE` (the default), the
 ## new location of MS data files could be provided with parameter

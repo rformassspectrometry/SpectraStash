@@ -45,7 +45,7 @@ Details on the stash formats are provided in the respective sections below."></h
 
     <a class="navbar-brand me-2" href="../index.html">SpectraStash</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.97.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.97.6</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,7 +53,8 @@ Details on the stash formats are provided in the respective sections below."></h
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+      <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../articles/SpectraStash.html">Get started</a></li>
+<li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
@@ -100,7 +101,7 @@ packages.</p>
 <span><span class="fu"><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">readMsObject</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">param</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S4 method for class 'Spectra'</span></span>
-<span><span class="fu">saveObject</span><span class="op">(</span><span class="va">x</span>, <span class="va">path</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/alabaster.base/man/saveObject.html" class="external-link">saveObject</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">path</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S4 method for class 'Spectra,AlabasterParam'</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">saveMsObject</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">param</span>, <span class="va">...</span><span class="op">)</span></span>
@@ -204,8 +205,8 @@ documentation.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ... 34 more variables/columns.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> file(s):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5eb5575ea7_7859</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5eb398cb5dd_7860</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5e1225b6b7_7859</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5e149b7c978_7860</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Filter the intensities of the Spectra removing peaks with an intensity</span></span></span>
 <span class="r-in"><span><span class="co">## below 100</span></span></span>
@@ -247,11 +248,11 @@ documentation.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ... 25 more variables/columns.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> file(s):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5eb5575ea7_7859</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5eb398cb5dd_7860</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5e1225b6b7_7859</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5e149b7c978_7860</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Lazy evaluation queue: 1 processing step(s)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Processing:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Remove peaks with intensities outside [100, Inf] in spectra of MS level(s) 1. [Tue Jun 23 09:34:23 2026] </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Remove peaks with intensities outside [100, Inf] in spectra of MS level(s) 1. [Thu Jun 25 13:55:03 2026] </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## It is also possible to read individual contents from the stash. The</span></span></span>
 <span class="r-in"><span><span class="co">## directory *backend* contains for example the stashed `MsBackend` of the</span></span></span>
@@ -276,8 +277,8 @@ documentation.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ... 25 more variables/columns.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> file(s):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5eb5575ea7_7859</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5eb398cb5dd_7860</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5e1225b6b7_7859</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5e149b7c978_7860</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Alternatively, that data can also be read directly with the `readObject()`</span></span></span>
 <span class="r-in"><span><span class="co">## method from the *alabaster.base* package:</span></span></span>
@@ -301,8 +302,8 @@ documentation.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ... 25 more variables/columns.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> file(s):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5eb5575ea7_7859</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5eb398cb5dd_7860</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5e1225b6b7_7859</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5e149b7c978_7860</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
