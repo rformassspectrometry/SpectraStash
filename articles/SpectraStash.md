@@ -77,8 +77,8 @@ sps
     ##  ... 34 more variables/columns.
     ## 
     ## file(s):
-    ## 5e1225b6b7_7859
-    ## 5e149b7c978_7860
+    ## 58f29260479_7859
+    ## 58f5a2bf9ae_7860
 
 We next filter the data restricting to spectra and mass peaks with a
 retention time between 20 and 200 seconds and an *m/z* between 110 and
@@ -108,12 +108,12 @@ sps
     ##  ... 34 more variables/columns.
     ## 
     ## file(s):
-    ## 5e1225b6b7_7859
-    ## 5e149b7c978_7860
+    ## 58f29260479_7859
+    ## 58f5a2bf9ae_7860
     ## Lazy evaluation queue: 1 processing step(s)
     ## Processing:
-    ##  Filter: select retention time [20..200] on MS level(s)  [Thu Jun 25 13:55:13 2026]
-    ##  Filter: select peaks with an m/z within [110, 120] [Thu Jun 25 13:55:13 2026]
+    ##  Filter: select retention time [20..200] on MS level(s)  [Fri Jun 26 10:55:37 2026]
+    ##  Filter: select peaks with an m/z within [110, 120] [Fri Jun 26 10:55:37 2026]
 
 We next store this `Spectra` object to a *SpectraStash* using the
 [`saveMsObject()`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html)
@@ -141,7 +141,7 @@ library(fs)
 dir_tree(d)
 ```
 
-    ## /tmp/RtmpYSFV3h/file7f52a658644/spectra_stash
+    ## /tmp/Rtmpw4xmK3/file7a31277bfa8/spectra_stash
     ## ├── OBJECT
     ## ├── _environment.json
     ## ├── backend
@@ -194,12 +194,12 @@ res
     ##  ... 25 more variables/columns.
     ## 
     ## file(s):
-    ## 5e1225b6b7_7859
-    ## 5e149b7c978_7860
+    ## 58f29260479_7859
+    ## 58f5a2bf9ae_7860
     ## Lazy evaluation queue: 1 processing step(s)
     ## Processing:
-    ##  Filter: select retention time [20..200] on MS level(s)  [Thu Jun 25 13:55:13 2026]
-    ##  Filter: select peaks with an m/z within [110, 120] [Thu Jun 25 13:55:13 2026]
+    ##  Filter: select retention time [20..200] on MS level(s)  [Fri Jun 26 10:55:37 2026]
+    ##  Filter: select peaks with an m/z within [110, 120] [Fri Jun 26 10:55:37 2026]
 
 We need to specify the type of the object to restore with the first
 parameter of the function - in our case
@@ -238,8 +238,8 @@ be
     ##  ... 25 more variables/columns.
     ## 
     ## file(s):
-    ## 5e1225b6b7_7859
-    ## 5e149b7c978_7860
+    ## 58f29260479_7859
+    ## 58f5a2bf9ae_7860
 
 Or using
 [`readMsObject()`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html):
@@ -267,8 +267,8 @@ be
     ##  ... 25 more variables/columns.
     ## 
     ## file(s):
-    ## 5e1225b6b7_7859
-    ## 5e149b7c978_7860
+    ## 58f29260479_7859
+    ## 58f5a2bf9ae_7860
 
 ### Creating self-contained stashes
 
@@ -306,12 +306,12 @@ MS data files **into** the stash folder:
 dir_tree(d2)
 ```
 
-    ## /tmp/RtmpYSFV3h/spectra_stash2
+    ## /tmp/Rtmpw4xmK3/spectra_stash2
     ## ├── OBJECT
     ## ├── _environment.json
     ## ├── backend
-    ## │   ├── 5e1225b6b7_7859
-    ## │   ├── 5e149b7c978_7860
+    ## │   ├── 58f29260479_7859
+    ## │   ├── 58f5a2bf9ae_7860
     ## │   ├── OBJECT
     ## │   └── spectra_data
     ## │       ├── OBJECT
@@ -368,9 +368,9 @@ sps
     ##  ... 34 more variables/columns.
     ## Lazy evaluation queue: 1 processing step(s)
     ## Processing:
-    ##  Filter: select retention time [20..200] on MS level(s)  [Thu Jun 25 13:55:13 2026]
-    ##  Filter: select peaks with an m/z within [110, 120] [Thu Jun 25 13:55:13 2026]
-    ##  Switch backend from MsBackendMzR to MsBackendMemory [Thu Jun 25 13:55:14 2026]
+    ##  Filter: select retention time [20..200] on MS level(s)  [Fri Jun 26 10:55:37 2026]
+    ##  Filter: select peaks with an m/z within [110, 120] [Fri Jun 26 10:55:37 2026]
+    ##  Switch backend from MsBackendMzR to MsBackendMemory [Fri Jun 26 10:55:39 2026]
 
 We next stash this updated `Spectra` object removing first the stash
 directory of the previous SpectraStash (because overwriting stash
@@ -393,7 +393,7 @@ structure:
 dir_tree(d2)
 ```
 
-    ## /tmp/RtmpYSFV3h/spectra_stash2
+    ## /tmp/Rtmpw4xmK3/spectra_stash2
     ## ├── OBJECT
     ## ├── _environment.json
     ## ├── backend
@@ -449,9 +449,9 @@ readMsObject(Spectra(), AlabasterParam(d2))
     ##  ... 25 more variables/columns.
     ## Lazy evaluation queue: 1 processing step(s)
     ## Processing:
-    ##  Filter: select retention time [20..200] on MS level(s)  [Thu Jun 25 13:55:13 2026]
-    ##  Filter: select peaks with an m/z within [110, 120] [Thu Jun 25 13:55:13 2026]
-    ##  Switch backend from MsBackendMzR to MsBackendMemory [Thu Jun 25 13:55:14 2026]
+    ##  Filter: select retention time [20..200] on MS level(s)  [Fri Jun 26 10:55:37 2026]
+    ##  Filter: select peaks with an m/z within [110, 120] [Fri Jun 26 10:55:37 2026]
+    ##  Switch backend from MsBackendMzR to MsBackendMemory [Fri Jun 26 10:55:39 2026]
 
 In addition, we can restore the `MsBackendMemory` with:
 

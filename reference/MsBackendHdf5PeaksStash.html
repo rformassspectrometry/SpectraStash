@@ -204,7 +204,7 @@ stash directory.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ... 34 more variables/columns.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> file(s):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  5e1225b6b7_7859.h5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  58f29260479_7859.h5</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"example_hdf5"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">ptp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/MsStash/man/PlainTextParam.html" class="external-link">PlainTextParam</a></span><span class="op">(</span>path <span class="op">=</span> <span class="va">d</span><span class="op">)</span></span></span>
@@ -215,7 +215,7 @@ stash directory.</p>
 <span class="r-in"><span><span class="co">## List the content of the folder: ms_backend_spectra_data.txt file</span></span></span>
 <span class="r-in"><span><span class="co">## with the spectra metadata and an HDF5 file with the peaks data:</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">dir</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "5e1225b6b7_7859.h5"          "ms_backend_spectra_data.txt"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "58f29260479_7859.h5"         "ms_backend_spectra_data.txt"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Restore the stashed object</span></span></span>
 <span class="r-in"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">readMsObject</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/Spectra/man/MsBackend.html" class="external-link">MsBackendHdf5Peaks</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">ptp</span><span class="op">)</span></span></span>
@@ -252,7 +252,7 @@ stash directory.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ... 25 more variables/columns.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> file(s):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  5e1225b6b7_7859.h5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  58f29260479_7859.h5</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
