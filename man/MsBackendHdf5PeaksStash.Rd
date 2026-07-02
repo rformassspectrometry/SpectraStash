@@ -71,6 +71,15 @@ peaks data files to the stash directory generating a self-contained data
 stash. Note however that in this case two copies of all data files exist (in
 the original location \strong{and} the stash directory).
 }
+\section{\emph{alabaster}-based format, \code{AlabasterParam}}{
+
+
+With \code{AlabasterParam}, the spectra metadata will be exported (or imported)
+through the \emph{alabaster} framework. Similar to the \code{PlainTextParam},
+\code{consolidate = TRUE} will also copy the HDF5-format peaks data files to the
+stash directory.
+}
+
 \section{Text-file format, \code{PlainTextParam}}{
 
 
@@ -80,15 +89,6 @@ delimited text file with the name \emph{ms_backend_spectra_data.txt} in the
 directory specified with parameter \code{path} of the \code{PlainTextParam} object.
 Depending on parameter \code{consolidate} also the peaks data files (in HDF5
 format) will be copied to the stash folder (with \code{consolidate = TRUE}).
-}
-
-\section{\emph{abalbaster}-based format, \code{AlabasterParam}}{
-
-
-With \code{AlabasterParam}, the spectra metadata will be exported (or imported)
-through the \emph{alabaster} framework. Similar to the \code{PlainTextParam},
-\code{consolidate = TRUE} will also copy the HDF5-format peaks data files to the
-stash directory.
 }
 
 \examples{

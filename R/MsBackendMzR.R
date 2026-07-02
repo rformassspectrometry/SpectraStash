@@ -31,6 +31,19 @@
 #' *dataStorage* the restored object will not be valid, unless the new location
 #' is provided with parameter `spectraPath`.
 #'
+#' @section *alabaster*-based format, `AlabasterParam`:
+#'
+#' The `saveMsObject()` with an `AlabasterParam` parameter object stashes the
+#' provided `MsBackendMzR` object in an *alabster*-based format into the
+#' directory defined with argument `param` of the `AlabasterParam`.
+#' `readMsObject()` with `AlabasterParam` restores a previously stashed
+#' `MsBackend` object. Optional parameter `spectraPath` allows to specify the
+#' storage path of the MS data files referenced by the `MsBackendMzR` (in case
+#' they are no longer in the same directory when saving the object).
+#'
+#' In addition, the *alabaster* methods `saveObject()` and `readObject()` can
+#' be used to save and read `MsBackendMzR` objects.
+#'
 #' @section Text-file format, `PlainTextParam`:
 #'
 #' The `saveMsObject()` function with the `PlainTextParam` stores the spectra
@@ -46,19 +59,6 @@
 #' The additional parameter `spectraPath` of `readMsObject()` allows to define
 #' the path to the MS data files containing the full MS data (i.e., the mzML,
 #' mzXML or CDF files referred to by the `MsBackendMzR`).
-#'
-#' @section *alabaster*-based format, `AlabasterParam`:
-#'
-#' The `saveMsObject()` with an `AlabasterParam` parameter object stashes the
-#' provided `MsBackendMzR` object in an *alabster*-based format into the
-#' directory defined with argument `param` of the `AlabasterParam`.
-#' `readMsObject()` with `AlabasterParam` restores a previously stashed
-#' `MsBackend` object. Optional parameter `spectraPath` allows to specify the
-#' storage path of the MS data files referenced by the `MsBackendMzR` (in case
-#' they are no longer in the same directory when saving the object).
-#'
-#' In addition, the *alabaster* methods `saveObject()` and `readObject()` can
-#' be used to save and read `MsBackendMzR` objects.
 #'
 #' @param consolidate `logical(1)` whether in addition to the spectra metadata
 #'     also the original MS data files should be stored in the stash

@@ -34,6 +34,17 @@
 #'
 #' Details on the stash formats are provided in the respective sections below.
 #'
+#' @section *alabaster*-based format, `AlabasterParam`:
+#'
+#' With `AlabasterParam`, the `Spectra` object will be exported (or imported)
+#' through the *alabaster* framework as a set of JSON and/or HDF5 files.
+#' The content of each slot is stored to a separate file with the name
+#' matching the slot name (converted to *snake_case*). The object's `MsBackend`
+#' is stored into a sub-folder *backend* within the stash folder.
+#'
+#' For information on the MS backend's data stash see the respective
+#' documentation.
+#'
 #' @section Text-file format, `PlainTextParam`:
 #'
 #' For this format, the data content of a `Spectra` object is stored into the
@@ -46,17 +57,6 @@
 #'   in JSON format. It can be unserialized using `jsonlite::unserializeJSON()`.
 #'
 #' For information on the MS backend's data see the respective documentation.
-#'
-#' @section *abalbaster*-based format, `AlabasterParam`:
-#'
-#' With `AlabasterParam`, the `Spectra` object will be exported (or imported)
-#' through the *alabaster* framework as a set of JSON and/or HDF5 files.
-#' The content of each slot is stored to a separate file with the name
-#' matching the slot name (converted to *snake_case*). The object's `MsBackend`
-#' is stored into a sub-folder *backend* within the stash folder.
-#'
-#' For information on the MS backend's data stash see the respective
-#' documentation.
 #'
 #' @param object A `Spectra` object.
 #'

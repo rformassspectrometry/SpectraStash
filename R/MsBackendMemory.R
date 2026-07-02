@@ -23,19 +23,19 @@
 #'
 #' Currently only peaks variables `"mz"` and `"intensity"` are supported.
 #'
-#' @section Text-file format, `PlainTextParam`:
-#'
-#' The `MsBackendMemory` stash contains a text-file format
-#' [MsBackendHdf5PeaksStash] within a sub-folder *backend*. When loading,
-#' the data is first imported as a `MsBackendHdf5Peaks` which is then converted
-#' to the resulting `MsBackendMemory` (with all data materialized into memory).
-#'
 #' @section *alabaster*-based format, `AlabasterParam`:
 #'
 #' The full data is stored as an *alabaster*-format [MsBackendHdf5PeaksStash]
 #' in a directory *backend* within the stash folder. Due to this nesting it is
 #' possible to load the data either as `MsBackendMemory` or
 #' `MsBackendHdf5Peaks`.
+#'
+#' @section Text-file format, `PlainTextParam`:
+#'
+#' The `MsBackendMemory` stash contains a text-file format
+#' [MsBackendHdf5PeaksStash] within a sub-folder *backend*. When loading,
+#' the data is first imported as a `MsBackendHdf5Peaks` which is then converted
+#' to the resulting `MsBackendMemory` (with all data materialized into memory).
 #'
 #' @param object An `MsBackendMemory` or `MsBackendDataFrame` object.
 #'
@@ -185,7 +185,7 @@ setMethod("saveMsObject", signature(object = "MsBackendInMemory",
               saveObject(object, path = param@path)
           })
 
-#' @rdname MsBackendCachedStash
+#' @rdname MsBackendMemoryStash
 setMethod("readMsObject", signature(object = "MsBackendInMemory",
                                     param = "AlabasterParam"),
           function(object, param, ...) {

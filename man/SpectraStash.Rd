@@ -63,6 +63,19 @@ packages.
 
 Details on the stash formats are provided in the respective sections below.
 }
+\section{\emph{alabaster}-based format, \code{AlabasterParam}}{
+
+
+With \code{AlabasterParam}, the \code{Spectra} object will be exported (or imported)
+through the \emph{alabaster} framework as a set of JSON and/or HDF5 files.
+The content of each slot is stored to a separate file with the name
+matching the slot name (converted to \emph{snake_case}). The object's \code{MsBackend}
+is stored into a sub-folder \emph{backend} within the stash folder.
+
+For information on the MS backend's data stash see the respective
+documentation.
+}
+
 \section{Text-file format, \code{PlainTextParam}}{
 
 
@@ -77,19 +90,6 @@ in JSON format. It can be unserialized using \code{jsonlite::unserializeJSON()}.
 }
 
 For information on the MS backend's data see the respective documentation.
-}
-
-\section{\emph{abalbaster}-based format, \code{AlabasterParam}}{
-
-
-With \code{AlabasterParam}, the \code{Spectra} object will be exported (or imported)
-through the \emph{alabaster} framework as a set of JSON and/or HDF5 files.
-The content of each slot is stored to a separate file with the name
-matching the slot name (converted to \emph{snake_case}). The object's \code{MsBackend}
-is stored into a sub-folder \emph{backend} within the stash folder.
-
-For information on the MS backend's data stash see the respective
-documentation.
 }
 
 \examples{

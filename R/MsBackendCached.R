@@ -30,16 +30,6 @@
 #'   `saveMsObject()` or `saveObject()` **before** exporting their respective
 #'   content to the stash directory.
 #'
-#' @section Text-file format, `PlainTextParam`:
-#'
-#' The data files written into the stash are:
-#'
-#' - *ms_backend_data.txt*: tabulator separated text file with the content of
-#'   the `@localData` slot.
-#' - *ms_backend_nspectra.txt*: the number of spectra.
-#' - *ms_backend_spectra_variables.txt*: the names of the object's spectra
-#'   variables (tabulator separated).
-#'
 #' @section *alabaster*-based format, `AlabasterParam`:
 #'
 #' The content from all slots of the `MsBackendCached` are stored using
@@ -51,6 +41,16 @@
 #' - *nspectra*: (`integer(1)`) with the number of spectra.
 #' - *spectra_variables*: (`character`) with the names of the object's spectra
 #'   variables.
+#'
+#' @section Text-file format, `PlainTextParam`:
+#'
+#' The data files written into the stash are:
+#'
+#' - *ms_backend_data.txt*: tabulator separated text file with the content of
+#'   the `@localData` slot.
+#' - *ms_backend_nspectra.txt*: the number of spectra.
+#' - *ms_backend_spectra_variables.txt*: the names of the object's spectra
+#'   variables (tabulator separated).
 #'
 #' @param object An `MsBackendCached` object.
 #'

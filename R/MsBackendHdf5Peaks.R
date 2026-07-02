@@ -34,6 +34,13 @@
 #' stash. Note however that in this case two copies of all data files exist (in
 #' the original location **and** the stash directory).
 #'
+#' @section *alabaster*-based format, `AlabasterParam`:
+#'
+#' With `AlabasterParam`, the spectra metadata will be exported (or imported)
+#' through the *alabaster* framework. Similar to the `PlainTextParam`,
+#' `consolidate = TRUE` will also copy the HDF5-format peaks data files to the
+#' stash directory.
+#'
 #' @section Text-file format, `PlainTextParam`:
 #'
 #' The `saveMsObject()` function with the `PlainTextParam` stores the spectra
@@ -42,13 +49,6 @@
 #' directory specified with parameter `path` of the `PlainTextParam` object.
 #' Depending on parameter `consolidate` also the peaks data files (in HDF5
 #' format) will be copied to the stash folder (with `consolidate = TRUE`).
-#'
-#' @section *abalbaster*-based format, `AlabasterParam`:
-#'
-#' With `AlabasterParam`, the spectra metadata will be exported (or imported)
-#' through the *alabaster* framework. Similar to the `PlainTextParam`,
-#' `consolidate = TRUE` will also copy the HDF5-format peaks data files to the
-#' stash directory.
 #'
 #' @param consolidate `logical(1)` whether in addition to the spectra metadata
 #'     also the peaks data file (in HDF5 format) should be stored in the stash
