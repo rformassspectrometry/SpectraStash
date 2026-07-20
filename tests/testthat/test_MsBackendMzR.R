@@ -72,7 +72,7 @@ test_that("alabaster functionality works for MsBackendMzR", {
 
     unlink(mzml_path, recursive = TRUE)
     expect_no_error(validateMsBackendMzR(d))
-    expect_error(readObject(d), "invalid class")
+    expect_error(readObject(d), "missing")
     expect_no_error(
         res <- readMsBackendMzR(d, spectraPath = dataStorageBasePath(be_mzr)))
     expect_s4_class(res, "MsBackendMzR")
@@ -85,6 +85,14 @@ test_that("alabaster functionality works for MsBackendMzR", {
     expect_true(all(basename(unique(dataStorage(be_mzr))) %in% dir(d)))
     res <- readObject(d)
     expect_equal(normalizePath(dataStorageBasePath(res)), normalizePath(d))
+
+    ## Removing the data files
+    unlink(file.path(d, basename(unique(dataStorage(be_mzr)))))
+    expect_error(res <- readMsBackendMzR(d), "missing")
+    res <- readMsBackendMzR(
+        d, spectraPath = dataStorageBasePath(be_mzr))
+    expect_s4_class(res, "MsBackendMzR")
+    expect_true(validObject(res))
 
     unlink(d, recursive = TRUE)
 

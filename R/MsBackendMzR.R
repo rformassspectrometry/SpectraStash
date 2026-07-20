@@ -234,17 +234,16 @@ readMsBackendMzR <- function(path = character(), metadata = list(),
     be <- MsBackendMzR()
     be@spectraData <- altReadObject(file.path(path, "spectra_data"))
     if(nrow(be@spectraData)) {
-        if (length(spectraPath)) {
+        if (length(spectraPath))
             dataStorageBasePath(be) <- spectraPath
-            message("WHYYYYY")
-        }
-        if (all(grepl("^\\.(/|\\\\)", unique(be@spectraData$dataStorage)))) {
-            stop("consolidate!", path, "\n", dataStorageBasePath(be))
+        if (all(grepl("^\\.(/|\\\\)", unique(be@spectraData$dataStorage))))
             be@spectraData$dataStorage <- normalizePath(
                 sub("^\\.", path, be@spectraData$dataStorage))
-        }
-            ## dataStorageBasePath(be) <- path
     }
+    if (nrow(be@spectraData) &&
+        !all(file.exists(unique(be@spectraData$dataStorage))))
+        stop("One or more data file(s) missing. Please use parameter ",
+             "'spectraPath' if data files have been moved.")
     validObject(be)
     be
 }

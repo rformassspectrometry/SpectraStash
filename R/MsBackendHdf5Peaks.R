@@ -164,7 +164,9 @@ setMethod("readMsObject", signature(object = "MsBackendHdf5Peaks",
                   ## consolidated; update relative path to absolute stash path
                   if (all(grepl("^\\.(/|\\\\)",
                                 unique(object@spectraData$dataStorage))))
-                      dataStorageBasePath(object) <- param@path
+                      object@spectraData$dataStorage <- normalizePath(
+                          sub("^\\.", param@path,
+                              object@spectraData$dataStorage))
               }
               validObject(object)
               object
@@ -207,8 +209,13 @@ readMsBackendHdf5Peaks <- function(path = character(), metadata = list(),
         if (length(spectraPath))
             dataStorageBasePath(be) <- spectraPath
         if (all(grepl("^\\.(/|\\\\)", unique(be@spectraData$dataStorage))))
-            dataStorageBasePath(be) <- path
+            be@spectraData$dataStorage <- normalizePath(
+                sub("^\\.", path, be@spectraData$dataStorage))
     }
+    if (nrow(be@spectraData) &&
+        !all(file.exists(unique(be@spectraData$dataStorage))))
+        stop("One or more data file(s) missing. Please use parameter ",
+             "'spectraPath' if data files have been moved.")
     validObject(be)
     be
 }
