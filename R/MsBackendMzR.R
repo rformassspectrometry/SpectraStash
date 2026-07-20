@@ -176,7 +176,9 @@ setMethod("readMsObject", signature(object = "MsBackendMzR",
                       dataStorageBasePath(object) <- spectraPath
                   if (all(grepl("^\\.(/|\\\\)",
                                 unique(object@spectraData$dataStorage))))
-                      dataStorageBasePath(object) <- param@path
+                      object@spectraData$dataStorage <- normalizePath(
+                          sub("^\\.", param@path,
+                              object@spectraData$dataStorage))
               }
               validObject(object)
               object
@@ -232,10 +234,16 @@ readMsBackendMzR <- function(path = character(), metadata = list(),
     be <- MsBackendMzR()
     be@spectraData <- altReadObject(file.path(path, "spectra_data"))
     if(nrow(be@spectraData)) {
-        if (length(spectraPath))
+        if (length(spectraPath)) {
             dataStorageBasePath(be) <- spectraPath
-        if (all(grepl("^\\.(/|\\\\)", unique(be@spectraData$dataStorage))))
-            dataStorageBasePath(be) <- path
+            message("WHYYYYY")
+        }
+        if (all(grepl("^\\.(/|\\\\)", unique(be@spectraData$dataStorage)))) {
+            stop("consolidate!", path, "\n", dataStorageBasePath(be))
+            be@spectraData$dataStorage <- normalizePath(
+                sub("^\\.", path, be@spectraData$dataStorage))
+        }
+            ## dataStorageBasePath(be) <- path
     }
     validObject(be)
     be
