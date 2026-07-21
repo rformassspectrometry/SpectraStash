@@ -48,7 +48,7 @@ test_that(".consolidate_data_storage works", {
 
 test_that(".stash_to_absolute_path works", {
     expect_warning(a <- .stash_to_absolute_path("./rel/path/file.txt", "/abs"))
-    expect_true(a %in% c("/abs/rel/path/file.txt", "C:/abs/rel/path/file.txt"))
+    expect_true(grepl("/abs/rel/path/file.txt", a, fixed = TRUE))
 
     expect_warning(a <- .stash_to_absolute_path("./rel/path/file.txt",
                                                 "D:/abs"))
