@@ -45,7 +45,7 @@ test_that("alabaster stash works for MsBackendMemory", {
     expect_equal(readObjectFile(file.path(d, "backend"))$type,
                  "ms_backend_hdf5_peaks")
     sd <- readObject(file.path(d, "backend", "spectra_data"))
-    expect_true(all(sd$dataStorage == ".//peaks.h5"))
+    expect_true(all(sd$dataStorage %in% c(".//peaks.h5", "./peaks.h5")))
 
     ## Can we load the Hdf5 backend too?
     res <- readObject(file.path(d, "backend"))

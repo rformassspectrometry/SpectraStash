@@ -45,3 +45,12 @@ test_that(".consolidate_data_storage works", {
     expect_true(grepl("^\\.", dataStorageBasePath(res)))
     unlink(d, recursive = TRUE)
 })
+
+test_that(".stash_to_absolute_path works", {
+    expect_warning(a <- .stash_to_absolute_path("./rel/path/file.txt", "/abs"))
+    expect_true(a %in% c("/abs/rel/path/file.txt", "C:/abs/rel/path/file.txt"))
+
+    expect_warning(a <- .stash_to_absolute_path("./rel/path/file.txt",
+                                                "D:/abs"))
+    expect_true(a == "D:/abs/rel/path/file.txt")
+})
