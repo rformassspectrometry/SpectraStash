@@ -106,3 +106,15 @@
     x@spectraData$dataStorage <- as.character(afiles)
     x
 }
+
+#' @param x `character` with the stash-relative paths.
+#'
+#' @param path `character(1)` with the absolute path to the stash directory.
+#'
+#' @return the absolute path for `x`
+#'
+#' @noRd
+.stash_to_absolute_path <- function(x, path) {
+    path <- normalizePath(path, winslash = "/")
+    normalizePath(sub("^[.]", path, x), winslash = "/")
+}
