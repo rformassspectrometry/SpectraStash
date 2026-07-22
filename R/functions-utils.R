@@ -94,15 +94,27 @@
 #' @noRd
 .consolidate_data_storage <- function(x, path) {
     bp <- normalizePath(dataStorageBasePath(x))
-    ufiles <- unique(dataStorage(x))
+    ufiles <- normalizePath(unique(dataStorage(x)))
     nfiles <- sub(bp, file.path(path, ""), ufiles, fixed = TRUE)
     lapply(unique(dirname(nfiles)), dir.create, recursive = TRUE,
            showWarnings = FALSE)
     file.copy(ufiles, nfiles)
-    afiles <- factor(dataStorage(x), levels = ufiles)
+    afiles <- factor(normalizePath(dataStorage(x)), levels = ufiles)
     fn <- sub(bp, "", levels(afiles), fixed = TRUE)
     fn <- sub("\\", "", fn, fixed = TRUE)
     levels(afiles) <- file.path(".", fn)
     x@spectraData$dataStorage <- as.character(afiles)
     x
+}
+
+#' @param x `character` with the stash-relative paths.
+#'
+#' @param path `character(1)` with the absolute path to the stash directory.
+#'
+#' @return the absolute path for `x`
+#'
+#' @noRd
+.stash_to_absolute_path <- function(x, path) {
+    path <- normalizePath(path, winslash = "/")
+    normalizePath(sub("^[.]", path, x), winslash = "/")
 }

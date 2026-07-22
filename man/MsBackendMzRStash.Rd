@@ -68,6 +68,21 @@ the files are no longer available in the directory specified by
 \emph{dataStorage} the restored object will not be valid, unless the new location
 is provided with parameter \code{spectraPath}.
 }
+\section{\emph{alabaster}-based format, \code{AlabasterParam}}{
+
+
+The \code{saveMsObject()} with an \code{AlabasterParam} parameter object stashes the
+provided \code{MsBackendMzR} object in an \emph{alabster}-based format into the
+directory defined with argument \code{param} of the \code{AlabasterParam}.
+\code{readMsObject()} with \code{AlabasterParam} restores a previously stashed
+\code{MsBackend} object. Optional parameter \code{spectraPath} allows to specify the
+storage path of the MS data files referenced by the \code{MsBackendMzR} (in case
+they are no longer in the same directory when saving the object).
+
+In addition, the \emph{alabaster} methods \code{saveObject()} and \code{readObject()} can
+be used to save and read \code{MsBackendMzR} objects.
+}
+
 \section{Text-file format, \code{PlainTextParam}}{
 
 
@@ -84,21 +99,6 @@ the directory specified with parameter \code{path} of the \code{PlainTextParam}.
 The additional parameter \code{spectraPath} of \code{readMsObject()} allows to define
 the path to the MS data files containing the full MS data (i.e., the mzML,
 mzXML or CDF files referred to by the \code{MsBackendMzR}).
-}
-
-\section{\emph{alabaster}-based format, \code{AlabasterParam}}{
-
-
-The \code{saveMsObject()} with an \code{AlabasterParam} parameter object stashes the
-provided \code{MsBackendMzR} object in an \emph{alabster}-based format into the
-directory defined with argument \code{param} of the \code{AlabasterParam}.
-\code{readMsObject()} with \code{AlabasterParam} restores a previously stashed
-\code{MsBackend} object. Optional parameter \code{spectraPath} allows to specify the
-storage path of the MS data files referenced by the \code{MsBackendMzR} (in case
-they are no longer in the same directory when saving the object).
-
-In addition, the \emph{alabaster} methods \code{saveObject()} and \code{readObject()} can
-be used to save and read \code{MsBackendMzR} objects.
 }
 
 \examples{

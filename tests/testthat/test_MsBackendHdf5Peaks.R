@@ -65,8 +65,7 @@ test_that("alabaster functionality works for MsBackenHdf5Peaks", {
     fls <- dir(d, pattern = "h5$", full.names = TRUE)
     unlink(fls)
 
-    expect_error(res <- readMsBackendHdf5Peaks(d),
-                 "does not contain all data files")
+    expect_error(res <- readMsBackendHdf5Peaks(d), "missing")
     res <- readMsBackendHdf5Peaks(
         d, spectraPath = dataStorageBasePath(be_hdf5))
     expect_s4_class(res, "MsBackendHdf5Peaks")

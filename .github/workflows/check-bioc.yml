@@ -142,7 +142,7 @@ jobs:
           BiocManager::install("MsDataHub")
           BiocManager::install("Spectra")
           BiocManager::install("alabaster.base")
-          BiocManager::install("RforMassSpectrometry/MsStash")
+          BiocManager::install("MsStash")
           pak::local_install_dev_deps(ask = FALSE)
 
           ## Pass #1 at installing dependencies

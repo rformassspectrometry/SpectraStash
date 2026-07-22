@@ -6,6 +6,7 @@
 \alias{readMsObject,MsBackendInMemory,PlainTextParam-method}
 \alias{saveObject,MsBackendInMemory-method}
 \alias{saveMsObject,MsBackendInMemory,AlabasterParam-method}
+\alias{readMsObject,MsBackendInMemory,AlabasterParam-method}
 \title{Stash for \code{MsBackendMemory} and \code{MsBackendDataFrame}}
 \usage{
 \S4method{saveMsObject}{MsBackendInMemory,PlainTextParam}(object, param, ...)
@@ -15,6 +16,8 @@
 \S4method{saveObject}{MsBackendInMemory}(x, path, ...)
 
 \S4method{saveMsObject}{MsBackendInMemory,AlabasterParam}(object, param, ...)
+
+\S4method{readMsObject}{MsBackendInMemory,AlabasterParam}(object, param, ...)
 }
 \arguments{
 \item{object}{An \code{MsBackendMemory} or \code{MsBackendDataFrame} object.}
@@ -49,15 +52,6 @@ either as a \code{MsBackendMemory} or a \code{MsBackendHdf5Peaks}.
 \note{
 Currently only peaks variables \code{"mz"} and \code{"intensity"} are supported.
 }
-\section{Text-file format, \code{PlainTextParam}}{
-
-
-The \code{MsBackendMemory} stash contains a text-file format
-\link{MsBackendHdf5PeaksStash} within a sub-folder \emph{backend}. When loading,
-the data is first imported as a \code{MsBackendHdf5Peaks} which is then converted
-to the resulting \code{MsBackendMemory} (with all data materialized into memory).
-}
-
 \section{\emph{alabaster}-based format, \code{AlabasterParam}}{
 
 
@@ -65,6 +59,15 @@ The full data is stored as an \emph{alabaster}-format \link{MsBackendHdf5PeaksSt
 in a directory \emph{backend} within the stash folder. Due to this nesting it is
 possible to load the data either as \code{MsBackendMemory} or
 \code{MsBackendHdf5Peaks}.
+}
+
+\section{Text-file format, \code{PlainTextParam}}{
+
+
+The \code{MsBackendMemory} stash contains a text-file format
+\link{MsBackendHdf5PeaksStash} within a sub-folder \emph{backend}. When loading,
+the data is first imported as a \code{MsBackendHdf5Peaks} which is then converted
+to the resulting \code{MsBackendMemory} (with all data materialized into memory).
 }
 
 \examples{

@@ -1,6 +1,6 @@
 Package: SpectraStash
 Title: Serialize and restore Spectra objects in interoperable file formats
-Version: 0.97.6
+Version: 0.97.7
 Authors@R:
     c(person(given = "Johannes", family = "Rainer",
              email = "Johannes.Rainer@eurac.edu",
@@ -48,8 +48,6 @@ Suggests:
     knitr,
     pkgload,
     callr
-Remotes:
-    RforMassSpectrometry/MsStash
 License: GPL-3
 Encoding: UTF-8
 VignetteBuilder: knitr

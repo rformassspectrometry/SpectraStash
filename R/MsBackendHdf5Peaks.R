@@ -34,6 +34,13 @@
 #' stash. Note however that in this case two copies of all data files exist (in
 #' the original location **and** the stash directory).
 #'
+#' @section *alabaster*-based format, `AlabasterParam`:
+#'
+#' With `AlabasterParam`, the spectra metadata will be exported (or imported)
+#' through the *alabaster* framework. Similar to the `PlainTextParam`,
+#' `consolidate = TRUE` will also copy the HDF5-format peaks data files to the
+#' stash directory.
+#'
 #' @section Text-file format, `PlainTextParam`:
 #'
 #' The `saveMsObject()` function with the `PlainTextParam` stores the spectra
@@ -42,13 +49,6 @@
 #' directory specified with parameter `path` of the `PlainTextParam` object.
 #' Depending on parameter `consolidate` also the peaks data files (in HDF5
 #' format) will be copied to the stash folder (with `consolidate = TRUE`).
-#'
-#' @section *abalbaster*-based format, `AlabasterParam`:
-#'
-#' With `AlabasterParam`, the spectra metadata will be exported (or imported)
-#' through the *alabaster* framework. Similar to the `PlainTextParam`,
-#' `consolidate = TRUE` will also copy the HDF5-format peaks data files to the
-#' stash directory.
 #'
 #' @param consolidate `logical(1)` whether in addition to the spectra metadata
 #'     also the peaks data file (in HDF5 format) should be stored in the stash
@@ -162,9 +162,10 @@ setMethod("readMsObject", signature(object = "MsBackendHdf5Peaks",
                   if (length(spectraPath))
                       dataStorageBasePath(object) <- spectraPath
                   ## consolidated; update relative path to absolute stash path
-                  if (all(grepl("^\\.(/|\\\\)",
+                  if (all(grepl("^[.](/|\\\\)",
                                 unique(object@spectraData$dataStorage))))
-                      dataStorageBasePath(object) <- param@path
+                      object@spectraData$dataStorage <- .stash_to_absolute_path(
+                          object@spectraData$dataStorage, param@path)
               }
               validObject(object)
               object
@@ -206,9 +207,14 @@ readMsBackendHdf5Peaks <- function(path = character(), metadata = list(),
     if (nrow(be@spectraData)) {
         if (length(spectraPath))
             dataStorageBasePath(be) <- spectraPath
-        if (all(grepl("^\\.(/|\\\\)", unique(be@spectraData$dataStorage))))
-            dataStorageBasePath(be) <- path
+        if (all(grepl("^[.](/|\\\\)", unique(be@spectraData$dataStorage))))
+            be@spectraData$dataStorage <- .stash_to_absolute_path(
+                be@spectraData$dataStorage, path)
     }
+    if (nrow(be@spectraData) &&
+        !all(file.exists(unique(be@spectraData$dataStorage))))
+        stop("One or more data file(s) missing. Please use parameter ",
+             "'spectraPath' if data files have been moved.")
     validObject(be)
     be
 }
