@@ -45,7 +45,7 @@ Details on the stash formats are provided in the respective sections below."></h
 
     <a class="navbar-brand me-2" href="../index.html">SpectraStash</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.97.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.97.7</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -144,6 +144,19 @@ object should be stored in.</p></dd>
     <p><code><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">readMsObject()</a></code> returns a <a href="https://rdrr.io/pkg/Spectra/man/Spectra.html" class="external-link">Spectra::Spectra</a> object.</p>
     </div>
     <div class="section level2">
+    <h2 id="alabaster-based-format-alabasterparam"><em>alabaster</em>-based format, <code>AlabasterParam</code><a class="anchor" aria-label="anchor" href="#alabaster-based-format-alabasterparam"></a></h2>
+
+
+
+<p>With <code>AlabasterParam</code>, the <code>Spectra</code> object will be exported (or imported)
+through the <em>alabaster</em> framework as a set of JSON and/or HDF5 files.
+The content of each slot is stored to a separate file with the name
+matching the slot name (converted to <em>snake_case</em>). The object's <code>MsBackend</code>
+is stored into a sub-folder <em>backend</em> within the stash folder.</p>
+<p>For information on the MS backend's data stash see the respective
+documentation.</p>
+    </div>
+    <div class="section level2">
     <h2 id="text-file-format-plaintextparam">Text-file format, <code>PlainTextParam</code><a class="anchor" aria-label="anchor" href="#text-file-format-plaintextparam"></a></h2>
 
 
@@ -155,19 +168,6 @@ by a <code>"|"</code>), the processing chunk size and the <code>MsBackend</code>
 <li><p><em>spectra_processing_queue.json</em>: the object's processing queue serialized
 in JSON format. It can be unserialized using <code><a href="https://jeroen.r-universe.dev/jsonlite/reference/serializeJSON.html" class="external-link">jsonlite::unserializeJSON()</a></code>.</p></li>
 </ul><p>For information on the MS backend's data see the respective documentation.</p>
-    </div>
-    <div class="section level2">
-    <h2 id="abalbaster-based-format-alabasterparam"><em>abalbaster</em>-based format, <code>AlabasterParam</code><a class="anchor" aria-label="anchor" href="#abalbaster-based-format-alabasterparam"></a></h2>
-
-
-
-<p>With <code>AlabasterParam</code>, the <code>Spectra</code> object will be exported (or imported)
-through the <em>alabaster</em> framework as a set of JSON and/or HDF5 files.
-The content of each slot is stored to a separate file with the name
-matching the slot name (converted to <em>snake_case</em>). The object's <code>MsBackend</code>
-is stored into a sub-folder <em>backend</em> within the stash folder.</p>
-<p>For information on the MS backend's data stash see the respective
-documentation.</p>
     </div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
@@ -205,8 +205,8 @@ documentation.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ... 34 more variables/columns.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> file(s):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 58f29260479_7859</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 58f5a2bf9ae_7860</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> e267f7283de_7859</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> e2642dce0f1_7860</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Filter the intensities of the Spectra removing peaks with an intensity</span></span></span>
 <span class="r-in"><span><span class="co">## below 100</span></span></span>
@@ -248,11 +248,11 @@ documentation.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ... 25 more variables/columns.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> file(s):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 58f29260479_7859</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 58f5a2bf9ae_7860</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> e267f7283de_7859</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> e2642dce0f1_7860</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Lazy evaluation queue: 1 processing step(s)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Processing:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Remove peaks with intensities outside [100, Inf] in spectra of MS level(s) 1. [Fri Jun 26 10:55:26 2026] </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Remove peaks with intensities outside [100, Inf] in spectra of MS level(s) 1. [Wed Jul 22 12:06:11 2026] </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## It is also possible to read individual contents from the stash. The</span></span></span>
 <span class="r-in"><span><span class="co">## directory *backend* contains for example the stashed `MsBackend` of the</span></span></span>
@@ -277,8 +277,8 @@ documentation.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ... 25 more variables/columns.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> file(s):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 58f29260479_7859</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 58f5a2bf9ae_7860</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> e267f7283de_7859</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> e2642dce0f1_7860</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Alternatively, that data can also be read directly with the `readObject()`</span></span></span>
 <span class="r-in"><span><span class="co">## method from the *alabaster.base* package:</span></span></span>
@@ -302,8 +302,8 @@ documentation.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ... 25 more variables/columns.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> file(s):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 58f29260479_7859</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 58f5a2bf9ae_7860</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> e267f7283de_7859</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> e2642dce0f1_7860</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -315,7 +315,7 @@ documentation.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.9000.</p>
 </div>
 
     </footer></div>

@@ -100,6 +100,13 @@ files to the stash directory generating a self-contained data stash.
 Note however that in this case two copies of all data files exist (in
 the original location **and** the stash directory).
 
+## *alabaster*-based format, `AlabasterParam`
+
+With `AlabasterParam`, the spectra metadata will be exported (or
+imported) through the *alabaster* framework. Similar to the
+`PlainTextParam`, `consolidate = TRUE` will also copy the HDF5-format
+peaks data files to the stash directory.
+
 ## Text-file format, `PlainTextParam`
 
 The
@@ -110,13 +117,6 @@ text file with the name *ms_backend_spectra_data.txt* in the directory
 specified with parameter `path` of the `PlainTextParam` object.
 Depending on parameter `consolidate` also the peaks data files (in HDF5
 format) will be copied to the stash folder (with `consolidate = TRUE`).
-
-## *abalbaster*-based format, `AlabasterParam`
-
-With `AlabasterParam`, the spectra metadata will be exported (or
-imported) through the *alabaster* framework. Similar to the
-`PlainTextParam`, `consolidate = TRUE` will also copy the HDF5-format
-peaks data files to the stash directory.
 
 ## Author
 
@@ -153,7 +153,7 @@ be_h5
 #>  ... 34 more variables/columns.
 #> 
 #> file(s):
-#>  58f29260479_7859.h5
+#>  e267f7283de_7859.h5
 
 d <- file.path(tempdir(), "example_hdf5")
 ptp <- PlainTextParam(path = d)
@@ -164,7 +164,7 @@ saveMsObject(be_h5, ptp, consolidate = TRUE)
 ## List the content of the folder: ms_backend_spectra_data.txt file
 ## with the spectra metadata and an HDF5 file with the peaks data:
 dir(d)
-#> [1] "58f29260479_7859.h5"         "ms_backend_spectra_data.txt"
+#> [1] "e267f7283de_7859.h5"         "ms_backend_spectra_data.txt"
 
 ## Restore the stashed object
 res <- readMsObject(MsBackendHdf5Peaks(), ptp)
@@ -201,5 +201,5 @@ res
 #>  ... 25 more variables/columns.
 #> 
 #> file(s):
-#>  58f29260479_7859.h5
+#>  e267f7283de_7859.h5
 ```

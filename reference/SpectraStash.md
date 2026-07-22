@@ -89,6 +89,18 @@ readMsObject(object, param, ...)
 returns a
 [Spectra::Spectra](https://rdrr.io/pkg/Spectra/man/Spectra.html) object.
 
+## *alabaster*-based format, `AlabasterParam`
+
+With `AlabasterParam`, the `Spectra` object will be exported (or
+imported) through the *alabaster* framework as a set of JSON and/or HDF5
+files. The content of each slot is stored to a separate file with the
+name matching the slot name (converted to *snake_case*). The object's
+`MsBackend` is stored into a sub-folder *backend* within the stash
+folder.
+
+For information on the MS backend's data stash see the respective
+documentation.
+
 ## Text-file format, `PlainTextParam`
 
 For this format, the data content of a `Spectra` object is stored into
@@ -104,18 +116,6 @@ the files:
   [`jsonlite::unserializeJSON()`](https://jeroen.r-universe.dev/jsonlite/reference/serializeJSON.html).
 
 For information on the MS backend's data see the respective
-documentation.
-
-## *abalbaster*-based format, `AlabasterParam`
-
-With `AlabasterParam`, the `Spectra` object will be exported (or
-imported) through the *alabaster* framework as a set of JSON and/or HDF5
-files. The content of each slot is stored to a separate file with the
-name matching the slot name (converted to *snake_case*). The object's
-`MsBackend` is stored into a sub-folder *backend* within the stash
-folder.
-
-For information on the MS backend's data stash see the respective
 documentation.
 
 ## Author
@@ -154,8 +154,8 @@ s
 #>  ... 34 more variables/columns.
 #> 
 #> file(s):
-#> 58f29260479_7859
-#> 58f5a2bf9ae_7860
+#> e267f7283de_7859
+#> e2642dce0f1_7860
 
 ## Filter the intensities of the Spectra removing peaks with an intensity
 ## below 100
@@ -197,11 +197,11 @@ res
 #>  ... 25 more variables/columns.
 #> 
 #> file(s):
-#> 58f29260479_7859
-#> 58f5a2bf9ae_7860
+#> e267f7283de_7859
+#> e2642dce0f1_7860
 #> Lazy evaluation queue: 1 processing step(s)
 #> Processing:
-#>  Remove peaks with intensities outside [100, Inf] in spectra of MS level(s) 1. [Fri Jun 26 10:55:26 2026] 
+#>  Remove peaks with intensities outside [100, Inf] in spectra of MS level(s) 1. [Wed Jul 22 12:06:11 2026] 
 
 ## It is also possible to read individual contents from the stash. The
 ## directory *backend* contains for example the stashed `MsBackend` of the
@@ -226,8 +226,8 @@ b
 #>  ... 25 more variables/columns.
 #> 
 #> file(s):
-#> 58f29260479_7859
-#> 58f5a2bf9ae_7860
+#> e267f7283de_7859
+#> e2642dce0f1_7860
 
 ## Alternatively, that data can also be read directly with the `readObject()`
 ## method from the *alabaster.base* package:
@@ -251,6 +251,6 @@ b
 #>  ... 25 more variables/columns.
 #> 
 #> file(s):
-#> 58f29260479_7859
-#> 58f5a2bf9ae_7860
+#> e267f7283de_7859
+#> e2642dce0f1_7860
 ```

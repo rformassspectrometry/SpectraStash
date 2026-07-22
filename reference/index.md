@@ -7,7 +7,6 @@
   [`saveObject(`*`<MsBackendCached>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendCachedStash.md)
   [`saveMsObject(`*`<MsBackendCached>`*`,`*`<AlabasterParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendCachedStash.md)
   [`readMsObject(`*`<MsBackendCached>`*`,`*`<AlabasterParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendCachedStash.md)
-  [`readMsObject(`*`<MsBackendInMemory>`*`,`*`<AlabasterParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendCachedStash.md)
   :
 
   Stash for `MsBackendCached`
@@ -23,6 +22,7 @@
   [`readMsObject(`*`<MsBackendInMemory>`*`,`*`<PlainTextParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendMemoryStash.md)
   [`saveObject(`*`<MsBackendInMemory>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendMemoryStash.md)
   [`saveMsObject(`*`<MsBackendInMemory>`*`,`*`<AlabasterParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendMemoryStash.md)
+  [`readMsObject(`*`<MsBackendInMemory>`*`,`*`<AlabasterParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendMemoryStash.md)
   :
 
   Stash for `MsBackendMemory` and `MsBackendDataFrame`

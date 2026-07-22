@@ -27,6 +27,9 @@ saveObject(x, path, ...)
 
 # S4 method for class 'MsBackendInMemory,AlabasterParam'
 saveMsObject(object, param, ...)
+
+# S4 method for class 'MsBackendInMemory,AlabasterParam'
+readMsObject(object, param, ...)
 ```
 
 ## Arguments
@@ -72,14 +75,6 @@ or a `MsBackendHdf5Peaks`.
 
 Currently only peaks variables `"mz"` and `"intensity"` are supported.
 
-## Text-file format, `PlainTextParam`
-
-The `MsBackendMemory` stash contains a text-file format
-[MsBackendHdf5PeaksStash](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendHdf5PeaksStash.md)
-within a sub-folder *backend*. When loading, the data is first imported
-as a `MsBackendHdf5Peaks` which is then converted to the resulting
-`MsBackendMemory` (with all data materialized into memory).
-
 ## *alabaster*-based format, `AlabasterParam`
 
 The full data is stored as an *alabaster*-format
@@ -87,6 +82,14 @@ The full data is stored as an *alabaster*-format
 in a directory *backend* within the stash folder. Due to this nesting it
 is possible to load the data either as `MsBackendMemory` or
 `MsBackendHdf5Peaks`.
+
+## Text-file format, `PlainTextParam`
+
+The `MsBackendMemory` stash contains a text-file format
+[MsBackendHdf5PeaksStash](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendHdf5PeaksStash.md)
+within a sub-folder *backend*. When loading, the data is first imported
+as a `MsBackendHdf5Peaks` which is then converted to the resulting
+`MsBackendMemory` (with all data materialized into memory).
 
 ## Author
 

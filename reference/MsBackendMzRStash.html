@@ -27,7 +27,7 @@ sections below."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">SpectraStash</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.97.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.97.7</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -141,6 +141,21 @@ the files are no longer available in the directory specified by
 is provided with parameter <code>spectraPath</code>.</p>
     </div>
     <div class="section level2">
+    <h2 id="alabaster-based-format-alabasterparam"><em>alabaster</em>-based format, <code>AlabasterParam</code><a class="anchor" aria-label="anchor" href="#alabaster-based-format-alabasterparam"></a></h2>
+
+
+
+<p>The <code><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">saveMsObject()</a></code> with an <code>AlabasterParam</code> parameter object stashes the
+provided <code>MsBackendMzR</code> object in an <em>alabster</em>-based format into the
+directory defined with argument <code>param</code> of the <code>AlabasterParam</code>.
+<code><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">readMsObject()</a></code> with <code>AlabasterParam</code> restores a previously stashed
+<code>MsBackend</code> object. Optional parameter <code>spectraPath</code> allows to specify the
+storage path of the MS data files referenced by the <code>MsBackendMzR</code> (in case
+they are no longer in the same directory when saving the object).</p>
+<p>In addition, the <em>alabaster</em> methods <code><a href="https://rdrr.io/pkg/alabaster.base/man/saveObject.html" class="external-link">saveObject()</a></code> and <code><a href="https://rdrr.io/pkg/alabaster.base/man/readObject.html" class="external-link">readObject()</a></code> can
+be used to save and read <code>MsBackendMzR</code> objects.</p>
+    </div>
+    <div class="section level2">
     <h2 id="text-file-format-plaintextparam">Text-file format, <code>PlainTextParam</code><a class="anchor" aria-label="anchor" href="#text-file-format-plaintextparam"></a></h2>
 
 
@@ -156,21 +171,6 @@ the directory specified with parameter <code>path</code> of the <code>PlainTextP
 <p>The additional parameter <code>spectraPath</code> of <code><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">readMsObject()</a></code> allows to define
 the path to the MS data files containing the full MS data (i.e., the mzML,
 mzXML or CDF files referred to by the <code>MsBackendMzR</code>).</p>
-    </div>
-    <div class="section level2">
-    <h2 id="alabaster-based-format-alabasterparam"><em>alabaster</em>-based format, <code>AlabasterParam</code><a class="anchor" aria-label="anchor" href="#alabaster-based-format-alabasterparam"></a></h2>
-
-
-
-<p>The <code><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">saveMsObject()</a></code> with an <code>AlabasterParam</code> parameter object stashes the
-provided <code>MsBackendMzR</code> object in an <em>alabster</em>-based format into the
-directory defined with argument <code>param</code> of the <code>AlabasterParam</code>.
-<code><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">readMsObject()</a></code> with <code>AlabasterParam</code> restores a previously stashed
-<code>MsBackend</code> object. Optional parameter <code>spectraPath</code> allows to specify the
-storage path of the MS data files referenced by the <code>MsBackendMzR</code> (in case
-they are no longer in the same directory when saving the object).</p>
-<p>In addition, the <em>alabaster</em> methods <code><a href="https://rdrr.io/pkg/alabaster.base/man/saveObject.html" class="external-link">saveObject()</a></code> and <code><a href="https://rdrr.io/pkg/alabaster.base/man/readObject.html" class="external-link">readObject()</a></code> can
-be used to save and read <code>MsBackendMzR</code> objects.</p>
     </div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
@@ -206,7 +206,7 @@ be used to save and read <code>MsBackendMzR</code> objects.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ... 34 more variables/columns.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> file(s):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 58f5aca821f_7861</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> e2638f6a693_7861</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Define a folder where to stash the object</span></span></span>
 <span class="r-in"><span><span class="va">pth</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"mzr_stash"</span><span class="op">)</span></span></span>
@@ -234,7 +234,7 @@ be used to save and read <code>MsBackendMzR</code> objects.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ... 27 more variables/columns.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> file(s):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 58f5aca821f_7861</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> e2638f6a693_7861</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Clean-up</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="va">pth</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
@@ -245,7 +245,7 @@ be used to save and read <code>MsBackendMzR</code> objects.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Get the directory content of the stash folder:</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">dir</a></span><span class="op">(</span><span class="va">pth</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "58f5aca821f_7861"  "OBJECT"            "_environment.json"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "OBJECT"            "_environment.json" "e2638f6a693_7861" </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [4] "spectra_data"     </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Restore the object</span></span></span>
@@ -268,7 +268,7 @@ be used to save and read <code>MsBackendMzR</code> objects.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ... 27 more variables/columns.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> file(s):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 58f5aca821f_7861</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> e2638f6a693_7861</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## If the data is exported with `consolidate = FALSE` (the default), the</span></span></span>
 <span class="r-in"><span><span class="co">## new location of MS data files could be provided with parameter</span></span></span>
@@ -288,7 +288,7 @@ be used to save and read <code>MsBackendMzR</code> objects.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.9000.</p>
 </div>
 
     </footer></div>

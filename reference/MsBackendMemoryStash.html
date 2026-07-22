@@ -17,7 +17,7 @@ readObject() functions from alabaster.base are supported."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">SpectraStash</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.97.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.97.7</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,7 +65,10 @@ Backend objects can be stashed and restored with the <code><a href="https://rdrr
 <span><span class="fu">saveObject</span><span class="op">(</span><span class="va">x</span>, <span class="va">path</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S4 method for class 'MsBackendInMemory,AlabasterParam'</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">saveMsObject</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">param</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">saveMsObject</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">param</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'MsBackendInMemory,AlabasterParam'</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">readMsObject</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">param</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -110,16 +113,6 @@ either as a <code>MsBackendMemory</code> or a <code>MsBackendHdf5Peaks</code>.</
     <p>Currently only peaks variables <code>"mz"</code> and <code>"intensity"</code> are supported.</p>
     </div>
     <div class="section level2">
-    <h2 id="text-file-format-plaintextparam">Text-file format, <code>PlainTextParam</code><a class="anchor" aria-label="anchor" href="#text-file-format-plaintextparam"></a></h2>
-
-
-
-<p>The <code>MsBackendMemory</code> stash contains a text-file format
-<a href="MsBackendHdf5PeaksStash.html">MsBackendHdf5PeaksStash</a> within a sub-folder <em>backend</em>. When loading,
-the data is first imported as a <code>MsBackendHdf5Peaks</code> which is then converted
-to the resulting <code>MsBackendMemory</code> (with all data materialized into memory).</p>
-    </div>
-    <div class="section level2">
     <h2 id="alabaster-based-format-alabasterparam"><em>alabaster</em>-based format, <code>AlabasterParam</code><a class="anchor" aria-label="anchor" href="#alabaster-based-format-alabasterparam"></a></h2>
 
 
@@ -128,6 +121,16 @@ to the resulting <code>MsBackendMemory</code> (with all data materialized into m
 in a directory <em>backend</em> within the stash folder. Due to this nesting it is
 possible to load the data either as <code>MsBackendMemory</code> or
 <code>MsBackendHdf5Peaks</code>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="text-file-format-plaintextparam">Text-file format, <code>PlainTextParam</code><a class="anchor" aria-label="anchor" href="#text-file-format-plaintextparam"></a></h2>
+
+
+
+<p>The <code>MsBackendMemory</code> stash contains a text-file format
+<a href="MsBackendHdf5PeaksStash.html">MsBackendHdf5PeaksStash</a> within a sub-folder <em>backend</em>. When loading,
+the data is first imported as a <code>MsBackendHdf5Peaks</code> which is then converted
+to the resulting <code>MsBackendMemory</code> (with all data materialized into memory).</p>
     </div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
@@ -233,7 +236,7 @@ possible to load the data either as <code>MsBackendMemory</code> or
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.9000.</p>
 </div>
 
     </footer></div>

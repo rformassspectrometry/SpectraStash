@@ -97,6 +97,25 @@ if the files are no longer available in the directory specified by
 *dataStorage* the restored object will not be valid, unless the new
 location is provided with parameter `spectraPath`.
 
+## *alabaster*-based format, `AlabasterParam`
+
+The
+[`saveMsObject()`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html)
+with an `AlabasterParam` parameter object stashes the provided
+`MsBackendMzR` object in an *alabster*-based format into the directory
+defined with argument `param` of the `AlabasterParam`.
+[`readMsObject()`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html)
+with `AlabasterParam` restores a previously stashed `MsBackend` object.
+Optional parameter `spectraPath` allows to specify the storage path of
+the MS data files referenced by the `MsBackendMzR` (in case they are no
+longer in the same directory when saving the object).
+
+In addition, the *alabaster* methods
+[`saveObject()`](https://rdrr.io/pkg/alabaster.base/man/saveObject.html)
+and
+[`readObject()`](https://rdrr.io/pkg/alabaster.base/man/readObject.html)
+can be used to save and read `MsBackendMzR` objects.
+
 ## Text-file format, `PlainTextParam`
 
 The
@@ -117,25 +136,6 @@ The additional parameter `spectraPath` of
 allows to define the path to the MS data files containing the full MS
 data (i.e., the mzML, mzXML or CDF files referred to by the
 `MsBackendMzR`).
-
-## *alabaster*-based format, `AlabasterParam`
-
-The
-[`saveMsObject()`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html)
-with an `AlabasterParam` parameter object stashes the provided
-`MsBackendMzR` object in an *alabster*-based format into the directory
-defined with argument `param` of the `AlabasterParam`.
-[`readMsObject()`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html)
-with `AlabasterParam` restores a previously stashed `MsBackend` object.
-Optional parameter `spectraPath` allows to specify the storage path of
-the MS data files referenced by the `MsBackendMzR` (in case they are no
-longer in the same directory when saving the object).
-
-In addition, the *alabaster* methods
-[`saveObject()`](https://rdrr.io/pkg/alabaster.base/man/saveObject.html)
-and
-[`readObject()`](https://rdrr.io/pkg/alabaster.base/man/readObject.html)
-can be used to save and read `MsBackendMzR` objects.
 
 ## Author
 
@@ -171,7 +171,7 @@ be
 #>  ... 34 more variables/columns.
 #> 
 #> file(s):
-#> 58f5aca821f_7861
+#> e2638f6a693_7861
 
 ## Define a folder where to stash the object
 pth <- file.path(tempdir(), "mzr_stash")
@@ -199,7 +199,7 @@ res
 #>  ... 27 more variables/columns.
 #> 
 #> file(s):
-#> 58f5aca821f_7861
+#> e2638f6a693_7861
 
 ## Clean-up
 unlink(pth, recursive = TRUE)
@@ -210,7 +210,7 @@ saveMsObject(be, AlabasterParam(pth), consolidate = TRUE)
 
 ## Get the directory content of the stash folder:
 dir(pth)
-#> [1] "58f5aca821f_7861"  "OBJECT"            "_environment.json"
+#> [1] "OBJECT"            "_environment.json" "e2638f6a693_7861" 
 #> [4] "spectra_data"     
 
 ## Restore the object
@@ -233,7 +233,7 @@ res
 #>  ... 27 more variables/columns.
 #> 
 #> file(s):
-#> 58f5aca821f_7861
+#> e2638f6a693_7861
 
 ## If the data is exported with `consolidate = FALSE` (the default), the
 ## new location of MS data files could be provided with parameter
