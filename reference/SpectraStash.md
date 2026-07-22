@@ -154,8 +154,8 @@ s
 #>  ... 34 more variables/columns.
 #> 
 #> file(s):
-#> e267f7283de_7859
-#> e2642dce0f1_7860
+#> 5d2375ae7ba_7859
+#> 5d22dcc7d0_7860
 
 ## Filter the intensities of the Spectra removing peaks with an intensity
 ## below 100
@@ -164,14 +164,15 @@ s <- filterIntensity(s, intensity = 100)
 ## Define the format and location of the `Spectra` stash: use the
 ## *alabaster*-based format and store the stash in a folder named
 ## *spectra_stash* in a temporary directory
-ap <- AlabasterParam(file.path(tempdir(), "spectra_stash"))
+d <- file.path(tempdir(), "spectra_stash")
+ap <- AlabasterParam(d)
 
 ## Stash the `Spectra` object copying in addition the MS data files into the
 ## stash (`consolidate = TRUE`).
 saveMsObject(s, ap, consolidate = TRUE)
 
 ## Show the content of the stash
-dir(ap@path)
+dir(d)
 #> [1] "OBJECT"                        "_environment.json"            
 #> [3] "backend"                       "metadata"                     
 #> [5] "processing"                    "processing_chunk_size"        
@@ -197,16 +198,16 @@ res
 #>  ... 25 more variables/columns.
 #> 
 #> file(s):
-#> e267f7283de_7859
-#> e2642dce0f1_7860
+#> 5d2375ae7ba_7859
+#> 5d22dcc7d0_7860
 #> Lazy evaluation queue: 1 processing step(s)
 #> Processing:
-#>  Remove peaks with intensities outside [100, Inf] in spectra of MS level(s) 1. [Wed Jul 22 12:06:11 2026] 
+#>  Remove peaks with intensities outside [100, Inf] in spectra of MS level(s) 1. [Wed Jul 22 13:55:59 2026] 
 
 ## It is also possible to read individual contents from the stash. The
 ## directory *backend* contains for example the stashed `MsBackend` of the
 ## `Spectra` object. To read only the `MsBackend`:
-ap2 <- AlabasterParam(file.path(tempdir(), "spectra_stash", "backend"))
+ap2 <- AlabasterParam(file.path(d, "backend"))
 b <- readMsObject(MsBackendMzR(), ap2)
 b
 #> MsBackendMzR with 1862 spectra
@@ -226,13 +227,13 @@ b
 #>  ... 25 more variables/columns.
 #> 
 #> file(s):
-#> e267f7283de_7859
-#> e2642dce0f1_7860
+#> 5d2375ae7ba_7859
+#> 5d22dcc7d0_7860
 
 ## Alternatively, that data can also be read directly with the `readObject()`
 ## method from the *alabaster.base* package:
 library(alabaster.base)
-b <- readObject(file.path(ap@path, "backend"))
+b <- readObject(file.path(d, "backend"))
 b
 #> MsBackendMzR with 1862 spectra
 #>        msLevel     rtime scanIndex
@@ -251,6 +252,6 @@ b
 #>  ... 25 more variables/columns.
 #> 
 #> file(s):
-#> e267f7283de_7859
-#> e2642dce0f1_7860
+#> 5d2375ae7ba_7859
+#> 5d22dcc7d0_7860
 ```

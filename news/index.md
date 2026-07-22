@@ -2,6 +2,10 @@
 
 ## *SpectraStash* 0.97
 
+### Changes in version 0.99.0
+
+- Prepare for Bioconductor submission.
+
 ### Changes in version 0.97.7
 
 - Fix issue with data storage paths and `consolidate = TRUE`.

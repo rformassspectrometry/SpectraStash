@@ -45,7 +45,7 @@ Details on the stash formats are provided in the respective sections below."></h
 
     <a class="navbar-brand me-2" href="../index.html">SpectraStash</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.97.7</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -205,8 +205,8 @@ in JSON format. It can be unserialized using <code><a href="https://jeroen.r-uni
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ... 34 more variables/columns.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> file(s):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> e267f7283de_7859</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> e2642dce0f1_7860</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5d2375ae7ba_7859</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5d22dcc7d0_7860</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Filter the intensities of the Spectra removing peaks with an intensity</span></span></span>
 <span class="r-in"><span><span class="co">## below 100</span></span></span>
@@ -215,14 +215,15 @@ in JSON format. It can be unserialized using <code><a href="https://jeroen.r-uni
 <span class="r-in"><span><span class="co">## Define the format and location of the `Spectra` stash: use the</span></span></span>
 <span class="r-in"><span><span class="co">## *alabaster*-based format and store the stash in a folder named</span></span></span>
 <span class="r-in"><span><span class="co">## *spectra_stash* in a temporary directory</span></span></span>
-<span class="r-in"><span><span class="va">ap</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/MsStash/man/AlabasterParam.html" class="external-link">AlabasterParam</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"spectra_stash"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"spectra_stash"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">ap</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/MsStash/man/AlabasterParam.html" class="external-link">AlabasterParam</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Stash the `Spectra` object copying in addition the MS data files into the</span></span></span>
 <span class="r-in"><span><span class="co">## stash (`consolidate = TRUE`).</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">saveMsObject</a></span><span class="op">(</span><span class="va">s</span>, <span class="va">ap</span>, consolidate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Show the content of the stash</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">dir</a></span><span class="op">(</span><span class="va">ap</span><span class="op">@</span><span class="va">path</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">dir</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "OBJECT"                        "_environment.json"            </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [3] "backend"                       "metadata"                     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [5] "processing"                    "processing_chunk_size"        </span>
@@ -248,16 +249,16 @@ in JSON format. It can be unserialized using <code><a href="https://jeroen.r-uni
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ... 25 more variables/columns.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> file(s):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> e267f7283de_7859</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> e2642dce0f1_7860</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5d2375ae7ba_7859</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5d22dcc7d0_7860</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Lazy evaluation queue: 1 processing step(s)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Processing:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Remove peaks with intensities outside [100, Inf] in spectra of MS level(s) 1. [Wed Jul 22 12:06:11 2026] </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Remove peaks with intensities outside [100, Inf] in spectra of MS level(s) 1. [Wed Jul 22 13:55:59 2026] </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## It is also possible to read individual contents from the stash. The</span></span></span>
 <span class="r-in"><span><span class="co">## directory *backend* contains for example the stashed `MsBackend` of the</span></span></span>
 <span class="r-in"><span><span class="co">## `Spectra` object. To read only the `MsBackend`:</span></span></span>
-<span class="r-in"><span><span class="va">ap2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/MsStash/man/AlabasterParam.html" class="external-link">AlabasterParam</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"spectra_stash"</span>, <span class="st">"backend"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">ap2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/MsStash/man/AlabasterParam.html" class="external-link">AlabasterParam</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">d</span>, <span class="st">"backend"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">readMsObject</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/Spectra/man/MsBackend.html" class="external-link">MsBackendMzR</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">ap2</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">b</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> MsBackendMzR with 1862 spectra</span>
@@ -277,13 +278,13 @@ in JSON format. It can be unserialized using <code><a href="https://jeroen.r-uni
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ... 25 more variables/columns.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> file(s):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> e267f7283de_7859</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> e2642dce0f1_7860</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5d2375ae7ba_7859</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5d22dcc7d0_7860</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Alternatively, that data can also be read directly with the `readObject()`</span></span></span>
 <span class="r-in"><span><span class="co">## method from the *alabaster.base* package:</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ArtifactDB/alabaster.base" class="external-link">alabaster.base</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/alabaster.base/man/readObject.html" class="external-link">readObject</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">ap</span><span class="op">@</span><span class="va">path</span>, <span class="st">"backend"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/alabaster.base/man/readObject.html" class="external-link">readObject</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">d</span>, <span class="st">"backend"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">b</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> MsBackendMzR with 1862 spectra</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        msLevel     rtime scanIndex</span>
@@ -302,8 +303,8 @@ in JSON format. It can be unserialized using <code><a href="https://jeroen.r-uni
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ... 25 more variables/columns.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> file(s):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> e267f7283de_7859</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> e2642dce0f1_7860</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5d2375ae7ba_7859</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5d22dcc7d0_7860</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
