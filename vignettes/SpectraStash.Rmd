@@ -11,7 +11,7 @@ vignette: >
     %\VignetteDepends{Spectra,SpectraStash,BiocStyle,alabaster.base,fs}
 ---
 
-```{r, echo = FALSE, message = FALSE}
+```{r general-setup, echo = FALSE, message = FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 library(BiocStyle)
 ```
@@ -54,7 +54,7 @@ and implementation notes.
 As an example we create below a `Spectra` object from two example MS data files
 from the *MsDataHub* package.
 
-```{r, message = FALSE}
+```{r setup, message = FALSE}
 library(Spectra)
 library(SpectraStash)
 library(MsDataHub)
@@ -67,7 +67,7 @@ sps
 We next filter the data restricting to spectra and mass peaks with a retention
 time between 20 and 200 seconds and an *m/z* between 110 and 120.
 
-```{r}
+```{r filter}
 sps <- filterRt(sps, c(20, 200))
 sps <- filterMzRange(sps, c(110, 120))
 sps
@@ -78,7 +78,7 @@ We next store this `Spectra` object to a *SpectraStash* using the
 the stash with the `path` parameter of `AlabasterParam`. For the present example
 we save it to a temporary folder.
 
-```{r}
+```{r save-alabaster}
 #' Define the location of the stash
 d <- file.path(tempfile(), "spectra_stash")
 
@@ -91,7 +91,7 @@ saveMsObject(sps, ap)
 
 The content of the stash folder is:
 
-```{r}
+```{r show-directory-content}
 library(fs)
 dir_tree(d)
 ```
@@ -102,7 +102,7 @@ sub directory. `Spectra` objects don't handle the MS data itself, but rely on a
 is stored into it's own stash located in the *backend* directory of the
 SpectraStash. The `Spectra` object can be restored again with `readMsObject()`:
 
-```{r}
+```{r read-alabaster}
 res <- readMsObject(Spectra(), ap)
 res
 ```
@@ -115,7 +115,7 @@ We can also read (restore) only the `MsBackend` from the SpectraStash. Since the
 present stash is in alabaster format we can either use `readMsObject()` or also
 the `readObject()` from *alabaster.base*:
 
-```{r}
+```{r read-alabaster-with-alabaster}
 library(alabaster.base)
 be <- readObject(file.path(d, "backend"))
 be
@@ -123,7 +123,7 @@ be
 
 Or using `readMsObject()`:
 
-```{r}
+```{r read-backend}
 be <- readMsObject(MsBackendMzR(), AlabasterParam(file.path(d, "backend")))
 be
 ```
@@ -144,7 +144,7 @@ MS data files would need to be provided with the `spectraPath` parameter of the
 below save our `Spectra` object again, this time into a self-contained
 stash.
 
-```{r}
+```{r consolidate-save-alabaster}
 d2 <- file.path(tempdir(), "spectra_stash2")
 saveMsObject(sps, AlabasterParam(d2), consolidate = TRUE)
 ```
@@ -153,7 +153,7 @@ The `consolidate = TRUE` parameter is passed to the `saveMsObject()` call of the
 `MsBackend`, which, for `MsBackendMzR` copies the original MS data files
 **into** the stash folder:
 
-```{r}
+```{r consolidate-show-directory-content}
 dir_tree(d2)
 ```
 
@@ -170,7 +170,7 @@ In addition to the *on-disk* backends `MsBackendMzR` and `MsBackendHdf5Peaks`,
 `MsBackendDataFrame`, which keep the full MS data in memory. Below we change the
 backend of our `sps` object to `MsBackendMemory`:
 
-```{r}
+```{r memory-backend}
 sps <- setBackend(sps, MsBackendMemory())
 sps
 ```
@@ -179,7 +179,7 @@ We next stash this updated `Spectra` object removing first the stash directory
 of the previous SpectraStash (because overwriting stash directories is not
 allowed).
 
-```{r, warning = FALSE}
+```{r memory-save-alabaster, warning = FALSE}
 #' Remove the existing SepctraStash
 unlink(d2, recursive = TRUE)
 
@@ -189,7 +189,7 @@ saveMsObject(sps, AlabasterParam(d2))
 
 Inspecting the content of the stash folder we can see a different structure:
 
-```{r}
+```{r memory-show-directory}
 dir_tree(d2)
 ```
 
@@ -199,13 +199,13 @@ changes the data first to a `MsBackendHdf5Peaks` backend which is then stored
 into an additional *backend* sub-folder of the stash. We can restore the
 `Spectra` object with:
 
-```{r}
+```{r memory-read-alabaster}
 readMsObject(Spectra(), AlabasterParam(d2))
 ```
 
 In addition, we can restore the `MsBackendMemory` with:
 
-```{r}
+```{r memory-read-alabaster-backend}
 readMsObject(MsBackendMemory(), AlabasterParam(file.path(d2, "backend")))
 ```
 
@@ -213,13 +213,13 @@ and also the `MsBackendHdf5Peaks` which is used as the actual data storage
 format for the in-memory `MsBackendMemory` (note the double *backend*
 sub-folder):
 
-```{r}
+```{r memory-read-alabaster-backend-backend}
 readMsObject(MsBackendHdf5Peaks(),
              AlabasterParam(file.path(d2, "backend", "backend")))
 ```
 
 # Session information
 
-```{r}
+```{r session-info}
 sessionInfo()
 ```

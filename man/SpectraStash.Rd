@@ -109,14 +109,15 @@ s <- filterIntensity(s, intensity = 100)
 ## Define the format and location of the `Spectra` stash: use the
 ## *alabaster*-based format and store the stash in a folder named
 ## *spectra_stash* in a temporary directory
-ap <- AlabasterParam(file.path(tempdir(), "spectra_stash"))
+d <- file.path(tempdir(), "spectra_stash")
+ap <- AlabasterParam(d)
 
 ## Stash the `Spectra` object copying in addition the MS data files into the
 ## stash (`consolidate = TRUE`).
 saveMsObject(s, ap, consolidate = TRUE)
 
 ## Show the content of the stash
-dir(ap@path)
+dir(d)
 
 ## Read the `Spectra` object from the stash:
 res <- readMsObject(Spectra(), ap)
@@ -125,14 +126,14 @@ res
 ## It is also possible to read individual contents from the stash. The
 ## directory *backend* contains for example the stashed `MsBackend` of the
 ## `Spectra` object. To read only the `MsBackend`:
-ap2 <- AlabasterParam(file.path(tempdir(), "spectra_stash", "backend"))
+ap2 <- AlabasterParam(file.path(d, "backend"))
 b <- readMsObject(MsBackendMzR(), ap2)
 b
 
 ## Alternatively, that data can also be read directly with the `readObject()`
 ## method from the *alabaster.base* package:
 library(alabaster.base)
-b <- readObject(file.path(ap@path, "backend"))
+b <- readObject(file.path(d, "backend"))
 b
 }
 \author{
