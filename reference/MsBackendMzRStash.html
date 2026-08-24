@@ -27,7 +27,7 @@ sections below."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">SpectraStash</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -206,7 +206,7 @@ mzXML or CDF files referred to by the <code>MsBackendMzR</code>).</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ... 34 more variables/columns.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> file(s):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5d27021cd51_7861</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18666ee06614_7861</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Define a folder where to stash the object</span></span></span>
 <span class="r-in"><span><span class="va">pth</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"mzr_stash"</span><span class="op">)</span></span></span>
@@ -234,7 +234,7 @@ mzXML or CDF files referred to by the <code>MsBackendMzR</code>).</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ... 27 more variables/columns.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> file(s):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5d27021cd51_7861</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18666ee06614_7861</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Clean-up</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="va">pth</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
@@ -245,7 +245,7 @@ mzXML or CDF files referred to by the <code>MsBackendMzR</code>).</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Get the directory content of the stash folder:</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">dir</a></span><span class="op">(</span><span class="va">pth</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "5d27021cd51_7861"  "OBJECT"            "_environment.json"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "18666ee06614_7861" "OBJECT"            "_environment.json"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [4] "spectra_data"     </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Restore the object</span></span></span>
@@ -268,7 +268,7 @@ mzXML or CDF files referred to by the <code>MsBackendMzR</code>).</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ... 27 more variables/columns.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> file(s):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5d27021cd51_7861</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18666ee06614_7861</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## If the data is exported with `consolidate = FALSE` (the default), the</span></span></span>
 <span class="r-in"><span><span class="co">## new location of MS data files could be provided with parameter</span></span></span>

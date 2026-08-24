@@ -130,6 +130,7 @@ be
 ## Stash the object in alabaster-format to a temporary folder
 p <- AlabasterParam(file.path(tempdir(), "mem_stash"))
 saveMsObject(be, p)
+#> Warning: Dataset already exists. Arguments `size`, `variableLengthString`, `encoding`, and `level` are ignored.
 
 ## Show directory content of the stash
 dir(file.path(tempdir(), "mem_stash"))

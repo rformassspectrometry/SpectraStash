@@ -2,6 +2,10 @@
 
 ## *SpectraStash* 0.97
 
+### Changes in version 0.99.1
+
+- Address review comments.
+
 ### Changes in version 0.99.0
 
 - Prepare for Bioconductor submission.
