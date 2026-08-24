@@ -1,10 +1,10 @@
 ---
-title: "Savely Store MS Data Objects in a Portable Stash"
+title: "Safely Store MS Data Objects in a Portable Stash"
 output:
     BiocStyle::html_document:
         toc_float: true
 vignette: >
-    %\VignetteIndexEntry{Savely Store MS Data Object in a Portable Stash}
+    %\VignetteIndexEntry{Safely Store MS Data Object in a Portable Stash}
     %\VignetteEngine{knitr::rmarkdown}
     %\VignetteEncoding{UTF-8}
     %\VignettePackage{SpectraStash}
@@ -27,14 +27,20 @@ generic methods to export and import mass spectrometry (MS) data objects in
 various storage formats aiming to facilitate data exchange between software. The
 *SpectraStash* package implements portable data storage formats (stashes) for
 data classes from the `r Biocpkg("Spectra")` package, including the `Spectra`
-object and it's various data backends.
+object and its various data backends.
 
 # Installation
 
-The package can be installed with the *BiocManager* package. To install
-*BiocManager* use `install.packages("BiocManager")` and, after that,
-`BiocManager::install("RforMassSpectrometry/SpectraStash")` to install this
-package.
+The package can be installed with the *BiocManager* package using the code
+below.
+
+```{r install, eval = FALSE}
+#' Install BiocManager if not already installed
+install.packages("BiocManager")
+
+#' Install SpectraStash from Bioconductor
+BiocManager::install("SpectraStash")
+```
 
 # A stash for `Spectra` objects
 
@@ -99,7 +105,7 @@ dir_tree(d)
 In alabaster format, each slot of the `Spectra` object is stored into its own
 sub directory. `Spectra` objects don't handle the MS data itself, but rely on a
 `MsBackend` to provide this data. The `MsBackend` used by the `Spectra` object
-is stored into it's own stash located in the *backend* directory of the
+is stored into its own stash located in the *backend* directory of the
 SpectraStash. The `Spectra` object can be restored again with `readMsObject()`:
 
 ```{r read-alabaster}

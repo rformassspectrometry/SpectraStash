@@ -9,29 +9,39 @@ importClassesFrom(Spectra,MsBackendMemory)
 importClassesFrom(Spectra,MsBackendMzR)
 importFrom(BiocParallel,SerialParam)
 importFrom(S4Vectors,DataFrame)
-importFrom(Spectra,MsBackendCached)
-importFrom(Spectra,MsBackendDataFrame)
-importFrom(Spectra,MsBackendHdf5Peaks)
-importFrom(Spectra,MsBackendMemory)
-importFrom(Spectra,MsBackendMzR)
-importFrom(Spectra,Spectra)
-importFrom(Spectra,backendInitialize)
-importFrom(alabaster.base,altReadObject)
-importFrom(alabaster.base,altSaveObject)
-importFrom(alabaster.base,readObject)
-importFrom(alabaster.base,readObjectFile)
-importFrom(alabaster.base,registerReadObjectFunction)
-importFrom(alabaster.base,registerValidateObjectFunction)
-importFrom(alabaster.base,saveObjectFile)
-importFrom(jsonlite,read_json)
-importFrom(jsonlite,serializeJSON)
-importFrom(jsonlite,unserializeJSON)
-importFrom(jsonlite,write_json)
-importFrom(methods,hasMethod)
-importFrom(methods,validObject)
+importFrom(Spectra,
+  MsBackendCached,
+  MsBackendDataFrame,
+  MsBackendHdf5Peaks,
+  MsBackendMemory,
+  MsBackendMzR,
+  Spectra,
+  backendInitialize
+)
+importFrom(alabaster.base,
+  altReadObject,
+  altSaveObject,
+  readObject,
+  readObjectFile,
+  registerReadObjectFunction,
+  registerValidateObjectFunction,
+  saveObjectFile
+)
+importFrom(jsonlite,
+  read_json,
+  serializeJSON,
+  unserializeJSON,
+  write_json
+)
+importFrom(methods,
+  hasMethod,
+  validObject
+)
 importFrom(stats,setNames)
-importFrom(utils,read.table)
-importFrom(utils,write.table)
+importFrom(utils,
+  read.table,
+  write.table
+)
 importMethodsFrom(MsStash,readMsObject)
 importMethodsFrom(MsStash,saveMsObject)
 importMethodsFrom(Spectra,"dataStorageBasePath<-")

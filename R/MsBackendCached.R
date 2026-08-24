@@ -121,10 +121,11 @@ setMethod("readMsObject", signature(object = "MsBackendCached",
               if (!file.exists(fl))
                   stop("No 'ms_backend_data.txt' file found in the path.")
               l2 <- readLines(fl, n = 2)
-              if (l2[1L] != "# MsBackendCached")
+              if (l2[1L] != "# MsBackendCached") {
+                  m <- paste0("\"", sub("#( )*", "", l2[1L]), "\"")
                   stop("Invalid class in 'ms_backend_data.txt' file. ",
-                       "Expected \"MsBackendCached\" but got: ",
-                       paste0("\"", sub("#( )*", "", l2[1L]), "\""))
+                       "Expected \"MsBackendCached\" but got: ", m)
+              }
               if (length(l2) > 1L) {
                   data <- read.table(file = fl, sep = "\t", header = TRUE)
                   rownames(data) <- NULL
