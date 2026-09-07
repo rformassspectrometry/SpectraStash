@@ -9,6 +9,8 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [![codecov](https://codecov.io/gh/rformassspectrometry/SpectraStash/graph/badge.svg?token=dOEe7No0HB)](https://codecov.io/gh/rformassspectrometry/SpectraStash)
 [![:name status
 badge](https://rformassspectrometry.r-universe.dev/badges/:name)](https://rformassspectrometry.r-universe.dev/)
+[![years in
+bioc](http://bioconductor.org/shields/years-in-bioc/SpectraStash.svg)](https://bioconductor.org/packages/SpectraStash)
 [![license](https://img.shields.io/badge/license-GPL--3.0-brightgreen.svg)](https://opensource.org/license/gpl-3.0)
 
 ------------------------------------------------------------------------
