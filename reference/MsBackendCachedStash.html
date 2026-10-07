@@ -8,8 +8,12 @@ variables without affecting the content of the underlying data base used by
 the MsBackendSql.
 The stash of a MsBackendCached contains therefore the local spectra data
 cache (if present), the names of the available spectra variables and the
-total number of spectra. Supported stash formats are listed in the sections
-below."><meta property="og:description" content="The Spectra::MsBackendCached backend keeps a cache of spectra metadata
+total number of spectra.
+Any classes extending MsBackendCached must implement their own
+saveMsObject() and readMsObject() methods and call callNextMethod() to
+trigger execution of the respective method from MsBackendCached storing
+respectively reading any cached data to (or from) the stash.
+Supported stash formats are listed in the sections below."><meta property="og:description" content="The Spectra::MsBackendCached backend keeps a cache of spectra metadata
 (spectra variables) in an internal data.frame adding thus support for
 (temporarily) changing or adding spectra variables for purely read-only
 MsBackend classes. This backend is used e.g. by the
@@ -18,8 +22,12 @@ variables without affecting the content of the underlying data base used by
 the MsBackendSql.
 The stash of a MsBackendCached contains therefore the local spectra data
 cache (if present), the names of the available spectra variables and the
-total number of spectra. Supported stash formats are listed in the sections
-below."><meta property="og:image" content="https://rformassspectrometry.github.io/SpectraStash/logo.png"></head><body>
+total number of spectra.
+Any classes extending MsBackendCached must implement their own
+saveMsObject() and readMsObject() methods and call callNextMethod() to
+trigger execution of the respective method from MsBackendCached storing
+respectively reading any cached data to (or from) the stash.
+Supported stash formats are listed in the sections below."><meta property="og:image" content="https://rformassspectrometry.github.io/SpectraStash/logo.png"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -27,7 +35,7 @@ below."><meta property="og:image" content="https://rformassspectrometry.github.i
 
     <a class="navbar-brand me-2" href="../index.html">SpectraStash</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,8 +71,12 @@ variables without affecting the content of the underlying data base used by
 the <code>MsBackendSql</code>.</p>
 <p>The stash of a <code>MsBackendCached</code> contains therefore the local spectra data
 cache (if present), the names of the available spectra variables and the
-total number of spectra. Supported stash formats are listed in the sections
-below.</p>
+total number of spectra.</p>
+<p>Any classes extending <code>MsBackendCached</code> <strong>must</strong> implement their own
+<code>saveMsObject()</code> and <code>readMsObject()</code> methods and call <code>callNextMethod()</code> to
+trigger execution of the respective method from <code>MsBackendCached</code> storing
+respectively reading any cached data to (or from) the stash.</p>
+<p>Supported stash formats are listed in the sections below.</p>
     </div>
 
     <div class="section level2">
@@ -120,8 +132,8 @@ object should be stored into.</p></dd>
 <code>MsBackendCached</code>:</p><ul><li><p><code>saveMsObject()</code> and <code>saveObject()</code> will fail if the stash directory
 already exist. Thus, stash functions of backend implementations extending
 <code>MsBackendCached</code> should <strong>first</strong> call the <code>MsBackendCached</code>'s
-<code>saveMsObject()</code> or <code>saveObject()</code> <strong>before</strong> exporting their respective
-content to the stash directory.</p></li>
+<code>saveMsObject()</code> or <code>saveObject()</code> (e.g. through <code>callNextMethod()</code>)
+<strong>before</strong> exporting their respective content to the stash directory.</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="alabaster-based-format-alabasterparam"><em>alabaster</em>-based format, <code>AlabasterParam</code><a class="anchor" aria-label="anchor" href="#alabaster-based-format-alabasterparam"></a></h2>

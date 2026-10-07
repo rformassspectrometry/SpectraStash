@@ -13,7 +13,7 @@ generic methods to export and import mass spectrometry (MS) data objects
 in various storage formats aiming to facilitate data exchange between
 software. The *SpectraStash* package implements portable data storage
 formats (stashes) for data classes from the
-*[Spectra](https://bioconductor.org/packages/3.24/Spectra)* package,
+*[Spectra](https://bioconductor.org/packages/3.23/Spectra)* package,
 including the `Spectra` object and its various data backends.
 
 ## Installation
@@ -21,7 +21,12 @@ including the `Spectra` object and its various data backends.
 The package can be installed with the *BiocManager* package using the
 code below.
 
-`#' Install BiocManager if not already installed`` `[`install.packages`](https://rdrr.io/r/utils/install.packages.html)`(``"BiocManager"``)`` `` ``#' Install SpectraStash from Bioconductor`` ``BiocManager``::`[`install`](https://bioconductor.github.io/BiocManager/reference/install.html)`(``"SpectraStash"``)`
+\
+`#' Install BiocManager if not already installed`\
+[`install.packages`](https://rdrr.io/r/utils/install.packages.html)`(``"BiocManager"``)`\
+\
+`#' Install SpectraStash from Bioconductor`\
+`BiocManager``::`[`install`](https://bioconductor.github.io/BiocManager/reference/install.html)`(``"SpectraStash"``)`
 
 ## A stash for `Spectra` objects
 
@@ -43,13 +48,20 @@ their respective parameter objects are:
   from *alabaster.base*.
 
 See also the vignette from the
-*[MsStash](https://bioconductor.org/packages/3.24/MsStash)* for details
+*[MsStash](https://bioconductor.org/packages/3.23/MsStash)* for details
 on the formats and implementation notes.
 
 As an example we create below a `Spectra` object from two example MS
 data files from the *MsDataHub* package.
 
-[`library`](https://rdrr.io/r/base/library.html)`(`[`Spectra`](https://github.com/RforMassSpectrometry/Spectra)`)`` `[`library`](https://rdrr.io/r/base/library.html)`(`[`SpectraStash`](https://github.com/RforMassSpectrometry/SpectraStash)`)`` `[`library`](https://rdrr.io/r/base/library.html)`(`[`MsDataHub`](https://rformassspectrometry.github.io/MsDataHub)`)`` ``fls`` ``<-`` `[`c`](https://rdrr.io/r/base/c.html)`(`[`X20171016_POOL_POS_1_105.134.mzML`](https://rformassspectrometry.github.io/MsDataHub/reference/sciex.html)`(``)``,`` `` `[`X20171016_POOL_POS_3_105.134.mzML`](https://rformassspectrometry.github.io/MsDataHub/reference/sciex.html)`(``)``)`` ``sps`` ``<-`` `[`Spectra`](https://rdrr.io/pkg/Spectra/man/Spectra.html)`(``fls``)`` ``sps`
+\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`Spectra`](https://github.com/RforMassSpectrometry/Spectra)`)`\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`SpectraStash`](https://github.com/RforMassSpectrometry/SpectraStash)`)`\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`MsDataHub`](https://rformassspectrometry.github.io/MsDataHub)`)`\
+`fls`` ``<-`` `[`c`](https://rdrr.io/r/base/c.html)`(`[`X20171016_POOL_POS_1_105.134.mzML`](https://rformassspectrometry.github.io/MsDataHub/reference/sciex.html)`(``)``,`\
+`         `[`X20171016_POOL_POS_3_105.134.mzML`](https://rformassspectrometry.github.io/MsDataHub/reference/sciex.html)`(``)``)`\
+`sps`` ``<-`` `[`Spectra`](https://rdrr.io/pkg/Spectra/man/Spectra.html)`(``fls``)`\
+`sps`
 
     ## MSn data (Spectra) with 1862 spectra in a MsBackendMzR backend:
     ##        msLevel     rtime scanIndex
@@ -68,14 +80,17 @@ data files from the *MsDataHub* package.
     ##  ... 34 more variables/columns.
     ## 
     ## file(s):
-    ## 98e1c57d169_7859
-    ## 98e4649082a_7860
+    ## 193b5b78742c_7859
+    ## 193b5714539b_7860
 
 We next filter the data restricting to spectra and mass peaks with a
 retention time between 20 and 200 seconds and an *m/z* between 110 and
 120.
 
-`sps`` ``<-`` `[`filterRt`](https://rdrr.io/pkg/ProtGenerics/man/protgenerics.html)`(``sps``, `[`c`](https://rdrr.io/r/base/c.html)`(``20``, ``200``)``)`` ``sps`` ``<-`` `[`filterMzRange`](https://rdrr.io/pkg/ProtGenerics/man/protgenerics.html)`(``sps``, `[`c`](https://rdrr.io/r/base/c.html)`(``110``, ``120``)``)`` ``sps`
+\
+`sps`` ``<-`` `[`filterRt`](https://rdrr.io/pkg/ProtGenerics/man/protgenerics.html)`(``sps``, `[`c`](https://rdrr.io/r/base/c.html)`(``20``, ``200``)``)`\
+`sps`` ``<-`` `[`filterMzRange`](https://rdrr.io/pkg/ProtGenerics/man/protgenerics.html)`(``sps``, `[`c`](https://rdrr.io/r/base/c.html)`(``110``, ``120``)``)`\
+`sps`
 
     ## MSn data (Spectra) with 1290 spectra in a MsBackendMzR backend:
     ##        msLevel     rtime scanIndex
@@ -94,12 +109,12 @@ retention time between 20 and 200 seconds and an *m/z* between 110 and
     ##  ... 34 more variables/columns.
     ## 
     ## file(s):
-    ## 98e1c57d169_7859
-    ## 98e4649082a_7860
+    ## 193b5b78742c_7859
+    ## 193b5714539b_7860
     ## Lazy evaluation queue: 1 processing step(s)
     ## Processing:
-    ##  Filter: select retention time [20..200] on MS level(s)  [Thu Sep 10 05:56:10 2026]
-    ##  Filter: select peaks with an m/z within [110, 120] [Thu Sep 10 05:56:10 2026]
+    ##  Filter: select retention time [20..200] on MS level(s)  [Wed Oct  7 08:55:55 2026]
+    ##  Filter: select peaks with an m/z within [110, 120] [Wed Oct  7 08:55:55 2026]
 
 We next store this `Spectra` object to a *SpectraStash* using the
 [`saveMsObject()`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html)
@@ -107,13 +122,23 @@ function. We use an alabaster format and define the location of the
 stash with the `path` parameter of `AlabasterParam`. For the present
 example we save it to a temporary folder.
 
-`#' Define the location of the stash`` ``d`` ``<-`` `[`file.path`](https://rdrr.io/r/base/file.path.html)`(`[`tempfile`](https://rdrr.io/r/base/tempfile.html)`(``)``, ``"spectra_stash"``)`` `` ``#' Configure the format and location`` ``ap`` ``<-`` `[`AlabasterParam`](https://rdrr.io/pkg/MsStash/man/AlabasterParam.html)`(``d``)`` `` ``` #' Save the `Spectra` object to the stash ``` `[`saveMsObject`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html)`(``sps``, ``ap``)`
+\
+`#' Define the location of the stash`\
+`d`` ``<-`` `[`file.path`](https://rdrr.io/r/base/file.path.html)`(`[`tempfile`](https://rdrr.io/r/base/tempfile.html)`(``)``, ``"spectra_stash"``)`\
+\
+`#' Configure the format and location`\
+`ap`` ``<-`` `[`AlabasterParam`](https://rdrr.io/pkg/MsStash/man/AlabasterParam.html)`(``d``)`\
+\
+`` #' Save the `Spectra` object to the stash ``\
+[`saveMsObject`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html)`(``sps``, ``ap``)`
 
 The content of the stash folder is:
 
-[`library`](https://rdrr.io/r/base/library.html)`(`[`fs`](https://fs.r-lib.org)`)`` `[`dir_tree`](https://fs.r-lib.org/reference/dir_tree.html)`(``d``)`
+\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`fs`](https://fs.r-lib.org)`)`\
+[`dir_tree`](https://fs.r-lib.org/reference/dir_tree.html)`(``d``)`
 
-    ## /tmp/Rtmp82B4TR/fileba252519aa3/spectra_stash
+    ## /tmp/RtmpyuLs2P/file1b4e2af540c6/spectra_stash
     ## ├── OBJECT
     ## ├── _environment.json
     ## ├── backend
@@ -143,7 +168,9 @@ used by the `Spectra` object is stored into its own stash located in the
 restored again with
 [`readMsObject()`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html):
 
-`res`` ``<-`` `[`readMsObject`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html)`(`[`Spectra`](https://rdrr.io/pkg/Spectra/man/Spectra.html)`(``)``, ``ap``)`` ``res`
+\
+`res`` ``<-`` `[`readMsObject`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html)`(`[`Spectra`](https://rdrr.io/pkg/Spectra/man/Spectra.html)`(``)``, ``ap``)`\
+`res`
 
     ## MSn data (Spectra) with 1290 spectra in a MsBackendMzR backend:
     ##        msLevel     rtime scanIndex
@@ -162,12 +189,12 @@ restored again with
     ##  ... 25 more variables/columns.
     ## 
     ## file(s):
-    ## 98e1c57d169_7859
-    ## 98e4649082a_7860
+    ## 193b5b78742c_7859
+    ## 193b5714539b_7860
     ## Lazy evaluation queue: 1 processing step(s)
     ## Processing:
-    ##  Filter: select retention time [20..200] on MS level(s)  [Thu Sep 10 05:56:10 2026]
-    ##  Filter: select peaks with an m/z within [110, 120] [Thu Sep 10 05:56:10 2026]
+    ##  Filter: select retention time [20..200] on MS level(s)  [Wed Oct  7 08:55:55 2026]
+    ##  Filter: select peaks with an m/z within [110, 120] [Wed Oct  7 08:55:55 2026]
 
 We need to specify the type of the object to restore with the first
 parameter of the function - in our case
@@ -182,7 +209,10 @@ also the
 [`readObject()`](https://rdrr.io/pkg/alabaster.base/man/readObject.html)
 from *alabaster.base*:
 
-[`library`](https://rdrr.io/r/base/library.html)`(`[`alabaster.base`](https://github.com/ArtifactDB/alabaster.base)`)`` ``be`` ``<-`` `[`readObject`](https://rdrr.io/pkg/alabaster.base/man/readObject.html)`(`[`file.path`](https://rdrr.io/r/base/file.path.html)`(``d``, ``"backend"``)``)`` ``be`
+\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`alabaster.base`](https://github.com/ArtifactDB/alabaster.base)`)`\
+`be`` ``<-`` `[`readObject`](https://rdrr.io/pkg/alabaster.base/man/readObject.html)`(`[`file.path`](https://rdrr.io/r/base/file.path.html)`(``d``, ``"backend"``)``)`\
+`be`
 
     ## MsBackendMzR with 1290 spectra
     ##        msLevel     rtime scanIndex
@@ -201,13 +231,15 @@ from *alabaster.base*:
     ##  ... 25 more variables/columns.
     ## 
     ## file(s):
-    ## 98e1c57d169_7859
-    ## 98e4649082a_7860
+    ## 193b5b78742c_7859
+    ## 193b5714539b_7860
 
 Or using
 [`readMsObject()`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html):
 
-`be`` ``<-`` `[`readMsObject`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html)`(`[`MsBackendMzR`](https://rdrr.io/pkg/Spectra/man/MsBackend.html)`(``)``, `[`AlabasterParam`](https://rdrr.io/pkg/MsStash/man/AlabasterParam.html)`(`[`file.path`](https://rdrr.io/r/base/file.path.html)`(``d``, ``"backend"``)``)``)`` ``be`
+\
+`be`` ``<-`` `[`readMsObject`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html)`(`[`MsBackendMzR`](https://rdrr.io/pkg/Spectra/man/MsBackend.html)`(``)``, `[`AlabasterParam`](https://rdrr.io/pkg/MsStash/man/AlabasterParam.html)`(`[`file.path`](https://rdrr.io/r/base/file.path.html)`(``d``, ``"backend"``)``)``)`\
+`be`
 
     ## MsBackendMzR with 1290 spectra
     ##        msLevel     rtime scanIndex
@@ -226,8 +258,8 @@ Or using
     ##  ... 25 more variables/columns.
     ## 
     ## file(s):
-    ## 98e1c57d169_7859
-    ## 98e4649082a_7860
+    ## 193b5b78742c_7859
+    ## 193b5714539b_7860
 
 ### Creating self-contained stashes
 
@@ -249,21 +281,24 @@ function. As an alternative, it is also possible to create a
 We below save our `Spectra` object again, this time into a
 self-contained stash.
 
-`d2`` ``<-`` `[`file.path`](https://rdrr.io/r/base/file.path.html)`(`[`tempdir`](https://rdrr.io/r/base/tempfile.html)`(``)``, ``"spectra_stash2"``)`` `[`saveMsObject`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html)`(``sps``, `[`AlabasterParam`](https://rdrr.io/pkg/MsStash/man/AlabasterParam.html)`(``d2``)``, consolidate ``=`` ``TRUE``)`
+\
+`d2`` ``<-`` `[`file.path`](https://rdrr.io/r/base/file.path.html)`(`[`tempdir`](https://rdrr.io/r/base/tempfile.html)`(``)``, ``"spectra_stash2"``)`\
+[`saveMsObject`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html)`(``sps``, `[`AlabasterParam`](https://rdrr.io/pkg/MsStash/man/AlabasterParam.html)`(``d2``)``, consolidate ``=`` ``TRUE``)`
 
 The `consolidate = TRUE` parameter is passed to the
 [`saveMsObject()`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html)
 call of the `MsBackend`, which, for `MsBackendMzR` copies the original
 MS data files **into** the stash folder:
 
+\
 [`dir_tree`](https://fs.r-lib.org/reference/dir_tree.html)`(``d2``)`
 
-    ## /tmp/Rtmp82B4TR/spectra_stash2
+    ## /tmp/RtmpyuLs2P/spectra_stash2
     ## ├── OBJECT
     ## ├── _environment.json
     ## ├── backend
-    ## │   ├── 98e1c57d169_7859
-    ## │   ├── 98e4649082a_7860
+    ## │   ├── 193b5714539b_7860
+    ## │   ├── 193b5b78742c_7859
     ## │   ├── OBJECT
     ## │   └── spectra_data
     ## │       ├── OBJECT
@@ -297,7 +332,9 @@ In addition to the *on-disk* backends `MsBackendMzR` and
 in memory. Below we change the backend of our `sps` object to
 `MsBackendMemory`:
 
-`sps`` ``<-`` `[`setBackend`](https://rdrr.io/pkg/ProtGenerics/man/backendInitialize.html)`(``sps``, `[`MsBackendMemory`](https://rdrr.io/pkg/Spectra/man/MsBackend.html)`(``)``)`` ``sps`
+\
+`sps`` ``<-`` `[`setBackend`](https://rdrr.io/pkg/ProtGenerics/man/backendInitialize.html)`(``sps``, `[`MsBackendMemory`](https://rdrr.io/pkg/Spectra/man/MsBackend.html)`(``)``)`\
+`sps`
 
     ## MSn data (Spectra) with 1290 spectra in a MsBackendMemory backend:
     ##        msLevel     rtime scanIndex
@@ -316,22 +353,28 @@ in memory. Below we change the backend of our `sps` object to
     ##  ... 34 more variables/columns.
     ## Lazy evaluation queue: 1 processing step(s)
     ## Processing:
-    ##  Filter: select retention time [20..200] on MS level(s)  [Thu Sep 10 05:56:10 2026]
-    ##  Filter: select peaks with an m/z within [110, 120] [Thu Sep 10 05:56:10 2026]
-    ##  Switch backend from MsBackendMzR to MsBackendMemory [Thu Sep 10 05:56:12 2026]
+    ##  Filter: select retention time [20..200] on MS level(s)  [Wed Oct  7 08:55:55 2026]
+    ##  Filter: select peaks with an m/z within [110, 120] [Wed Oct  7 08:55:55 2026]
+    ##  Switch backend from MsBackendMzR to MsBackendMemory [Wed Oct  7 08:55:57 2026]
 
 We next stash this updated `Spectra` object removing first the stash
 directory of the previous SpectraStash (because overwriting stash
 directories is not allowed).
 
-`#' Remove the existing SepctraStash`` `[`unlink`](https://rdrr.io/r/base/unlink.html)`(``d2``, recursive ``=`` ``TRUE``)`` `` ``` #' Store the `Spectra` object in alabaster format ``` `[`saveMsObject`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html)`(``sps``, `[`AlabasterParam`](https://rdrr.io/pkg/MsStash/man/AlabasterParam.html)`(``d2``)``)`
+\
+`#' Remove the existing SepctraStash`\
+[`unlink`](https://rdrr.io/r/base/unlink.html)`(``d2``, recursive ``=`` ``TRUE``)`\
+\
+`` #' Store the `Spectra` object in alabaster format ``\
+[`saveMsObject`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html)`(``sps``, `[`AlabasterParam`](https://rdrr.io/pkg/MsStash/man/AlabasterParam.html)`(``d2``)``)`
 
 Inspecting the content of the stash folder we can see a different
 structure:
 
+\
 [`dir_tree`](https://fs.r-lib.org/reference/dir_tree.html)`(``d2``)`
 
-    ## /tmp/Rtmp82B4TR/spectra_stash2
+    ## /tmp/RtmpyuLs2P/spectra_stash2
     ## ├── OBJECT
     ## ├── _environment.json
     ## ├── backend
@@ -365,7 +408,8 @@ backends changes the data first to a `MsBackendHdf5Peaks` backend which
 is then stored into an additional *backend* sub-folder of the stash. We
 can restore the `Spectra` object with:
 
-[`readMsObject`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html)`(`[`Spectra`](https://rdrr.io/pkg/Spectra/man/Spectra.html)`(``)``, `[`AlabasterParam`](https://rdrr.io/pkg/MsStash/man/AlabasterParam.html)`(``d2``)``)`
+\
+[`readMsObject`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html)`(`[`Spectra`](https://rdrr.io/pkg/Spectra/man/Spectra.html)`(``)``, `[`AlabasterParam`](https://rdrr.io/pkg/MsStash/man/AlabasterParam.html)`(``d2``)``)`
 
     ## MSn data (Spectra) with 1290 spectra in a MsBackendMemory backend:
     ##        msLevel     rtime scanIndex
@@ -384,13 +428,14 @@ can restore the `Spectra` object with:
     ##  ... 25 more variables/columns.
     ## Lazy evaluation queue: 1 processing step(s)
     ## Processing:
-    ##  Filter: select retention time [20..200] on MS level(s)  [Thu Sep 10 05:56:10 2026]
-    ##  Filter: select peaks with an m/z within [110, 120] [Thu Sep 10 05:56:10 2026]
-    ##  Switch backend from MsBackendMzR to MsBackendMemory [Thu Sep 10 05:56:12 2026]
+    ##  Filter: select retention time [20..200] on MS level(s)  [Wed Oct  7 08:55:55 2026]
+    ##  Filter: select peaks with an m/z within [110, 120] [Wed Oct  7 08:55:55 2026]
+    ##  Switch backend from MsBackendMzR to MsBackendMemory [Wed Oct  7 08:55:57 2026]
 
 In addition, we can restore the `MsBackendMemory` with:
 
-[`readMsObject`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html)`(`[`MsBackendMemory`](https://rdrr.io/pkg/Spectra/man/MsBackend.html)`(``)``, `[`AlabasterParam`](https://rdrr.io/pkg/MsStash/man/AlabasterParam.html)`(`[`file.path`](https://rdrr.io/r/base/file.path.html)`(``d2``, ``"backend"``)``)``)`
+\
+[`readMsObject`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html)`(`[`MsBackendMemory`](https://rdrr.io/pkg/Spectra/man/MsBackend.html)`(``)``, `[`AlabasterParam`](https://rdrr.io/pkg/MsStash/man/AlabasterParam.html)`(`[`file.path`](https://rdrr.io/r/base/file.path.html)`(``d2``, ``"backend"``)``)``)`
 
     ## MsBackendMemory with 1290 spectra
     ##        msLevel     rtime scanIndex
@@ -412,7 +457,9 @@ and also the `MsBackendHdf5Peaks` which is used as the actual data
 storage format for the in-memory `MsBackendMemory` (note the double
 *backend* sub-folder):
 
-[`readMsObject`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html)`(`[`MsBackendHdf5Peaks`](https://rdrr.io/pkg/Spectra/man/MsBackend.html)`(``)``,`` `` `[`AlabasterParam`](https://rdrr.io/pkg/MsStash/man/AlabasterParam.html)`(`[`file.path`](https://rdrr.io/r/base/file.path.html)`(``d2``, ``"backend"``, ``"backend"``)``)``)`
+\
+[`readMsObject`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html)`(`[`MsBackendHdf5Peaks`](https://rdrr.io/pkg/Spectra/man/MsBackend.html)`(``)``,`\
+`             `[`AlabasterParam`](https://rdrr.io/pkg/MsStash/man/AlabasterParam.html)`(`[`file.path`](https://rdrr.io/r/base/file.path.html)`(``d2``, ``"backend"``, ``"backend"``)``)``)`
 
     ## MsBackendHdf5Peaks with 1290 spectra
     ##        msLevel     rtime scanIndex
@@ -435,6 +482,7 @@ storage format for the in-memory `MsBackendMemory` (note the double
 
 ## Session information
 
+\
 [`sessionInfo`](https://rdrr.io/r/utils/sessionInfo.html)`(``)`
 
     ## R version 4.6.1 (2026-06-24)
@@ -461,10 +509,10 @@ storage format for the in-memory `MsBackendMemory` (note the double
     ## [8] base     
     ## 
     ## other attached packages:
-    ##  [1] alabaster.base_1.13.4 fs_2.1.0              MsDataHub_1.13.1     
-    ##  [4] SpectraStash_0.99.2   MsStash_0.99.0        Spectra_1.23.4       
-    ##  [7] BiocParallel_1.47.0   S4Vectors_0.51.9      BiocGenerics_0.59.12 
-    ## [10] generics_0.1.4        BiocStyle_2.41.0     
+    ##  [1] alabaster.base_1.13.4 fs_2.1.0              MsDataHub_1.13.3     
+    ##  [4] SpectraStash_0.99.3   MsStash_0.99.0        Spectra_1.23.5       
+    ##  [7] BiocParallel_1.47.0   S4Vectors_0.51.10     BiocGenerics_0.59.12 
+    ## [10] generics_0.1.4        BiocStyle_2.40.0     
     ## 
     ## loaded via a namespace (and not attached):
     ##  [1] tidyselect_1.2.1         dplyr_1.2.1              blob_1.3.0              
@@ -477,20 +525,20 @@ storage format for the in-memory `MsBackendMemory` (note the double
     ## [22] htmlwidgets_1.6.4        bit_4.6.0                curl_8.0.0              
     ## [25] withr_3.0.3              purrr_1.2.2              desc_1.4.3              
     ## [28] ExperimentHub_3.3.2      Rhdf5lib_2.1.0           MASS_7.3-66             
-    ## [31] cli_3.6.6                mzR_2.47.1               rmarkdown_2.32          
+    ## [31] cli_3.6.6                mzR_2.46.0               rmarkdown_2.32          
     ## [34] crayon_1.5.3             ragg_1.5.2               otel_0.2.0              
     ## [37] httr_1.4.9               BiocBaseUtils_1.15.1     ncdf4_1.24              
-    ## [40] DBI_1.3.0                cachem_1.1.0             rhdf5_2.57.12           
+    ## [40] DBI_1.3.0                cachem_1.1.0             rhdf5_2.57.19           
     ## [43] parallel_4.6.1           AnnotationDbi_1.75.2     BiocManager_1.30.27     
     ## [46] XVector_0.53.0           alabaster.schemas_1.13.0 vctrs_0.7.3             
     ## [49] jsonlite_2.0.0           bookdown_0.48            IRanges_2.47.5          
     ## [52] bit64_4.8.6              clue_0.3-68              systemfonts_1.3.2       
     ## [55] jquerylib_0.1.4          glue_1.8.1               pkgdown_2.2.1.9000      
-    ## [58] codetools_0.2-20         BiocVersion_3.24.0       tibble_3.3.1            
+    ## [58] codetools_0.2-20         BiocVersion_3.23.1       tibble_3.3.1            
     ## [61] pillar_1.11.1            rappdirs_0.3.4           htmltools_0.5.9         
     ## [64] Seqinfo_1.3.2            rhdf5filters_1.25.4      R6_2.6.1                
     ## [67] dbplyr_2.6.0             httr2_1.3.0              textshaping_1.0.5       
     ## [70] evaluate_1.0.5           Biobase_2.73.2           AnnotationHub_4.3.2     
     ## [73] png_0.1-9                memoise_2.0.1            bslib_0.12.0            
-    ## [76] MetaboCoreUtils_1.21.1   Rcpp_1.1.2               xfun_0.60               
+    ## [76] MetaboCoreUtils_1.21.1   Rcpp_1.1.2               xfun_0.61               
     ## [79] MsCoreUtils_1.25.4       pkgconfig_2.0.3

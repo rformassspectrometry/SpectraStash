@@ -11,8 +11,15 @@ underlying data base used by the `MsBackendSql`.
 
 The stash of a `MsBackendCached` contains therefore the local spectra
 data cache (if present), the names of the available spectra variables
-and the total number of spectra. Supported stash formats are listed in
-the sections below.
+and the total number of spectra.
+
+Any classes extending `MsBackendCached` **must** implement their own
+`saveMsObject()` and `readMsObject()` methods and call
+`callNextMethod()` to trigger execution of the respective method from
+`MsBackendCached` storing respectively reading any cached data to (or
+from) the stash.
+
+Supported stash formats are listed in the sections below.
 
 ## Usage
 
@@ -70,8 +77,9 @@ Notes for stash-functionality for `MsBackend` objects extending
 - `saveMsObject()` and `saveObject()` will fail if the stash directory
   already exist. Thus, stash functions of backend implementations
   extending `MsBackendCached` should **first** call the
-  `MsBackendCached`'s `saveMsObject()` or `saveObject()` **before**
-  exporting their respective content to the stash directory.
+  `MsBackendCached`'s `saveMsObject()` or `saveObject()` (e.g. through
+  `callNextMethod()`) **before** exporting their respective content to
+  the stash directory.
 
 ## *alabaster*-based format, `AlabasterParam`
 
