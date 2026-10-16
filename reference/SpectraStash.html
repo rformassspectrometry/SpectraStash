@@ -11,6 +11,11 @@ are supported:
 MsBackendMzR: see MsBackendMzRStash for details and options.
 MsBackendHdf5Peaks: see MsBackendHdf5PeaksStash for details and
 options.
+MsBackendMemory: see MsBackendMemoryStash for details and options.
+MsBackendDataFrame: see MsBackendMemoryStash for details and options.
+MsBackendOfflineSql (defined in the
+MsBackendSql package):
+see MsBackendSqlStash for details and options.
 
 
 The data backend of any Spectra backend can eventually be changed to one
@@ -30,6 +35,11 @@ are supported:
 MsBackendMzR: see MsBackendMzRStash for details and options.
 MsBackendHdf5Peaks: see MsBackendHdf5PeaksStash for details and
 options.
+MsBackendMemory: see MsBackendMemoryStash for details and options.
+MsBackendDataFrame: see MsBackendMemoryStash for details and options.
+MsBackendOfflineSql (defined in the
+MsBackendSql package):
+see MsBackendSqlStash for details and options.
 
 
 The data backend of any Spectra backend can eventually be changed to one
@@ -45,7 +55,7 @@ Details on the stash formats are provided in the respective sections below."><me
 
     <a class="navbar-brand me-2" href="../index.html">SpectraStash</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -83,6 +93,11 @@ contain the MS data files.</p>
 are supported:</p><ul><li><p><code>MsBackendMzR</code>: see <a href="MsBackendMzRStash.html">MsBackendMzRStash</a> for details and options.</p></li>
 <li><p><code>MsBackendHdf5Peaks</code>: see <a href="MsBackendHdf5PeaksStash.html">MsBackendHdf5PeaksStash</a> for details and
 options.</p></li>
+<li><p><code>MsBackendMemory</code>: see <a href="MsBackendMemoryStash.html">MsBackendMemoryStash</a> for details and options.</p></li>
+<li><p><code>MsBackendDataFrame</code>: see <a href="MsBackendMemoryStash.html">MsBackendMemoryStash</a> for details and options.</p></li>
+<li><p><code>MsBackendOfflineSql</code> (defined in the
+<a href="https://bioconductor.org/packages/MsBackendSql" class="external-link"><em>MsBackendSql</em></a> package):
+see <a href="MsBackendSqlStash.html">MsBackendSqlStash</a> for details and options.</p></li>
 </ul><p>The data backend of any <code>Spectra</code> backend can eventually be changed to one
 of the above backends using the <code><a href="https://rdrr.io/pkg/ProtGenerics/man/backendInitialize.html" class="external-link">Spectra::setBackend()</a></code> method to support
 saving the object into a <code>Spectra</code> stash. Support for additional backends
@@ -204,8 +219,8 @@ in JSON format. It can be unserialized using <code><a href="https://jeroen.r-uni
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ... 34 more variables/columns.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> file(s):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 193b5b78742c_7859</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 193b5714539b_7860</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19b63468b7dc_7859</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19b64ad35904_7860</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Filter the intensities of the Spectra removing peaks with an intensity</span></span></span>
 <span class="r-in"><span><span class="co">## below 100</span></span></span>
@@ -248,11 +263,11 @@ in JSON format. It can be unserialized using <code><a href="https://jeroen.r-uni
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ... 25 more variables/columns.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> file(s):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 193b5b78742c_7859</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 193b5714539b_7860</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19b63468b7dc_7859</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19b64ad35904_7860</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Lazy evaluation queue: 1 processing step(s)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Processing:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Remove peaks with intensities outside [100, Inf] in spectra of MS level(s) 1. [Wed Oct  7 08:55:45 2026] </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Remove peaks with intensities outside [100, Inf] in spectra of MS level(s) 1. [Fri Oct 16 14:05:23 2026] </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## It is also possible to read individual contents from the stash. The</span></span></span>
 <span class="r-in"><span><span class="co">## directory *backend* contains for example the stashed `MsBackend` of the</span></span></span>
@@ -277,8 +292,8 @@ in JSON format. It can be unserialized using <code><a href="https://jeroen.r-uni
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ... 25 more variables/columns.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> file(s):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 193b5b78742c_7859</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 193b5714539b_7860</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19b63468b7dc_7859</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19b64ad35904_7860</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Alternatively, that data can also be read directly with the `readObject()`</span></span></span>
 <span class="r-in"><span><span class="co">## method from the *alabaster.base* package:</span></span></span>
@@ -302,8 +317,8 @@ in JSON format. It can be unserialized using <code><a href="https://jeroen.r-uni
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ... 25 more variables/columns.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> file(s):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 193b5b78742c_7859</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 193b5714539b_7860</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19b63468b7dc_7859</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19b64ad35904_7860</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

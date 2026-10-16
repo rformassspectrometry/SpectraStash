@@ -34,6 +34,10 @@
   [`readMsObject(`*`<MsBackendMzR>`*`,`*`<AlabasterParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendMzRStash.md)
   : MsBackendMzR Stash
 
+- [`saveMsObject(`*`<MsBackendOfflineSql>`*`,`*`<PlainTextParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendSqlStash.md)
+  [`readMsObject(`*`<MsBackendOfflineSql>`*`,`*`<PlainTextParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendSqlStash.md)
+  : Stash for SQL-based backends
+
 - [`saveMsObject(`*`<Spectra>`*`,`*`<PlainTextParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/SpectraStash.md)
   [`readMsObject(`*`<Spectra>`*`,`*`<PlainTextParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/SpectraStash.md)
   [`saveObject(`*`<Spectra>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/SpectraStash.md)

@@ -5,9 +5,10 @@ The
 backend keeps a cache of spectra metadata (spectra variables) in an
 internal `data.frame` adding thus support for (temporarily) changing or
 adding spectra variables for purely read-only `MsBackend` classes. This
-backend is used e.g. by the MsBackendSql::MsBackendSql backend allowing
-to add or replace spectra variables without affecting the content of the
-underlying data base used by the `MsBackendSql`.
+backend is used e.g. by the
+[MsBackendSql::MsBackendSql](https://rdrr.io/pkg/MsBackendSql/man/MsBackendSql.html)
+backend allowing to add or replace spectra variables without affecting
+the content of the underlying data base used by the `MsBackendSql`.
 
 The stash of a `MsBackendCached` contains therefore the local spectra
 data cache (if present), the names of the available spectra variables

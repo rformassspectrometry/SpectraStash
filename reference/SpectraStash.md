@@ -23,6 +23,20 @@ backends are supported:
   [MsBackendHdf5PeaksStash](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendHdf5PeaksStash.md)
   for details and options.
 
+- `MsBackendMemory`: see
+  [MsBackendMemoryStash](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendMemoryStash.md)
+  for details and options.
+
+- `MsBackendDataFrame`: see
+  [MsBackendMemoryStash](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendMemoryStash.md)
+  for details and options.
+
+- `MsBackendOfflineSql` (defined in the
+  [*MsBackendSql*](https://bioconductor.org/packages/MsBackendSql)
+  package): see
+  [MsBackendSqlStash](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendSqlStash.md)
+  for details and options.
+
 The data backend of any `Spectra` backend can eventually be changed to
 one of the above backends using the
 [`Spectra::setBackend()`](https://rdrr.io/pkg/ProtGenerics/man/backendInitialize.html)
@@ -154,8 +168,8 @@ s
 #>  ... 34 more variables/columns.
 #> 
 #> file(s):
-#> 193b5b78742c_7859
-#> 193b5714539b_7860
+#> 19b63468b7dc_7859
+#> 19b64ad35904_7860
 
 ## Filter the intensities of the Spectra removing peaks with an intensity
 ## below 100
@@ -198,11 +212,11 @@ res
 #>  ... 25 more variables/columns.
 #> 
 #> file(s):
-#> 193b5b78742c_7859
-#> 193b5714539b_7860
+#> 19b63468b7dc_7859
+#> 19b64ad35904_7860
 #> Lazy evaluation queue: 1 processing step(s)
 #> Processing:
-#>  Remove peaks with intensities outside [100, Inf] in spectra of MS level(s) 1. [Wed Oct  7 08:55:45 2026] 
+#>  Remove peaks with intensities outside [100, Inf] in spectra of MS level(s) 1. [Fri Oct 16 14:05:23 2026] 
 
 ## It is also possible to read individual contents from the stash. The
 ## directory *backend* contains for example the stashed `MsBackend` of the
@@ -227,8 +241,8 @@ b
 #>  ... 25 more variables/columns.
 #> 
 #> file(s):
-#> 193b5b78742c_7859
-#> 193b5714539b_7860
+#> 19b63468b7dc_7859
+#> 19b64ad35904_7860
 
 ## Alternatively, that data can also be read directly with the `readObject()`
 ## method from the *alabaster.base* package:
@@ -252,6 +266,6 @@ b
 #>  ... 25 more variables/columns.
 #> 
 #> file(s):
-#> 193b5b78742c_7859
-#> 193b5714539b_7860
+#> 19b63468b7dc_7859
+#> 19b64ad35904_7860
 ```
