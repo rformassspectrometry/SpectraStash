@@ -13,7 +13,7 @@ generic methods to export and import mass spectrometry (MS) data objects
 in various storage formats aiming to facilitate data exchange between
 software. The *SpectraStash* package implements portable data storage
 formats (stashes) for data classes from the
-*[Spectra](https://bioconductor.org/packages/3.23/Spectra)* package,
+*[Spectra](https://bioconductor.org/packages/3.24/Spectra)* package,
 including the `Spectra` object and its various data backends.
 
 ## Installation
@@ -48,7 +48,7 @@ their respective parameter objects are:
   from *alabaster.base*.
 
 See also the vignette from the
-*[MsStash](https://bioconductor.org/packages/3.23/MsStash)* for details
+*[MsStash](https://bioconductor.org/packages/3.24/MsStash)* for details
 on the formats and implementation notes.
 
 As an example we create below a `Spectra` object from two example MS
@@ -80,8 +80,8 @@ data files from the *MsDataHub* package.
     ##  ... 34 more variables/columns.
     ## 
     ## file(s):
-    ## 19b63468b7dc_7859
-    ## 19b64ad35904_7860
+    ## 90151994882_7859
+    ## 9014eeb26a3_7860
 
 We next filter the data restricting to spectra and mass peaks with a
 retention time between 20 and 200 seconds and an *m/z* between 110 and
@@ -109,12 +109,12 @@ retention time between 20 and 200 seconds and an *m/z* between 110 and
     ##  ... 34 more variables/columns.
     ## 
     ## file(s):
-    ## 19b63468b7dc_7859
-    ## 19b64ad35904_7860
+    ## 90151994882_7859
+    ## 9014eeb26a3_7860
     ## Lazy evaluation queue: 1 processing step(s)
     ## Processing:
-    ##  Filter: select retention time [20..200] on MS level(s)  [Fri Oct 16 14:05:33 2026]
-    ##  Filter: select peaks with an m/z within [110, 120] [Fri Oct 16 14:05:33 2026]
+    ##  Filter: select retention time [20..200] on MS level(s)  [Thu Oct 22 11:58:17 2026]
+    ##  Filter: select peaks with an m/z within [110, 120] [Thu Oct 22 11:58:17 2026]
 
 We next store this `Spectra` object to a *SpectraStash* using the
 [`saveMsObject()`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html)
@@ -138,7 +138,7 @@ The content of the stash folder is:
 [`library`](https://rdrr.io/r/base/library.html)`(`[`fs`](https://fs.r-lib.org)`)`\
 [`dir_tree`](https://fs.r-lib.org/reference/dir_tree.html)`(``d``)`
 
-    ## /tmp/RtmpTL9gBB/file1bdc5e7083fb/spectra_stash
+    ## /tmp/RtmpFrxabd/fileb28351a58a7/spectra_stash
     ## ├── OBJECT
     ## ├── _environment.json
     ## ├── backend
@@ -189,12 +189,12 @@ restored again with
     ##  ... 25 more variables/columns.
     ## 
     ## file(s):
-    ## 19b63468b7dc_7859
-    ## 19b64ad35904_7860
+    ## 90151994882_7859
+    ## 9014eeb26a3_7860
     ## Lazy evaluation queue: 1 processing step(s)
     ## Processing:
-    ##  Filter: select retention time [20..200] on MS level(s)  [Fri Oct 16 14:05:33 2026]
-    ##  Filter: select peaks with an m/z within [110, 120] [Fri Oct 16 14:05:33 2026]
+    ##  Filter: select retention time [20..200] on MS level(s)  [Thu Oct 22 11:58:17 2026]
+    ##  Filter: select peaks with an m/z within [110, 120] [Thu Oct 22 11:58:17 2026]
 
 We need to specify the type of the object to restore with the first
 parameter of the function - in our case
@@ -231,8 +231,8 @@ from *alabaster.base*:
     ##  ... 25 more variables/columns.
     ## 
     ## file(s):
-    ## 19b63468b7dc_7859
-    ## 19b64ad35904_7860
+    ## 90151994882_7859
+    ## 9014eeb26a3_7860
 
 Or using
 [`readMsObject()`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html):
@@ -258,8 +258,8 @@ Or using
     ##  ... 25 more variables/columns.
     ## 
     ## file(s):
-    ## 19b63468b7dc_7859
-    ## 19b64ad35904_7860
+    ## 90151994882_7859
+    ## 9014eeb26a3_7860
 
 ### Creating self-contained stashes
 
@@ -293,12 +293,12 @@ MS data files **into** the stash folder:
 \
 [`dir_tree`](https://fs.r-lib.org/reference/dir_tree.html)`(``d2``)`
 
-    ## /tmp/RtmpTL9gBB/spectra_stash2
+    ## /tmp/RtmpFrxabd/spectra_stash2
     ## ├── OBJECT
     ## ├── _environment.json
     ## ├── backend
-    ## │   ├── 19b63468b7dc_7859
-    ## │   ├── 19b64ad35904_7860
+    ## │   ├── 9014eeb26a3_7860
+    ## │   ├── 90151994882_7859
     ## │   ├── OBJECT
     ## │   └── spectra_data
     ## │       ├── OBJECT
@@ -353,9 +353,9 @@ in memory. Below we change the backend of our `sps` object to
     ##  ... 34 more variables/columns.
     ## Lazy evaluation queue: 1 processing step(s)
     ## Processing:
-    ##  Filter: select retention time [20..200] on MS level(s)  [Fri Oct 16 14:05:33 2026]
-    ##  Filter: select peaks with an m/z within [110, 120] [Fri Oct 16 14:05:33 2026]
-    ##  Switch backend from MsBackendMzR to MsBackendMemory [Fri Oct 16 14:05:35 2026]
+    ##  Filter: select retention time [20..200] on MS level(s)  [Thu Oct 22 11:58:17 2026]
+    ##  Filter: select peaks with an m/z within [110, 120] [Thu Oct 22 11:58:17 2026]
+    ##  Switch backend from MsBackendMzR to MsBackendMemory [Thu Oct 22 11:58:18 2026]
 
 We next stash this updated `Spectra` object removing first the stash
 directory of the previous SpectraStash (because overwriting stash
@@ -374,7 +374,7 @@ structure:
 \
 [`dir_tree`](https://fs.r-lib.org/reference/dir_tree.html)`(``d2``)`
 
-    ## /tmp/RtmpTL9gBB/spectra_stash2
+    ## /tmp/RtmpFrxabd/spectra_stash2
     ## ├── OBJECT
     ## ├── _environment.json
     ## ├── backend
@@ -428,9 +428,9 @@ can restore the `Spectra` object with:
     ##  ... 25 more variables/columns.
     ## Lazy evaluation queue: 1 processing step(s)
     ## Processing:
-    ##  Filter: select retention time [20..200] on MS level(s)  [Fri Oct 16 14:05:33 2026]
-    ##  Filter: select peaks with an m/z within [110, 120] [Fri Oct 16 14:05:33 2026]
-    ##  Switch backend from MsBackendMzR to MsBackendMemory [Fri Oct 16 14:05:35 2026]
+    ##  Filter: select retention time [20..200] on MS level(s)  [Thu Oct 22 11:58:17 2026]
+    ##  Filter: select peaks with an m/z within [110, 120] [Thu Oct 22 11:58:17 2026]
+    ##  Switch backend from MsBackendMzR to MsBackendMemory [Thu Oct 22 11:58:18 2026]
 
 In addition, we can restore the `MsBackendMemory` with:
 
@@ -487,7 +487,7 @@ storage format for the in-memory `MsBackendMemory` (note the double
 
     ## R version 4.6.1 (2026-06-24)
     ## Platform: x86_64-pc-linux-gnu
-    ## Running under: Ubuntu 24.04.4 LTS
+    ## Running under: Ubuntu 24.04.5 LTS
     ## 
     ## Matrix products: default
     ## BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
@@ -512,7 +512,7 @@ storage format for the in-memory `MsBackendMemory` (note the double
     ##  [1] alabaster.base_1.13.4 fs_2.1.0              MsDataHub_1.13.3     
     ##  [4] SpectraStash_0.99.4   MsStash_0.99.0        Spectra_1.23.5       
     ##  [7] BiocParallel_1.47.0   S4Vectors_0.51.10     BiocGenerics_0.59.12 
-    ## [10] generics_0.1.4        BiocStyle_2.40.0     
+    ## [10] generics_0.1.4        BiocStyle_2.41.0     
     ## 
     ## loaded via a namespace (and not attached):
     ##  [1] tidyselect_1.2.1         dplyr_1.2.1              blob_1.3.0              
@@ -525,7 +525,7 @@ storage format for the in-memory `MsBackendMemory` (note the double
     ## [22] htmlwidgets_1.6.4        bit_4.6.0                curl_8.1.0              
     ## [25] withr_3.0.3              purrr_1.2.2              desc_1.4.3              
     ## [28] ExperimentHub_3.3.2      Rhdf5lib_2.1.0           MASS_7.3-66             
-    ## [31] cli_3.6.6                mzR_2.46.0               rmarkdown_2.32          
+    ## [31] cli_3.6.6                mzR_2.47.1               rmarkdown_2.32          
     ## [34] crayon_1.5.3             ragg_1.5.2               otel_0.2.0              
     ## [37] httr_1.4.9               BiocBaseUtils_1.15.1     ncdf4_1.24              
     ## [40] DBI_1.3.0                cachem_1.1.0             rhdf5_2.57.20           
@@ -534,11 +534,11 @@ storage format for the in-memory `MsBackendMemory` (note the double
     ## [49] jsonlite_2.0.0           bookdown_0.48            IRanges_2.47.5          
     ## [52] bit64_4.8.6              clue_0.3-68              systemfonts_1.3.2       
     ## [55] jquerylib_0.1.4          glue_1.8.1               pkgdown_2.2.1.9000      
-    ## [58] codetools_0.2-20         BiocVersion_3.23.1       tibble_3.3.1            
+    ## [58] codetools_0.2-20         BiocVersion_3.24.0       tibble_3.3.1            
     ## [61] pillar_1.11.1            rappdirs_0.3.4           htmltools_0.5.9         
     ## [64] Seqinfo_1.3.2            rhdf5filters_1.25.4      R6_2.6.1                
     ## [67] dbplyr_2.6.0             httr2_1.3.0              textshaping_1.0.5       
     ## [70] evaluate_1.0.5           Biobase_2.73.2           AnnotationHub_4.3.2     
     ## [73] png_0.1-9                memoise_2.0.1            bslib_0.12.0            
-    ## [76] MetaboCoreUtils_1.21.1   Rcpp_1.1.2               xfun_0.61               
+    ## [76] MetaboCoreUtils_1.21.2   Rcpp_1.1.2               xfun_0.62               
     ## [79] MsCoreUtils_1.25.4       pkgconfig_2.0.3

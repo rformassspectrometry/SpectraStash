@@ -10,7 +10,7 @@ and
 functions configuring the stash with a
 [PlainTextParam](https://rdrr.io/pkg/MsStash/man/PlainTextParam.html) or
 [AlabasterParam](https://rdrr.io/pkg/MsStash/man/AlabasterParam.html)
-parameter object.
+parameter object. The Alabaster format is the preferred stash format.
 
 Additional properties of the stash formats are described in detail in
 the sections below.
@@ -23,6 +23,15 @@ saveMsObject(object, param, consolidate = FALSE)
 
 # S4 method for class 'MsBackendOfflineSql,PlainTextParam'
 readMsObject(object, param, password = character(), ...)
+
+# S4 method for class 'MsBackendOfflineSql'
+saveObject(x, path, consolidate = FALSE, ...)
+
+# S4 method for class 'MsBackendOfflineSql,AlabasterParam'
+saveMsObject(object, param, consolidate = FALSE, ...)
+
+# S4 method for class 'MsBackendOfflineSql,AlabasterParam'
+readMsObject(object, param, password = character())
 ```
 
 ## Arguments
@@ -52,6 +61,20 @@ readMsObject(object, param, password = character(), ...)
 
   Currently ignored.
 
+- x:
+
+  For
+  [`saveObject()`](https://rdrr.io/pkg/alabaster.base/man/saveObject.html):
+  a `MsBackendOfflineSql`.
+
+- path:
+
+  For
+  [`saveObject()`](https://rdrr.io/pkg/alabaster.base/man/saveObject.html)
+  and
+  [`readObject()`](https://rdrr.io/pkg/alabaster.base/man/readObject.html):
+  the path to the stash directory.
+
 ## Value
 
 [`readMsObject()`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html)
@@ -67,6 +90,38 @@ into the stash folder (by setting `consolidate = TRUE` in the
 call). This is currently supported for:
 
 - SQLite-based databases (using the *RSQLite* package)
+
+## Alabaster format, `AlabasterParam`
+
+[`saveMsObject()`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html)
+with an
+[`AlabasterParam()`](https://rdrr.io/pkg/MsStash/man/AlabasterParam.html)
+stores the backend to a stash folder in *alabaster* format. Individual
+components of the backend are stored using base functionality of the
+*alabaster.base* Bioconductor package into specific sub-folders within
+the main stash directory. These are:
+
+- *dbinfo* directory: contains a `data.frame` saved with
+  *alabaster.base* with the database-specific information such as
+  database name, host etc.
+
+- *spectra_ids* directory: contains an `integer` vector saved with
+  *alabaster.base* with the IDs (indices) of the individual spectra.
+
+The remaining directories hold the content of the `MsBackendCached`
+object the `MsBackendOfflineSql` extends (i.e., all locally cached
+data). Using parameter `consolidate = TRUE` will also store the database
+file within the folder (if supported).
+
+In addition to the
+[`saveMsObject()`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html)
+and
+[`readMsObject()`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html)
+also the *alabaster.base*
+[`saveObject()`](https://rdrr.io/pkg/alabaster.base/man/saveObject.html)
+and
+[`readObject()`](https://rdrr.io/pkg/alabaster.base/man/readObject.html)
+methods are directly supported.
 
 ## Text-file format, `PlainTextParam`
 
@@ -117,7 +172,7 @@ dbname <- tempfile()
 s <- setBackend(s, MsBackendOfflineSql(), dbname = dbname, drv = SQLite())
 #> Importing data ... 
 #> 
-#> [==========================================================] 1/1 (100%) in  1s
+#> [==========================================================] 1/1 (100%) in  0s
 #> 
 #> Creating indices 
 #> .
@@ -126,16 +181,66 @@ s <- setBackend(s, MsBackendOfflineSql(), dbname = dbname, drv = SQLite())
 #> .
 #>  Done
 
-## Stash the `Spectra` object to a temporary folder
+## Stash the `Spectra` object to a temporary folder in alabaster format
 d <- file.path(tempdir(), "spectra_sql")
-saveMsObject(s, PlainTextParam(d))
+saveMsObject(s, AlabasterParam(d))
 
 ## List the content of the SpectraStash
 dir(d)
-#> [1] "ms_backend_data.txt"              "ms_backend_dbinfo.txt"           
-#> [3] "ms_backend_nspectra.txt"          "ms_backend_spectra_ids.txt"      
-#> [5] "ms_backend_spectra_variables.txt" "spectra_processing_queue.json"   
-#> [7] "spectra_slots.txt"               
+#> [1] "OBJECT"                        "_environment.json"            
+#> [3] "backend"                       "metadata"                     
+#> [5] "processing"                    "processing_chunk_size"        
+#> [7] "processing_queue_variables"    "spectra_processing_queue.json"
+
+## List the content of the MsBackendOfflineSql stash, which is located
+## within the *backend* folder
+dir(file.path(d, "backend"))
+#> [1] "OBJECT"            "dbinfo"            "local_data"       
+#> [4] "nspectra"          "spectra_ids"       "spectra_variables"
+
+## Restore the object from the stash
+res <- readMsObject(Spectra(), AlabasterParam(d))
+res
+#> MSn data (Spectra) with 931 spectra in a MsBackendOfflineSql backend:
+#>       msLevel precursorMz  polarity
+#>     <integer>   <numeric> <integer>
+#> 1           1          NA         1
+#> 2           1          NA         1
+#> 3           1          NA         1
+#> 4           1          NA         1
+#> 5           1          NA         1
+#> ...       ...         ...       ...
+#> 927         1          NA         1
+#> 928         1          NA         1
+#> 929         1          NA         1
+#> 930         1          NA         1
+#> 931         1          NA         1
+#>  ... 35 more variables/columns.
+#>  Use  'spectraVariables' to list all of them.
+#> Database: /tmp/RtmpFqcVt6/filea2a7c0e37c2
+#> Processing:
+#>  Switch backend from MsBackendMzR to MsBackendOfflineSql [Thu Oct 22 11:58:04 2026] 
+
+## Verify a SQL backend is used
+class(res@backend)
+#> [1] "MsBackendOfflineSql"
+#> attr(,"package")
+#> [1] "MsBackendSql"
+
+## Repeat using the plain text file format. We need to first remove
+## the previously generated stash, as overwriting an existing stash
+## is not supported.
+unlink(d, recursive = TRUE)
+
+## Use `consolidate = TRUE` to store also the database into the stash
+saveMsObject(s, PlainTextParam(d), consolidate = TRUE)
+
+## List the content of the SpectraStash
+dir(d)
+#> [1] "filea2a7c0e37c2"                  "ms_backend_data.txt"             
+#> [3] "ms_backend_dbinfo.txt"            "ms_backend_nspectra.txt"         
+#> [5] "ms_backend_spectra_ids.txt"       "ms_backend_spectra_variables.txt"
+#> [7] "spectra_processing_queue.json"    "spectra_slots.txt"               
 
 ## Restore the object from the stash
 res <- readMsObject(Spectra(), PlainTextParam(d))
@@ -156,9 +261,9 @@ res
 #> 931         1          NA         1
 #>  ... 35 more variables/columns.
 #>  Use  'spectraVariables' to list all of them.
-#> Database: /tmp/RtmpkjwKyT/file1adf5640d181
+#> Database: /tmp/RtmpFqcVt6/spectra_sql/filea2a7c0e37c2
 #> Processing:
-#>  Switch backend from MsBackendMzR to MsBackendOfflineSql [Fri Oct 16 14:05:22 2026] 
+#>  Switch backend from MsBackendMzR to MsBackendOfflineSql [Thu Oct 22 11:58:04 2026] 
 
 ## Verify a SQL backend is used
 class(res@backend)

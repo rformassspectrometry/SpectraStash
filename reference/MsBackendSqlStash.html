@@ -4,14 +4,16 @@ MsBackendSql
 Bioconductor package can be stashed (or read from) plain text file or
 alabaster-based stash formats using the saveMsObject() and
 readMsObject() functions configuring the stash with a PlainTextParam or
-AlabasterParam parameter object.
+AlabasterParam parameter object. The Alabaster format is the preferred
+stash format.
 Additional properties of the stash formats are described in detail in the
 sections below."><meta property="og:description" content="MsBackendOfflineSql backend classes defined in the
 MsBackendSql
 Bioconductor package can be stashed (or read from) plain text file or
 alabaster-based stash formats using the saveMsObject() and
 readMsObject() functions configuring the stash with a PlainTextParam or
-AlabasterParam parameter object.
+AlabasterParam parameter object. The Alabaster format is the preferred
+stash format.
 Additional properties of the stash formats are described in detail in the
 sections below."><meta property="og:image" content="https://rformassspectrometry.github.io/SpectraStash/logo.png"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -53,7 +55,8 @@ sections below."><meta property="og:image" content="https://rformassspectrometry
 Bioconductor package can be stashed (or read from) plain text file or
 <em>alabaster</em>-based stash formats using the <code><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">saveMsObject()</a></code> and
 <code><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">readMsObject()</a></code> functions configuring the stash with a <a href="https://rdrr.io/pkg/MsStash/man/PlainTextParam.html" class="external-link">PlainTextParam</a> or
-<a href="https://rdrr.io/pkg/MsStash/man/AlabasterParam.html" class="external-link">AlabasterParam</a> parameter object.</p>
+<a href="https://rdrr.io/pkg/MsStash/man/AlabasterParam.html" class="external-link">AlabasterParam</a> parameter object. The Alabaster format is the preferred
+stash format.</p>
 <p>Additional properties of the stash formats are described in detail in the
 sections below.</p>
     </div>
@@ -64,7 +67,16 @@ sections below.</p>
 <span><span class="fu"><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">saveMsObject</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">param</span>, consolidate <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S4 method for class 'MsBackendOfflineSql,PlainTextParam'</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">readMsObject</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">param</span>, password <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">readMsObject</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">param</span>, password <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'MsBackendOfflineSql'</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/alabaster.base/man/saveObject.html" class="external-link">saveObject</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">path</span>, consolidate <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'MsBackendOfflineSql,AlabasterParam'</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">saveMsObject</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">param</span>, consolidate <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'MsBackendOfflineSql,AlabasterParam'</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">readMsObject</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">param</span>, password <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -95,6 +107,15 @@ provided through this parameter.</p></dd>
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>Currently ignored.</p></dd>
 
+
+<dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
+<dd><p>For <code><a href="https://rdrr.io/pkg/alabaster.base/man/saveObject.html" class="external-link">saveObject()</a></code>: a <code>MsBackendOfflineSql</code>.</p></dd>
+
+
+<dt id="arg-path">path<a class="anchor" aria-label="anchor" href="#arg-path"></a></dt>
+<dd><p>For <code><a href="https://rdrr.io/pkg/alabaster.base/man/saveObject.html" class="external-link">saveObject()</a></code> and <code><a href="https://rdrr.io/pkg/alabaster.base/man/readObject.html" class="external-link">readObject()</a></code>: the path to the stash
+directory.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -107,6 +128,26 @@ object.</p>
 the stash folder (by setting <code>consolidate = TRUE</code> in the <code><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">saveMsObject()</a></code>
 call). This is currently supported for:</p><ul><li><p>SQLite-based databases (using the <em>RSQLite</em> package)</p></li>
 </ul></div>
+    <div class="section level2">
+    <h2 id="alabaster-format-alabasterparam">Alabaster format, <code>AlabasterParam</code><a class="anchor" aria-label="anchor" href="#alabaster-format-alabasterparam"></a></h2>
+
+
+
+<p><code><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">saveMsObject()</a></code> with an <code><a href="https://rdrr.io/pkg/MsStash/man/AlabasterParam.html" class="external-link">AlabasterParam()</a></code> stores the backend to a stash
+folder in <em>alabaster</em> format. Individual components of the backend are
+stored using base functionality of the <em>alabaster.base</em> Bioconductor package
+into specific sub-folders within the main stash directory. These are:</p><ul><li><p><em>dbinfo</em> directory: contains a <code>data.frame</code> saved with <em>alabaster.base</em>
+with the database-specific information such as database name, host etc.</p></li>
+<li><p><em>spectra_ids</em> directory: contains an <code>integer</code> vector saved with
+<em>alabaster.base</em> with the IDs (indices) of the individual spectra.</p></li>
+</ul><p>The remaining directories hold the content of the <code>MsBackendCached</code> object
+the <code>MsBackendOfflineSql</code> extends (i.e., all locally cached data). Using
+parameter <code>consolidate = TRUE</code> will also store the database file within
+the folder (if supported).</p>
+<p>In addition to the <code><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">saveMsObject()</a></code> and <code><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">readMsObject()</a></code> also the
+<em>alabaster.base</em> <code><a href="https://rdrr.io/pkg/alabaster.base/man/saveObject.html" class="external-link">saveObject()</a></code> and <code><a href="https://rdrr.io/pkg/alabaster.base/man/readObject.html" class="external-link">readObject()</a></code> methods are directly
+supported.</p>
+    </div>
     <div class="section level2">
     <h2 id="text-file-format-plaintextparam">Text-file format, <code>PlainTextParam</code><a class="anchor" aria-label="anchor" href="#text-file-format-plaintextparam"></a></h2>
 
@@ -152,7 +193,7 @@ object (see <a href="MsBackendCachedStash.html">MsBackendCachedStash</a> for det
 <span class="r-in"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ProtGenerics/man/backendInitialize.html" class="external-link">setBackend</a></span><span class="op">(</span><span class="va">s</span>, <span class="fu"><a href="https://rdrr.io/pkg/MsBackendSql/man/MsBackendOfflineSql.html" class="external-link">MsBackendOfflineSql</a></span><span class="op">(</span><span class="op">)</span>, dbname <span class="op">=</span> <span class="va">dbname</span>, drv <span class="op">=</span> <span class="fu"><a href="https://rsqlite.r-dbi.org/reference/SQLite.html" class="external-link">SQLite</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Importing data ... </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> [==========================================================] 1/1 (100%) in  1s</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> [==========================================================] 1/1 (100%) in  0s</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Creating indices </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> .</span>
@@ -161,16 +202,66 @@ object (see <a href="MsBackendCachedStash.html">MsBackendCachedStash</a> for det
 <span class="r-msg co"><span class="r-pr">#&gt;</span> .</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>  Done</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## Stash the `Spectra` object to a temporary folder</span></span></span>
+<span class="r-in"><span><span class="co">## Stash the `Spectra` object to a temporary folder in alabaster format</span></span></span>
 <span class="r-in"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"spectra_sql"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">saveMsObject</a></span><span class="op">(</span><span class="va">s</span>, <span class="fu"><a href="https://rdrr.io/pkg/MsStash/man/PlainTextParam.html" class="external-link">PlainTextParam</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">saveMsObject</a></span><span class="op">(</span><span class="va">s</span>, <span class="fu"><a href="https://rdrr.io/pkg/MsStash/man/AlabasterParam.html" class="external-link">AlabasterParam</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## List the content of the SpectraStash</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">dir</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "ms_backend_data.txt"              "ms_backend_dbinfo.txt"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "ms_backend_nspectra.txt"          "ms_backend_spectra_ids.txt"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "ms_backend_spectra_variables.txt" "spectra_processing_queue.json"   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [7] "spectra_slots.txt"               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "OBJECT"                        "_environment.json"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "backend"                       "metadata"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "processing"                    "processing_chunk_size"        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [7] "processing_queue_variables"    "spectra_processing_queue.json"</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## List the content of the MsBackendOfflineSql stash, which is located</span></span></span>
+<span class="r-in"><span><span class="co">## within the *backend* folder</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">dir</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">d</span>, <span class="st">"backend"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "OBJECT"            "dbinfo"            "local_data"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4] "nspectra"          "spectra_ids"       "spectra_variables"</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Restore the object from the stash</span></span></span>
+<span class="r-in"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">readMsObject</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/Spectra/man/Spectra.html" class="external-link">Spectra</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/pkg/MsStash/man/AlabasterParam.html" class="external-link">AlabasterParam</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">res</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MSn data (Spectra) with 931 spectra in a MsBackendOfflineSql backend:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       msLevel precursorMz  polarity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;integer&gt;   &lt;numeric&gt; &lt;integer&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1           1          NA         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2           1          NA         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3           1          NA         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4           1          NA         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5           1          NA         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ...       ...         ...       ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 927         1          NA         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 928         1          NA         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 929         1          NA         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 930         1          NA         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 931         1          NA         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ... 35 more variables/columns.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Use  'spectraVariables' to list all of them.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Database: /tmp/RtmpFqcVt6/filea2a7c0e37c2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Processing:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Switch backend from MsBackendMzR to MsBackendOfflineSql [Thu Oct 22 11:58:04 2026] </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Verify a SQL backend is used</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">res</span><span class="op">@</span><span class="va">backend</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "MsBackendOfflineSql"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"package")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "MsBackendSql"</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Repeat using the plain text file format. We need to first remove</span></span></span>
+<span class="r-in"><span><span class="co">## the previously generated stash, as overwriting an existing stash</span></span></span>
+<span class="r-in"><span><span class="co">## is not supported.</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="va">d</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Use `consolidate = TRUE` to store also the database into the stash</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">saveMsObject</a></span><span class="op">(</span><span class="va">s</span>, <span class="fu"><a href="https://rdrr.io/pkg/MsStash/man/PlainTextParam.html" class="external-link">PlainTextParam</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span>, consolidate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## List the content of the SpectraStash</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">dir</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "filea2a7c0e37c2"                  "ms_backend_data.txt"             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "ms_backend_dbinfo.txt"            "ms_backend_nspectra.txt"         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "ms_backend_spectra_ids.txt"       "ms_backend_spectra_variables.txt"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [7] "spectra_processing_queue.json"    "spectra_slots.txt"               </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Restore the object from the stash</span></span></span>
 <span class="r-in"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">readMsObject</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/Spectra/man/Spectra.html" class="external-link">Spectra</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/pkg/MsStash/man/PlainTextParam.html" class="external-link">PlainTextParam</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -191,9 +282,9 @@ object (see <a href="MsBackendCachedStash.html">MsBackendCachedStash</a> for det
 <span class="r-out co"><span class="r-pr">#&gt;</span> 931         1          NA         1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ... 35 more variables/columns.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Use  'spectraVariables' to list all of them.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Database: /tmp/RtmpkjwKyT/file1adf5640d181</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Database: /tmp/RtmpFqcVt6/spectra_sql/filea2a7c0e37c2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Processing:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Switch backend from MsBackendMzR to MsBackendOfflineSql [Fri Oct 16 14:05:22 2026] </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Switch backend from MsBackendMzR to MsBackendOfflineSql [Thu Oct 22 11:58:04 2026] </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Verify a SQL backend is used</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">res</span><span class="op">@</span><span class="va">backend</span><span class="op">)</span></span></span>
