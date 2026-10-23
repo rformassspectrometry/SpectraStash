@@ -2,6 +2,10 @@
 
 ## *SpectraStash* 0.97
 
+### Changes in version 0.99.6
+
+- Add *MsBackendSql* stash support for `MsBackendSql`.
+
 ### Changes in version 0.99.5
 
 - Add *alabaster* stash for `MsBackendOfflineSql`.

@@ -36,9 +36,14 @@
 
 - [`saveMsObject(`*`<MsBackendOfflineSql>`*`,`*`<PlainTextParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendSqlStash.md)
   [`readMsObject(`*`<MsBackendOfflineSql>`*`,`*`<PlainTextParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendSqlStash.md)
+  [`saveMsObject(`*`<MsBackendSql>`*`,`*`<PlainTextParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendSqlStash.md)
+  [`readMsObject(`*`<MsBackendSql>`*`,`*`<PlainTextParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendSqlStash.md)
   [`saveObject(`*`<MsBackendOfflineSql>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendSqlStash.md)
   [`saveMsObject(`*`<MsBackendOfflineSql>`*`,`*`<AlabasterParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendSqlStash.md)
   [`readMsObject(`*`<MsBackendOfflineSql>`*`,`*`<AlabasterParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendSqlStash.md)
+  [`saveObject(`*`<MsBackendSql>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendSqlStash.md)
+  [`saveMsObject(`*`<MsBackendSql>`*`,`*`<AlabasterParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendSqlStash.md)
+  [`readMsObject(`*`<MsBackendSql>`*`,`*`<AlabasterParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendSqlStash.md)
   : Stash for SQL-based backends
 
 - [`saveMsObject(`*`<Spectra>`*`,`*`<PlainTextParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/SpectraStash.md)

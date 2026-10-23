@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">SpectraStash</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.6</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -134,8 +134,8 @@ example MS data files from the <em>MsDataHub</em> package.</p>
 <span><span class="co">##  ... 34 more variables/columns.</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## file(s):</span></span>
-<span><span class="co">## 90151994882_7859</span></span>
-<span><span class="co">## 9014eeb26a3_7860</span></span></code></pre>
+<span><span class="co">## 5c3462bd48a_7859</span></span>
+<span><span class="co">## 5c341eac7c_7860</span></span></code></pre>
 <p>We next filter the data restricting to spectra and mass peaks with a
 retention time between 20 and 200 seconds and an <em>m/z</em> between
 110 and 120.</p>
@@ -160,12 +160,12 @@ retention time between 20 and 200 seconds and an <em>m/z</em> between
 <span><span class="co">##  ... 34 more variables/columns.</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## file(s):</span></span>
-<span><span class="co">## 90151994882_7859</span></span>
-<span><span class="co">## 9014eeb26a3_7860</span></span>
+<span><span class="co">## 5c3462bd48a_7859</span></span>
+<span><span class="co">## 5c341eac7c_7860</span></span>
 <span><span class="co">## Lazy evaluation queue: 1 processing step(s)</span></span>
 <span><span class="co">## Processing:</span></span>
-<span><span class="co">##  Filter: select retention time [20..200] on MS level(s)  [Thu Oct 22 11:58:17 2026]</span></span>
-<span><span class="co">##  Filter: select peaks with an m/z within [110, 120] [Thu Oct 22 11:58:17 2026]</span></span></code></pre>
+<span><span class="co">##  Filter: select retention time [20..200] on MS level(s)  [Fri Oct 23 08:17:20 2026]</span></span>
+<span><span class="co">##  Filter: select peaks with an m/z within [110, 120] [Fri Oct 23 08:17:20 2026]</span></span></code></pre>
 <p>We next store this <code>Spectra</code> object to a
 <em>SpectraStash</em> using the <code><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">saveMsObject()</a></code> function. We
 use an alabaster format and define the location of the stash with the
@@ -184,7 +184,7 @@ present example we save it to a temporary folder.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://fs.r-lib.org" class="external-link">fs</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://fs.r-lib.org/reference/dir_tree.html" class="external-link">dir_tree</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## <span style="color: #0000BB; font-weight: bold;">/tmp/RtmpFrxabd/fileb28351a58a7/spectra_stash</span></span></span>
+<pre><code><span><span class="co">## <span style="color: #0000BB; font-weight: bold;">/tmp/RtmpjZhA0M/file7ea5e737d7a/spectra_stash</span></span></span>
 <span><span class="co">## ├── OBJECT</span></span>
 <span><span class="co">## ├── _environment.json</span></span>
 <span><span class="co">## ├── <span style="color: #0000BB; font-weight: bold;">backend</span></span></span>
@@ -232,12 +232,12 @@ object can be restored again with <code><a href="https://rdrr.io/pkg/MsStash/man
 <span><span class="co">##  ... 25 more variables/columns.</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## file(s):</span></span>
-<span><span class="co">## 90151994882_7859</span></span>
-<span><span class="co">## 9014eeb26a3_7860</span></span>
+<span><span class="co">## 5c3462bd48a_7859</span></span>
+<span><span class="co">## 5c341eac7c_7860</span></span>
 <span><span class="co">## Lazy evaluation queue: 1 processing step(s)</span></span>
 <span><span class="co">## Processing:</span></span>
-<span><span class="co">##  Filter: select retention time [20..200] on MS level(s)  [Thu Oct 22 11:58:17 2026]</span></span>
-<span><span class="co">##  Filter: select peaks with an m/z within [110, 120] [Thu Oct 22 11:58:17 2026]</span></span></code></pre>
+<span><span class="co">##  Filter: select retention time [20..200] on MS level(s)  [Fri Oct 23 08:17:20 2026]</span></span>
+<span><span class="co">##  Filter: select peaks with an m/z within [110, 120] [Fri Oct 23 08:17:20 2026]</span></span></code></pre>
 <p>We need to specify the type of the object to restore with the first
 parameter of the function - in our case <code><a href="https://rdrr.io/pkg/Spectra/man/Spectra.html" class="external-link">Spectra()</a></code>. The full
 <code>Spectra</code> object was restored, including the processing queue
@@ -267,8 +267,8 @@ either use <code><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" cla
 <span><span class="co">##  ... 25 more variables/columns.</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## file(s):</span></span>
-<span><span class="co">## 90151994882_7859</span></span>
-<span><span class="co">## 9014eeb26a3_7860</span></span></code></pre>
+<span><span class="co">## 5c3462bd48a_7859</span></span>
+<span><span class="co">## 5c341eac7c_7860</span></span></code></pre>
 <p>Or using <code><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">readMsObject()</a></code>:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">be</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" class="external-link">readMsObject</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/Spectra/man/MsBackend.html" class="external-link">MsBackendMzR</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/pkg/MsStash/man/AlabasterParam.html" class="external-link">AlabasterParam</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">d</span>, <span class="st">"backend"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
@@ -290,8 +290,8 @@ either use <code><a href="https://rdrr.io/pkg/MsStash/man/saveMsObject.html" cla
 <span><span class="co">##  ... 25 more variables/columns.</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## file(s):</span></span>
-<span><span class="co">## 90151994882_7859</span></span>
-<span><span class="co">## 9014eeb26a3_7860</span></span></code></pre>
+<span><span class="co">## 5c3462bd48a_7859</span></span>
+<span><span class="co">## 5c341eac7c_7860</span></span></code></pre>
 <div class="section level3">
 <h3 id="creating-self-contained-stashes">Creating self-contained stashes<a class="anchor" aria-label="anchor" href="#creating-self-contained-stashes"></a>
 </h3>
@@ -319,12 +319,12 @@ for <code>MsBackendMzR</code> copies the original MS data files
 <strong>into</strong> the stash folder:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://fs.r-lib.org/reference/dir_tree.html" class="external-link">dir_tree</a></span><span class="op">(</span><span class="va">d2</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## <span style="color: #0000BB; font-weight: bold;">/tmp/RtmpFrxabd/spectra_stash2</span></span></span>
+<pre><code><span><span class="co">## <span style="color: #0000BB; font-weight: bold;">/tmp/RtmpjZhA0M/spectra_stash2</span></span></span>
 <span><span class="co">## ├── OBJECT</span></span>
 <span><span class="co">## ├── _environment.json</span></span>
 <span><span class="co">## ├── <span style="color: #0000BB; font-weight: bold;">backend</span></span></span>
-<span><span class="co">## │   ├── 9014eeb26a3_7860</span></span>
-<span><span class="co">## │   ├── 90151994882_7859</span></span>
+<span><span class="co">## │   ├── 5c341eac7c_7860</span></span>
+<span><span class="co">## │   ├── 5c3462bd48a_7859</span></span>
 <span><span class="co">## │   ├── OBJECT</span></span>
 <span><span class="co">## │   └── <span style="color: #0000BB; font-weight: bold;">spectra_data</span></span></span>
 <span><span class="co">## │       ├── OBJECT</span></span>
@@ -378,9 +378,9 @@ keep the full MS data in memory. Below we change the backend of our
 <span><span class="co">##  ... 34 more variables/columns.</span></span>
 <span><span class="co">## Lazy evaluation queue: 1 processing step(s)</span></span>
 <span><span class="co">## Processing:</span></span>
-<span><span class="co">##  Filter: select retention time [20..200] on MS level(s)  [Thu Oct 22 11:58:17 2026]</span></span>
-<span><span class="co">##  Filter: select peaks with an m/z within [110, 120] [Thu Oct 22 11:58:17 2026]</span></span>
-<span><span class="co">##  Switch backend from MsBackendMzR to MsBackendMemory [Thu Oct 22 11:58:18 2026]</span></span></code></pre>
+<span><span class="co">##  Filter: select retention time [20..200] on MS level(s)  [Fri Oct 23 08:17:20 2026]</span></span>
+<span><span class="co">##  Filter: select peaks with an m/z within [110, 120] [Fri Oct 23 08:17:20 2026]</span></span>
+<span><span class="co">##  Switch backend from MsBackendMzR to MsBackendMemory [Fri Oct 23 08:17:21 2026]</span></span></code></pre>
 <p>We next stash this updated <code>Spectra</code> object removing first
 the stash directory of the previous SpectraStash (because overwriting
 stash directories is not allowed).</p>
@@ -394,7 +394,7 @@ stash directories is not allowed).</p>
 structure:</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://fs.r-lib.org/reference/dir_tree.html" class="external-link">dir_tree</a></span><span class="op">(</span><span class="va">d2</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## <span style="color: #0000BB; font-weight: bold;">/tmp/RtmpFrxabd/spectra_stash2</span></span></span>
+<pre><code><span><span class="co">## <span style="color: #0000BB; font-weight: bold;">/tmp/RtmpjZhA0M/spectra_stash2</span></span></span>
 <span><span class="co">## ├── OBJECT</span></span>
 <span><span class="co">## ├── _environment.json</span></span>
 <span><span class="co">## ├── <span style="color: #0000BB; font-weight: bold;">backend</span></span></span>
@@ -446,9 +446,9 @@ additional <em>backend</em> sub-folder of the stash. We can restore the
 <span><span class="co">##  ... 25 more variables/columns.</span></span>
 <span><span class="co">## Lazy evaluation queue: 1 processing step(s)</span></span>
 <span><span class="co">## Processing:</span></span>
-<span><span class="co">##  Filter: select retention time [20..200] on MS level(s)  [Thu Oct 22 11:58:17 2026]</span></span>
-<span><span class="co">##  Filter: select peaks with an m/z within [110, 120] [Thu Oct 22 11:58:17 2026]</span></span>
-<span><span class="co">##  Switch backend from MsBackendMzR to MsBackendMemory [Thu Oct 22 11:58:18 2026]</span></span></code></pre>
+<span><span class="co">##  Filter: select retention time [20..200] on MS level(s)  [Fri Oct 23 08:17:20 2026]</span></span>
+<span><span class="co">##  Filter: select peaks with an m/z within [110, 120] [Fri Oct 23 08:17:20 2026]</span></span>
+<span><span class="co">##  Switch backend from MsBackendMzR to MsBackendMemory [Fri Oct 23 08:17:21 2026]</span></span></code></pre>
 <p>In addition, we can restore the <code>MsBackendMemory</code>
 with:</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
@@ -525,7 +525,7 @@ sub-folder):</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## other attached packages:</span></span>
 <span><span class="co">##  [1] alabaster.base_1.13.4 fs_2.1.0              MsDataHub_1.13.3     </span></span>
-<span><span class="co">##  [4] SpectraStash_0.99.4   MsStash_0.99.0        Spectra_1.23.5       </span></span>
+<span><span class="co">##  [4] SpectraStash_0.99.6   MsStash_0.99.0        Spectra_1.23.5       </span></span>
 <span><span class="co">##  [7] BiocParallel_1.47.0   S4Vectors_0.51.10     BiocGenerics_0.59.12 </span></span>
 <span><span class="co">## [10] generics_0.1.4        BiocStyle_2.41.0     </span></span>
 <span><span class="co">## </span></span>

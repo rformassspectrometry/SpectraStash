@@ -1,6 +1,6 @@
 # Stash for SQL-based backends
 
-`MsBackendOfflineSql` backend classes defined in the
+`MsBackendOfflineSql` and `MsBackendSql` backend classes defined in the
 [*MsBackendSql*](https://bioconductor.org/packages/MsBackendSql)
 Bioconductor package can be stashed (or read from) plain text file or
 *alabaster*-based stash formats using the
@@ -19,10 +19,16 @@ the sections below.
 
 ``` r
 # S4 method for class 'MsBackendOfflineSql,PlainTextParam'
-saveMsObject(object, param, consolidate = FALSE)
+saveMsObject(object, param, consolidate = FALSE, ...)
 
 # S4 method for class 'MsBackendOfflineSql,PlainTextParam'
 readMsObject(object, param, password = character(), ...)
+
+# S4 method for class 'MsBackendSql,PlainTextParam'
+saveMsObject(object, param, consolidate = FALSE, ...)
+
+# S4 method for class 'MsBackendSql,PlainTextParam'
+readMsObject(object, param, password = character())
 
 # S4 method for class 'MsBackendOfflineSql'
 saveObject(x, path, consolidate = FALSE, ...)
@@ -32,13 +38,22 @@ saveMsObject(object, param, consolidate = FALSE, ...)
 
 # S4 method for class 'MsBackendOfflineSql,AlabasterParam'
 readMsObject(object, param, password = character())
+
+# S4 method for class 'MsBackendSql'
+saveObject(x, path, consolidate = FALSE, ...)
+
+# S4 method for class 'MsBackendSql,AlabasterParam'
+saveMsObject(object, param, consolidate = FALSE, ...)
+
+# S4 method for class 'MsBackendSql,AlabasterParam'
+readMsObject(object, param, password = character())
 ```
 
 ## Arguments
 
 - object:
 
-  An `MsBackendOfflineSql` object.
+  An `MsBackendOfflineSql` or `MsBackendSql` object.
 
 - param:
 
@@ -50,16 +65,16 @@ readMsObject(object, param, password = character())
   folder. This is currently only supported for some database formats and
   systems. See *notes* section for details.
 
+- ...:
+
+  Currently ignored.
+
 - password:
 
   Optional `character(1)` with the password required to connect to the
   database. Passwords are never stored in a stash, thus, if required,
   the password to connect to the SQL database must be provided through
   this parameter.
-
-- ...:
-
-  Currently ignored.
 
 - x:
 
@@ -80,6 +95,8 @@ readMsObject(object, param, password = character())
 [`readMsObject()`](https://rdrr.io/pkg/MsStash/man/saveMsObject.html)
 returns a
 [MsBackendSql::MsBackendOfflineSql](https://rdrr.io/pkg/MsBackendSql/man/MsBackendOfflineSql.html)
+object or
+[MsBackendSql::MsBackendSql](https://rdrr.io/pkg/MsBackendSql/man/MsBackendSql.html)
 object.
 
 ## Note
@@ -90,6 +107,11 @@ into the stash folder (by setting `consolidate = TRUE` in the
 call). This is currently supported for:
 
 - SQLite-based databases (using the *RSQLite* package)
+
+`MsBackendSql` backends are converted to a `MsBackendOfflineSql` before
+saving into the stash, because database connections can not be
+serialized. Thus, both classes use the same *MsBackendSqlStash* format
+(and both can hence be restored from the same stash).
 
 ## Alabaster format, `AlabasterParam`
 
@@ -217,9 +239,9 @@ res
 #> 931         1          NA         1
 #>  ... 35 more variables/columns.
 #>  Use  'spectraVariables' to list all of them.
-#> Database: /tmp/RtmpFqcVt6/filea2a7c0e37c2
+#> Database: /tmp/RtmpBTFvkj/file6ec7f26a9ff
 #> Processing:
-#>  Switch backend from MsBackendMzR to MsBackendOfflineSql [Thu Oct 22 11:58:04 2026] 
+#>  Switch backend from MsBackendMzR to MsBackendOfflineSql [Fri Oct 23 08:17:09 2026] 
 
 ## Verify a SQL backend is used
 class(res@backend)
@@ -237,7 +259,7 @@ saveMsObject(s, PlainTextParam(d), consolidate = TRUE)
 
 ## List the content of the SpectraStash
 dir(d)
-#> [1] "filea2a7c0e37c2"                  "ms_backend_data.txt"             
+#> [1] "file6ec7f26a9ff"                  "ms_backend_data.txt"             
 #> [3] "ms_backend_dbinfo.txt"            "ms_backend_nspectra.txt"         
 #> [5] "ms_backend_spectra_ids.txt"       "ms_backend_spectra_variables.txt"
 #> [7] "spectra_processing_queue.json"    "spectra_slots.txt"               
@@ -261,9 +283,9 @@ res
 #> 931         1          NA         1
 #>  ... 35 more variables/columns.
 #>  Use  'spectraVariables' to list all of them.
-#> Database: /tmp/RtmpFqcVt6/spectra_sql/filea2a7c0e37c2
+#> Database: /tmp/RtmpBTFvkj/spectra_sql/file6ec7f26a9ff
 #> Processing:
-#>  Switch backend from MsBackendMzR to MsBackendOfflineSql [Thu Oct 22 11:58:04 2026] 
+#>  Switch backend from MsBackendMzR to MsBackendOfflineSql [Fri Oct 23 08:17:09 2026] 
 
 ## Verify a SQL backend is used
 class(res@backend)
