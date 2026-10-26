@@ -11,8 +11,7 @@
 - **Laurent Gatto**. Contributor.
   [](https://orcid.org/0000-0002-1520-2268)
 
-- **Gabriele Tomè**. Contributor.
-  [](https://orcid.org/0000-0002-3976-6068)\
+- **Gabriele Tomè**. Author. [](https://orcid.org/0000-0002-3976-6068)\
   MetaRbolomics4Galaxy project (CUP: D53C25001030003) co-funded by the
   Autonomous Province of Bolzano under the Joint Projects South
   Tyrol–Germany 2025 program.
@@ -22,14 +21,14 @@
 Source:
 [`DESCRIPTION`](https://github.com/RforMassSpectrometry/SpectraStash/blob/main/DESCRIPTION)
 
-Rainer J, Louail P (2026). *SpectraStash: Serialize and restore Spectra
-objects in interoperable file formats*. R package version 0.99.6,
-<https://github.com/RforMassSpectrometry/SpectraStash>.
+Rainer J, Louail P, Tomè G (2026). *SpectraStash: Serialize and restore
+Spectra objects in interoperable file formats*. R package version
+0.99.7, <https://github.com/RforMassSpectrometry/SpectraStash>.
 
 @Manual{,\
   title = {SpectraStash: Serialize and restore Spectra objects in interoperable file formats},\
-  author = {Johannes Rainer and Philippine Louail},\
+  author = {Johannes Rainer and Philippine Louail and Gabriele Tomè},\
   year = {2026},\
-  note = {R package version 0.99.6},\
+  note = {R package version 0.99.7},\
   url = {https://github.com/RforMassSpectrometry/SpectraStash},\
 }

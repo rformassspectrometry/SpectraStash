@@ -27,6 +27,11 @@
 
   Stash for `MsBackendMemory` and `MsBackendDataFrame`
 
+- [`saveObject(`*`<MsBackendMetaboLights>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendMetaboLightsStash.md)
+  [`saveMsObject(`*`<MsBackendMetaboLights>`*`,`*`<AlabasterParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendMetaboLightsStash.md)
+  [`readMsObject(`*`<MsBackendMetaboLights>`*`,`*`<AlabasterParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendMetaboLightsStash.md)
+  : Stash for backends for data from public repositories
+
 - [`saveMsObject(`*`<MsBackendMzR>`*`,`*`<PlainTextParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendMzRStash.md)
   [`readMsObject(`*`<MsBackendMzR>`*`,`*`<PlainTextParam>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendMzRStash.md)
   [`saveObject(`*`<MsBackendMzR>`*`)`](https://rformassspectrometry.github.io/SpectraStash/reference/MsBackendMzRStash.md)

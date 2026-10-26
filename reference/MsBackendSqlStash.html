@@ -23,7 +23,7 @@ sections below."><meta property="og:image" content="https://rformassspectrometry
 
     <a class="navbar-brand me-2" href="../index.html">SpectraStash</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.7</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -212,7 +212,7 @@ object (see <a href="MsBackendCachedStash.html">MsBackendCachedStash</a> for det
 <span class="r-in"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ProtGenerics/man/backendInitialize.html" class="external-link">setBackend</a></span><span class="op">(</span><span class="va">s</span>, <span class="fu"><a href="https://rdrr.io/pkg/MsBackendSql/man/MsBackendOfflineSql.html" class="external-link">MsBackendOfflineSql</a></span><span class="op">(</span><span class="op">)</span>, dbname <span class="op">=</span> <span class="va">dbname</span>, drv <span class="op">=</span> <span class="fu"><a href="https://rsqlite.r-dbi.org/reference/SQLite.html" class="external-link">SQLite</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Importing data ... </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> [==========================================================] 1/1 (100%) in  0s</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> [==========================================================] 1/1 (100%) in  1s</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Creating indices </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> .</span>
@@ -257,9 +257,9 @@ object (see <a href="MsBackendCachedStash.html">MsBackendCachedStash</a> for det
 <span class="r-out co"><span class="r-pr">#&gt;</span> 931         1          NA         1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ... 35 more variables/columns.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Use  'spectraVariables' to list all of them.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Database: /tmp/RtmpBTFvkj/file6ec7f26a9ff</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Database: /tmp/RtmpFEjqN8/file74f65b91ee7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Processing:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Switch backend from MsBackendMzR to MsBackendOfflineSql [Fri Oct 23 08:17:09 2026] </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Switch backend from MsBackendMzR to MsBackendOfflineSql [Mon Oct 26 12:17:00 2026] </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Verify a SQL backend is used</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">res</span><span class="op">@</span><span class="va">backend</span><span class="op">)</span></span></span>
@@ -277,7 +277,7 @@ object (see <a href="MsBackendCachedStash.html">MsBackendCachedStash</a> for det
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## List the content of the SpectraStash</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">dir</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "file6ec7f26a9ff"                  "ms_backend_data.txt"             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "file74f65b91ee7"                  "ms_backend_data.txt"             </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [3] "ms_backend_dbinfo.txt"            "ms_backend_nspectra.txt"         </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [5] "ms_backend_spectra_ids.txt"       "ms_backend_spectra_variables.txt"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [7] "spectra_processing_queue.json"    "spectra_slots.txt"               </span>
@@ -301,9 +301,9 @@ object (see <a href="MsBackendCachedStash.html">MsBackendCachedStash</a> for det
 <span class="r-out co"><span class="r-pr">#&gt;</span> 931         1          NA         1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ... 35 more variables/columns.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Use  'spectraVariables' to list all of them.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Database: /tmp/RtmpBTFvkj/spectra_sql/file6ec7f26a9ff</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Database: /tmp/RtmpFEjqN8/spectra_sql/file74f65b91ee7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Processing:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Switch backend from MsBackendMzR to MsBackendOfflineSql [Fri Oct 23 08:17:09 2026] </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Switch backend from MsBackendMzR to MsBackendOfflineSql [Mon Oct 26 12:17:00 2026] </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Verify a SQL backend is used</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">res</span><span class="op">@</span><span class="va">backend</span><span class="op">)</span></span></span>
@@ -317,7 +317,7 @@ object (see <a href="MsBackendCachedStash.html">MsBackendCachedStash</a> for det
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Johannes Rainer, Philippine Louail.</p>
+  <p>Developed by Johannes Rainer, Philippine Louail, Gabriele Tomè.</p>
 </div>
 
 <div class="pkgdown-footer-right">

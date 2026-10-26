@@ -194,7 +194,7 @@ dbname <- tempfile()
 s <- setBackend(s, MsBackendOfflineSql(), dbname = dbname, drv = SQLite())
 #> Importing data ... 
 #> 
-#> [==========================================================] 1/1 (100%) in  0s
+#> [==========================================================] 1/1 (100%) in  1s
 #> 
 #> Creating indices 
 #> .
@@ -239,9 +239,9 @@ res
 #> 931         1          NA         1
 #>  ... 35 more variables/columns.
 #>  Use  'spectraVariables' to list all of them.
-#> Database: /tmp/RtmpBTFvkj/file6ec7f26a9ff
+#> Database: /tmp/RtmpFEjqN8/file74f65b91ee7
 #> Processing:
-#>  Switch backend from MsBackendMzR to MsBackendOfflineSql [Fri Oct 23 08:17:09 2026] 
+#>  Switch backend from MsBackendMzR to MsBackendOfflineSql [Mon Oct 26 12:17:00 2026] 
 
 ## Verify a SQL backend is used
 class(res@backend)
@@ -259,7 +259,7 @@ saveMsObject(s, PlainTextParam(d), consolidate = TRUE)
 
 ## List the content of the SpectraStash
 dir(d)
-#> [1] "file6ec7f26a9ff"                  "ms_backend_data.txt"             
+#> [1] "file74f65b91ee7"                  "ms_backend_data.txt"             
 #> [3] "ms_backend_dbinfo.txt"            "ms_backend_nspectra.txt"         
 #> [5] "ms_backend_spectra_ids.txt"       "ms_backend_spectra_variables.txt"
 #> [7] "spectra_processing_queue.json"    "spectra_slots.txt"               
@@ -283,9 +283,9 @@ res
 #> 931         1          NA         1
 #>  ... 35 more variables/columns.
 #>  Use  'spectraVariables' to list all of them.
-#> Database: /tmp/RtmpBTFvkj/spectra_sql/file6ec7f26a9ff
+#> Database: /tmp/RtmpFEjqN8/spectra_sql/file74f65b91ee7
 #> Processing:
-#>  Switch backend from MsBackendMzR to MsBackendOfflineSql [Fri Oct 23 08:17:09 2026] 
+#>  Switch backend from MsBackendMzR to MsBackendOfflineSql [Mon Oct 26 12:17:00 2026] 
 
 ## Verify a SQL backend is used
 class(res@backend)
