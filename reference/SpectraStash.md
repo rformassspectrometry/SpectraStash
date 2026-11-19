@@ -168,8 +168,8 @@ s
 #>  ... 34 more variables/columns.
 #> 
 #> file(s):
-#> 1a00e820219_7859
-#> 1a005d314c95_7860
+#> 873fabaeab_7859
+#> 87316aae69e_7860
 
 ## Filter the intensities of the Spectra removing peaks with an intensity
 ## below 100
@@ -212,11 +212,11 @@ res
 #>  ... 25 more variables/columns.
 #> 
 #> file(s):
-#> 1a00e820219_7859
-#> 1a005d314c95_7860
+#> 873fabaeab_7859
+#> 87316aae69e_7860
 #> Lazy evaluation queue: 1 processing step(s)
 #> Processing:
-#>  Remove peaks with intensities outside [100, Inf] in spectra of MS level(s) 1. [Tue Nov 17 09:33:14 2026] 
+#>  Remove peaks with intensities outside [100, Inf] in spectra of MS level(s) 1. [Thu Nov 19 15:34:04 2026] 
 
 ## It is also possible to read individual contents from the stash. The
 ## directory *backend* contains for example the stashed `MsBackend` of the
@@ -241,8 +241,8 @@ b
 #>  ... 25 more variables/columns.
 #> 
 #> file(s):
-#> 1a00e820219_7859
-#> 1a005d314c95_7860
+#> 873fabaeab_7859
+#> 87316aae69e_7860
 
 ## Alternatively, that data can also be read directly with the `readObject()`
 ## method from the *alabaster.base* package:
@@ -266,6 +266,6 @@ b
 #>  ... 25 more variables/columns.
 #> 
 #> file(s):
-#> 1a00e820219_7859
-#> 1a005d314c95_7860
+#> 873fabaeab_7859
+#> 87316aae69e_7860
 ```

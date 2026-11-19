@@ -154,7 +154,7 @@ be_h5
 #>  ... 34 more variables/columns.
 #> 
 #> file(s):
-#>  1a00e820219_7859.h5
+#>  873fabaeab_7859.h5
 
 d <- file.path(tempdir(), "example_hdf5")
 ptp <- PlainTextParam(path = d)
@@ -165,7 +165,7 @@ saveMsObject(be_h5, ptp, consolidate = TRUE)
 ## List the content of the folder: ms_backend_spectra_data.txt file
 ## with the spectra metadata and an HDF5 file with the peaks data:
 dir(d)
-#> [1] "1a00e820219_7859.h5"         "ms_backend_spectra_data.txt"
+#> [1] "873fabaeab_7859.h5"          "ms_backend_spectra_data.txt"
 
 ## Restore the stashed object
 res <- readMsObject(MsBackendHdf5Peaks(), ptp)
@@ -202,5 +202,5 @@ res
 #>  ... 25 more variables/columns.
 #> 
 #> file(s):
-#>  1a00e820219_7859.h5
+#>  873fabaeab_7859.h5
 ```
